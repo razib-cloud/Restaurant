@@ -25,6 +25,7 @@
 	<link href="{{ asset('assets') }}/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<!-- Style css -->
     <link href="{{ asset('assets') }}/css/style.css" rel="stylesheet">
+    @yield('css')
 
 </head>
 <body>
@@ -634,12 +635,10 @@
 	<script src="{{ asset('assets') }}/js/deznav-init.js"></script>
 	<script src="{{ asset('assets') }}/js/demo.js"></script>
     <script src="{{ asset('assets') }}/js/styleSwitcher.js"></script>
+    @yield('script')
 </body>
 
 <!-- Mirrored from lezato.dexignzone.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Nov 2024 04:33:22 GMT -->
 </html>
 
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/razib-cloud/Restaurant.git
-git push -u origin main
+

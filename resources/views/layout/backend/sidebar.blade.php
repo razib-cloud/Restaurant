@@ -144,11 +144,15 @@
                 </ul>
             </li>
         </ul>
-        <div class="plus-box">
+
+
+        {{-- <div class="plus-box">
             <img src="{{ asset('assets') }}/images/plus.png" alt="">
             <h5 class="fs-18 font-w700">Add Menus</h5>
             <p class="fs-14 font-w400">Manage your food <br>and beverages menus<i class="fas fa-arrow-right ms-3"></i></p>
-        </div>
+        </div> --}}
+
+
         <div class="copyright">
             <p><strong>Lezato Restaurant Admin</strong> © 2021 All Rights Reserved</p>
             <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
