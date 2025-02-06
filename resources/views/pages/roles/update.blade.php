@@ -30,6 +30,19 @@
                 @enderror
             </div>
 
+
+            <div>
+                <label for="photo">Photo</label><br>
+                <img width="50" height="" src="{{asset('photo')}}/{{$result['photo']}}" alt="{{$result['name']}}" srcset="">
+                <input type="file" class="form-control"  name="photo" > <br>
+                @error('photo')
+                    <span style="color: red">{{ $message }}</span>
+                @enderror
+            </div>
+
+
+
+
             <div>
                 <button class="btn btn-primary" type="submit">Update</button>
             </div>
