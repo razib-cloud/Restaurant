@@ -22,6 +22,14 @@
                  @error('address')
                     <span style="color: red">{{$message}}</span>
                  @enderror
+
+
+                 <label  for="name">Photo</label><br>
+                 <input class="form-control" type="file" name="photo" value="{{old('photo')}}"> <br>
+                 @error('photo')
+                    <span style="color: red">{{$message}}</span>
+                 @enderror
+
             </div>
             <div>
                 <button class="btn btn-primary" type="submit">Create</button>

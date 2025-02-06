@@ -2,66 +2,42 @@
 
 @section('body_content')
 
-<div class="row">
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
+   @php
+    //    print_r($result);
+   @endphp
+
+<div class="container mt-6">
+    <h4>Role Details</h4>
+    <fieldset disabled>
+        <div class="mb-2">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" name="name" value="{{ $result->name }}" class="form-control">
         </div>
-    @endif
-
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+        <div class="mb-2">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" id="address" name="address" value="{{ $result->address }}" class="form-control">
         </div>
-    @endif
-
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title mb-0">Role Details</h4>
-            </div>
-            <div class="card-body">
-                <div class="input-block mb-3 row">
-                    <label class="col-lg-3 col-form-label">Name</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control" value="{{ $result->name }}" readonly>
-                    </div>
-                </div>
-
-                <div class="input-block mb-3 row">
-                    <label class="col-lg-3 col-form-label">Address</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control" value="{{ $result->address }}" readonly>
-                    </div>
-                </div>
-
-                <div class="input-block mb-3 row">
-                    <label class="col-lg-3 col-form-label">Created At</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control" value="{{ $result->created_at }}" readonly>
-                    </div>
-                </div>
-
-                <div class="input-block mb-3 row">
-                    <label class="col-lg-3 col-form-label">Updated At</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control" value="{{ $result->updated_at }}" readonly>
-                    </div>
-                </div>
-
-                <div class="input-block mb-3 row">
-                    <div class="col-lg-9 offset-lg-3">
-                        <a href="{{ route('role.edit', $result->id) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('role.destroy', $result->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this role?')">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="mb-2">
+            <label for="created_at" class="form-label">Created At</label>
+            <input type="text" id="created_at" name="created_at" value="{{ $result->created_at }}" class="form-control">
         </div>
-    </div>
+        <div class="mb-2">
+            <label for="updated_at" class="form-label">Updated At</label>
+            <input type="text" id="updated_at" name="updated_at" value="{{ $result->updated_at }}" class="form-control">
+        </div>
+
+        <div class="mb-2">
+            <label for="name" class="form-label">Photo</label>
+            <img width="50" height="" src="{{asset('photo')}}/{{$result['photo']}}" alt="{{$result['name']}}" srcset="">
+        </div>
+
+
+    </fieldset>
+    <a href="{{ url('role') }}" class="btn btn-primary">Back</a>
 </div>
+
+
+
+
 
 @endsection

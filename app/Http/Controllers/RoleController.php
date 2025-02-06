@@ -26,11 +26,13 @@ class RoleController extends Controller
     {  $request->validate([
         'name' => 'required|unique:roles,name',
         'address' => 'required|unique:roles,address',
+        'Photo' => 'required|unique:roles,photo',
     ]);
 
     $result= new Role();
     $result->name= $request->name;
     $result->address= $request->address;
+    $result->photo= $request->photo;
     $success= $result->save();
 
     if ($success) {
@@ -52,9 +54,14 @@ class RoleController extends Controller
     }
 
 
-    public function edit(Role $result)
+    public function edit(Request $request, $id )
+
     {
-            return view('pages.roles.update', compact('result'));
+
+        // print_r($id);
+        $result= Role::find($id);
+        return view('pages.roles.update', compact('result'));
+
     }
 
     public function update(Request $request, $id)
@@ -62,6 +69,7 @@ class RoleController extends Controller
         $result= Role::find($id);
         $result->name= $request->name;
         $result->address= $request->address;
+        $result->photo= $request->photo;
         $success= $result->save();
 
 
