@@ -23,7 +23,7 @@
             <label for="created_at" class="form-label">Created At</label>
             <input type="text" id="created_at" name="created_at" value="{{ $result->created_at }}" class="form-control">
         </div>
-        
+
         <div class="mb-2">
             <label for="updated_at" class="form-label">Updated At</label>
             <input type="text" id="updated_at" name="updated_at" value="{{ $result->updated_at }}" class="form-control">
@@ -31,7 +31,7 @@
 
         <div class="mb-2">
             <label for="name" class="form-label">Photo</label>
-            <img width="50" height="" src="{{asset('photo')}}/{{$result['photo']}}" alt="{{$result['name']}}" srcset="">
+            <img width="50" height="" src="{{asset('photos')}}/{{$result['photo']}}" alt="{{$result['name']}}" srcset="">
         </div>
 
 

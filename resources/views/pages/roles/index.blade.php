@@ -36,7 +36,7 @@
                         <td>{{ $result->name }}</td>
                         <td>{{ $result->address }}</td>
                         <td>
-                            <img width="50" height="" src="{{ asset('photo') }}/{{ $result->photo }}" alt="{{ $result->name }}"srcset="">
+                            <img width="50" height="" src="{{ asset('photos') }}/{{ $result->photo }}" alt="{{ $result->name }}"srcset="">
                         </td>
                         <td>
                             <a class="btn btn-primary" href="{{ url("role/{$result->id}") }}">Show</a>

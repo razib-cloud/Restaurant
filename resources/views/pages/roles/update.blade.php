@@ -10,7 +10,7 @@
     @endif
 
     <div class="col-md-12">
-        <form action="{{ url("role/{$result->id}") }}" method="post">
+        <form action="{{ url("role/{$result->id}") }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('put')
 
@@ -33,7 +33,7 @@
 
             <div>
                 <label for="photo">Photo</label><br>
-                <img width="50" height="" src="{{asset('photo')}}/{{$result['photo']}}" alt="{{$result['name']}}" srcset="">
+                <img width="50" height="" src="{{asset('photos')}}/{{$result['photo']}}" alt="{{$result['name']}}" srcset="">
                 <input type="file" class="form-control"  name="photo" > <br>
                 @error('photo')
                     <span style="color: red">{{ $message }}</span>

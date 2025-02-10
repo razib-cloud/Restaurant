@@ -86,7 +86,7 @@ class RoleController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            // 'photo' => 'required|image|mimes:jpg,jpeg,png',
         ]);
 
         $result = Role::find($id);
@@ -100,9 +100,9 @@ class RoleController extends Controller
         }
 
         if ($result->save()) {
-            return redirect()->back()->with('success', 'Role updated successfully!');
+            return redirect('/role')->with('success', 'Role updated successfully!');
         } else {
-            return redirect()->back()->with('error', 'Failed to update role.');
+            return redirect()->with('error', 'Failed to update role.');
         }
     }
 
@@ -117,5 +117,5 @@ class RoleController extends Controller
     }
 
 
-    
+
 }
