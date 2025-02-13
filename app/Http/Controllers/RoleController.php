@@ -17,7 +17,7 @@ class RoleController extends Controller
                   ->orWhere('address', 'LIKE', "%{$search}%");
         }
 
-        $results = $query->paginate(10); // Paginate results
+        $results = $query->paginate(5); // Paginate results
         return view('pages.roles.index', compact('results'));
     }
 

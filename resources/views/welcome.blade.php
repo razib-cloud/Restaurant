@@ -4,7 +4,7 @@
 
 <!-- Mirrored from html.designingmedia.com/foodzey/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2025 06:14:18 GMT -->
 <head>
-  <title> Foodzey | Home </title>
+  <title> Foodzey | Dashboard </title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -65,7 +65,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link p-0 active" href="index-2.html">Home</a>
+              <a class="nav-link p-0 active" href="index-2.html">Dashboard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link p-0" href="about.html">About</a>
@@ -294,7 +294,7 @@
             </div>
             <div class="abt-service-box text-center">
               <figure><img src="assets/images/about-services-img2.png" alt="icon" class="img-fluid"></figure>
-              <span class="barlow-font d-block mb-0">Home Delivery</span>
+              <span class="barlow-font d-block mb-0">Dashboard Delivery</span>
               <!--  -->
             </div>
             <div class="abt-service-box text-center">
@@ -1109,7 +1109,7 @@
         <div class="footer-inner-con">
           <span class="text-white span-heading d-block playfair-font">Useful Links</span>
           <ul class="list-unstyled p-0 m-0">
-            <li class="position-relative"><a href="index-2.html" class="d-inline-block">Home</a></li>
+            <li class="position-relative"><a href="index-2.html" class="d-inline-block">Dashboard</a></li>
             <li class="position-relative"><a href="about.html" class="d-inline-block">About</a></li>
             <li class="position-relative"><a href="menu.html" class="d-inline-block">Menu</a></li>
             <li class="position-relative"><a href="gallery.html" class="d-inline-block">Gallery</a></li>
