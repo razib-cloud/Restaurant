@@ -147,7 +147,7 @@
                                     <a href="ecom-product-grid.html"><h2 class="text-black fs-14 font-w600">Medium Spicy Spagethi Italiano</h2></a>
                                     <span class="text-black font-w600 d-inline-block me-3">$5.6 </span> <span class="fs-14">Order 89x</span>
                                 </div>
-                                <img src="images/menu/pic1.jpg" alt="">
+                                <img src="{{ asset('assets') }}/images/menu/pic1.jpg" alt="">
                             </div>
                             <div class="d-flex pb-3 mb-3 tr-row align-items-center border-bottom">
                                 <span class="num">#2</span>
@@ -155,7 +155,7 @@
                                     <a href="ecom-product-grid.html"><h2 class="text-black fs-14 font-w600">Watermelon juice with ice</h2></a>
                                     <span class="text-black font-w600 d-inline-block me-3">$5.6 </span> <span class="fs-14">Order 89x</span>
                                 </div>
-                                <img src="images/menu/pic4.jpg" alt="">
+                                <img src="{{ asset('assets') }}/images/menu/pic4.jpg" alt="">
                             </div>
                             <div class="d-flex pb-3 mb-3 tr-row align-items-center border-bottom">
                                 <span class="num">#3</span>
@@ -163,7 +163,7 @@
                                     <a href="ecom-product-grid.html"><h2 class="text-black fs-14 font-w600">Chicken curry special with cucumber</h2></a>
                                     <span class="text-black font-w600 d-inline-block me-3">$5.6 </span> <span class="fs-14">Order 89x</span>
                                 </div>
-                                <img src="images/menu/pic3.jpg" alt="">
+                                <img src="{{ asset('assets') }}/images/menu/pic3.jpg" alt="">
                             </div>
                             <div class="d-flex pb-3 mb-3 tr-row align-items-center border-bottom">
                                 <span class="num">#4</span>
@@ -171,7 +171,7 @@
                                     <a href="ecom-product-grid.html"><h2 class="text-black fs-14 font-w600">Italiano Pizza With Garlic</h2></a>
                                     <span class="text-black font-w600 d-inline-block me-3">$5.6 </span> <span class="fs-14">Order 89x</span>
                                 </div>
-                                <img src="images/menu/pic2.jpg" alt="">
+                                <img src="{{ asset('assets') }}/images/menu/pic2.jpg" alt="">
                             </div>
                             <div class="d-flex pb-3 mb-3 tr-row align-items-center border-bottom">
                                 <span class="num">#5</span>
@@ -179,7 +179,7 @@
                                     <a href="ecom-product-grid.html"><h2 class="text-black fs-14 font-w600">Tuna Soup spinach with himalaya salt</h2></a>
                                     <span class="text-black font-w600 d-inline-block me-3">$5.6 </span> <span class="fs-14">Order 89x</span>
                                 </div>
-                                <img src="images/menu/pic1.jpg" alt="">
+                                <img src="{{ asset('assets') }}/images/menu/pic1.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -304,7 +304,7 @@
                                 <div class="card-body height400 loadmore-content dz-scroll pb-0 pt-0" id="CustomerListContent">
                                     <div class="d-flex align-items-center mb-4">
                                         <div class="recent-customer me-3">
-                                            <img src="images/contacts/c1.jpg" width="50" alt="">
+                                            <img src="{{ asset('assets') }}/images/contacts/c1.jpg" width="50" alt="">
                                         </div>
                                         <div>
                                             <span class="c-name">Benny Chagur</span>
@@ -313,7 +313,7 @@
                                     </div>
                                     <div class="d-flex align-items-center mb-4">
                                         <div class="recent-customer me-3">
-                                            <img src="images/contacts/c2.jpg" width="50" alt="">
+                                            <img src="{{ asset('assets') }}/images/contacts/c2.jpg" width="50" alt="">
                                         </div>
                                         <div>
                                             <span class="c-name">Chynita Bella</span>
@@ -322,7 +322,7 @@
                                     </div>
                                     <div class="d-flex align-items-center mb-4">
                                         <div class="recent-customer me-3">
-                                            <img src="images/contacts/c3.jpg" width="50" alt="">
+                                            <img src="{{ asset('assets') }}/images/contacts/c3.jpg" width="50" alt="">
                                         </div>
                                         <div>
                                             <span class="c-name">David Heree</span>
@@ -331,7 +331,7 @@
                                     </div>
                                     <div class="d-flex align-items-center mb-4">
                                         <div class="recent-customer me-3">
-                                            <img src="images/contacts/c4.jpg" width="50" alt="">
+                                            <img src="{{ asset('assets') }}/images/contacts/c4.jpg" width="50" alt="">
                                         </div>
                                         <div>
                                             <span class="c-name">Evan D. Mas</span>
@@ -340,7 +340,7 @@
                                     </div>
                                     <div class="d-flex align-items-center mb-4">
                                         <div class="recent-customer me-3">
-                                            <img src="images/contacts/c5.jpg" width="50" alt="">
+                                            <img src="{{ asset('assets') }}/images/contacts/c5.jpg" width="50" alt="">
                                         </div>
                                         <div>
                                             <span class="c-name">Supratman</span>
@@ -349,7 +349,7 @@
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="recent-customer me-3">
-                                            <img src="images/contacts/c6.jpg" width="50" alt="">
+                                            <img src="{{ asset('assets') }}/images/contacts/c6.jpg" width="50" alt="">
                                         </div>
                                         <div>
                                             <span class="c-name">John Kusnaidi</span>
@@ -388,7 +388,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body pb-0">
-                                    <img src="images/map1.png" class="w-100" alt="">
+                                    <img src="{{ asset('assets') }}/images/map1.png" class="w-100" alt="">
                                     <div class="d-flex align-items-center my-4">
                                         <svg class="me-2 vert-move" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M44.0137 6.54388C42.2281 4.7611 39.4593 4.65722 36.8259 7.28777L28.7931 15.32C27.902 14.9411 26.9876 14.7305 26.2148 14.5211L10.4654 11.0694C7.87258 10.5022 5.30925 13.9917 9.24425 16.2661L21.0359 23.0772L13.5298 32.3533L8.5037 31.9028C6.79647 31.7522 5.41036 33.5628 7.28536 35.4389L15.1209 43.2711C16.9959 45.1461 18.8076 43.7628 18.6537 42.0555L18.2054 37.0294L27.4815 29.5206L34.2931 41.3144C36.5676 45.25 40.057 42.6839 39.4898 40.0939L36.0348 24.3439C35.8293 23.5711 35.6181 22.6572 35.2387 21.7639L43.2681 13.7339C45.9026 11.1011 45.7987 8.32944 44.0137 6.54388Z" fill="#624FD1"/>
@@ -402,7 +402,7 @@
                                     <div class="loadmore-content dz-scroll" id="DelieveryListContent">
                                         <div class="d-sm-flex d-block border-bottom align-items-center mb-2">
                                             <div class="delivery-customer me-auto mb-2">
-                                                <img src="images/contacts/c33.jpg" alt="">
+                                                <img src="{{ asset('assets') }}/images/contacts/c33.jpg" alt="">
                                                 <div>
                                                     <span class="font-w600 text-black fs-16">John Kusnaidi <span class="text-primary">(4 Items)</span></span>
                                                     <span class="d-block fs-12 font-w600">Will be shipping on 11 : 24 AM</span>
@@ -418,7 +418,7 @@
                                         </div>
                                         <div class="d-sm-flex d-block border-bottom align-items-center mb-2">
                                             <div class="delivery-customer me-auto mb-2">
-                                                <img src="images/contacts/c11.jpg" alt="">
+                                                <img src="{{ asset('assets') }}/images/contacts/c11.jpg" alt="">
                                                 <div>
                                                     <span class="font-w600 text-black fs-16">Margaretha  <span class="text-primary">(2 Items)</span></span>
                                                     <span class="d-block fs-12 font-w600">Will be shipping on 11 : 24 AM</span>
@@ -434,7 +434,7 @@
                                         </div>
                                         <div class="d-sm-flex d-block border-bottom align-items-center mb-2">
                                             <div class="delivery-customer me-auto mb-2">
-                                                <img src="images/contacts/c22.jpg" alt="">
+                                                <img src="{{ asset('assets') }}/images/contacts/c22.jpg" alt="">
                                                 <div>
                                                     <span class="font-w600 text-black fs-16">Richard Lee   <span class="text-primary">(4 Items)</span></span>
                                                     <span class="d-block fs-12 font-w600">Will be shipping on 11 : 24 AM</span>

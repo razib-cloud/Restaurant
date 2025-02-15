@@ -50,89 +50,169 @@
         </div>
     </form>
 </x-guest-layout> --}}
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Lezato Restaurant - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Custom animation for the form */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        .register-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .register-container .logo {
+            width: 100px;
+            margin-bottom: 1.5rem;
+        }
+        .register-container h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .register-container label {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .register-container input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+        .register-container input:hover,
+        .register-container input:focus {
+            border-color: #f87f5e;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 65%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #f87f5e;
+        }
+        .register-container button {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(248, 127, 94, 1);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .register-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(248, 127, 94, 0.5);
+        }
+        .register-container a {
+            color: #f87f5e;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 1.5rem;
+        }
+        .register-container a:hover {
+            color: #f87f5e;
+            text-decoration: underline;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
-<body class="bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center min-h-screen">
-    <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-lg p-8 w-full max-w-md animate-fade-in">
-        <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">Create Your Account</h2>
+<body>
+    <div class="register-container">
+        <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg" alt="Lezato Restaurant Logo" class="logo">
+        <h1>Create Your Account</h1>
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
-            <!-- Name -->
-            <div class="mb-6">
-                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                    placeholder="Enter your name">
-                @if ($errors->has('name'))
-                    <p class="mt-2 text-sm text-red-600">{{ $errors->first('name') }}</p>
-                @endif
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" required>
             </div>
-
-            <!-- Email Address -->
-            <div class="mb-6">
-                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                    placeholder="Enter your email">
-                @if ($errors->has('email'))
-                    <p class="mt-2 text-sm text-red-600">{{ $errors->first('email') }}</p>
-                @endif
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" required>
             </div>
-
-            <!-- Password -->
-            <div class="mb-6">
-                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
-                <input id="password" type="password" name="password" required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                    placeholder="Enter your password">
-                @if ($errors->has('password'))
-                    <p class="mt-2 text-sm text-red-600">{{ $errors->first('password') }}</p>
-                @endif
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" required>
+                <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
             </div>
-
-            <!-- Confirm Password -->
-            <div class="mb-6">
-                <label for="password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm Password</label>
-                <input id="password_confirmation" type="password" name="password_confirmation" required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                    placeholder="Confirm your password">
-                @if ($errors->has('password_confirmation'))
-                    <p class="mt-2 text-sm text-red-600">{{ $errors->first('password_confirmation') }}</p>
-                @endif
+            <div class="input-group">
+                <label for="password_confirmation">Confirm Password</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required>
             </div>
-
-            <!-- Submit Button -->
-            <div class="flex items-center justify-between">
-                <a href="{{ route('login') }}" class="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-                    Already registered?
-                </a>
-                <button type="submit"
-                    class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Register
-                </button>
-            </div>
+            <button type="submit">Register</button>
         </form>
+        <a href="{{ route('login') }}">Already have an account? Login</a>
     </div>
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === "password" ? "text" : "password";
+        }
+    </script>
 </body>
 </html>

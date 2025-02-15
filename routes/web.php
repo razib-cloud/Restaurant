@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\MenuController;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // return view('welcome');
-    // return view('dashboard');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -26,13 +27,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/', function () {
-    return view('dashboard');
+// Route::get('/', function () {
+//     return view('dashboard');
 
-});
+// });
 
 Route::resource('menu', MenuController::class);
 
 Route::resource('role', RoleController::class);
+Route::resource('categories', CategoryController::class);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

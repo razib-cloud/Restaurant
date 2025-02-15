@@ -46,7 +46,6 @@
     </form>
 </x-guest-layout> --}}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,107 +57,143 @@
         /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #F5F5DC; /* Warm beige background */
+            background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
 
-        /* Login Container */
+        /* Overlay for readability */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        /* Glass Morphism Login Container */
         .login-container {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 400px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         /* Logo */
-        .login-container .logo {
+        .logo {
             width: 100px;
             margin-bottom: 1.5rem;
         }
 
         /* Heading */
-        .login-container h1 {
+        h1 {
             font-size: 2rem;
-            color: #8B0000; /* Dark red for heading */
+            color: #fff;
             margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        /* Input Fields */
-        .login-container input {
+        /* Input Group */
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
             width: 100%;
-            padding: 0.75rem;
-            margin: 0.5rem 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
             font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
             outline: none;
+            transition: border 0.3s ease;
         }
 
-        .login-container input:focus {
-            border-color: #8B0000; /* Dark red border on focus */
+        .input-group input:hover,
+        .input-group input:focus {
+            border-color: #f87f5e;
         }
 
         /* Login Button */
-        .login-container button {
+        button {
             width: 100%;
-            padding: 0.75rem;
-            background: #8B0000; /* Dark red button */
+            padding: 12px;
+            background: linear-gradient(135deg, #f87f5e, #f53804);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 1rem;
             cursor: pointer;
-            margin-top: 1rem;
-            transition: background 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .login-container button:hover {
-            background: #6B0000; /* Slightly darker red on hover */
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
         }
 
         /* Forgot Password Link */
-        .login-container a {
-            color: #8B0000; /* Dark red for links */
+        a {
+            color: #ff6b6b;
             text-decoration: none;
             font-size: 0.9rem;
             display: inline-block;
             margin-top: 1rem;
         }
 
-        .login-container a:hover {
+        a:hover {
+            color: #f87f5e;
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <!-- Restaurant Logo -->
-        <img src="https://example.com/lezato-logo.png" alt="Lezato Restaurant Logo" class="logo">
-
-        <!-- Heading -->
+        <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg" alt="Lezato Restaurant Logo" class="logo">
         <h1>Welcome Back</h1>
 
-        <!-- Login Form -->
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <!-- Email Input -->
-            <input type="email" name="email" placeholder="Email" required autofocus>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-            <!-- Password Input -->
-            <input type="password" name="password" placeholder="Password" required>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-            <!-- Login Button -->
             <button type="submit">Login</button>
         </form>
 
-        <!-- Forgot Password Link -->
         <a href="{{ route('password.request') }}">Forgot Password?</a>
     </div>
 </body>

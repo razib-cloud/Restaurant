@@ -1,161 +1,167 @@
-
-
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+
+            <!-- Dashboard -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-025-dashboard"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.html">Dashboard Light</a></li>
-                    <li><a href="index-2.html">Dashboard Dark</a></li>
-                    <li><a href="order-page-list.html">Orders</a></li>
-                    <li><a href="order-details-page.html">Order Details</a></li>
-                    <li><a href="customer-page-list.html">Customers</a></li>
-                    <li><a href="analytics.html">Analytics</a></li>
-                    <li><a href="review.html">Review</a></li>
+                    <li><a href="dashboard-light.html">Dashboard Light</a></li>
+                    <li><a href="dashboard-dark.html">Dashboard Dark</a></li>
                 </ul>
-
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                <i class="flaticon-050-info"></i>
-                    <span class="nav-text">Apps</span>
+
+            <!-- User Management -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-025-dashboard"></i>
+                    <span class="nav-text">User Management</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="app-profile.html">Profile</a></li>
-                    <li><a href="post-details.html">Post Details</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                        <ul aria-expanded="false">
-                            <li><a href="email-compose.html">Compose</a></li>
-                            <li><a href="email-inbox.html">Inbox</a></li>
-                            <li><a href="email-read.html">Read</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="app-calender.html">Calendar</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Shop</a>
-                        <ul aria-expanded="false">
-                            <li><a href="ecom-product-grid.html">Product Grid</a></li>
-                            <li><a href="ecom-product-list.html">Product List</a></li>
-                            <li><a href="ecom-product-detail.html">Product Details</a></li>
-                            <li><a href="ecom-product-order.html">Order</a></li>
-                            <li><a href="ecom-checkout.html">Checkout</a></li>
-                            <li><a href="ecom-invoice.html">Invoice</a></li>
-                            <li><a href="ecom-customers.html">Customers</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="users.html">All Users</a></li>
+                    <li><a href="roles.html">Roles & Permissions</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+
+            <!-- Reservations -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-041-graph"></i>
-                    <span class="nav-text">Charts</span>
+                    <span class="nav-text">Reservations</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="chart-flot.html">Flot</a></li>
-                    <li><a href="chart-morris.html">Morris</a></li>
-                    <li><a href="chart-chartjs.html">Chartjs</a></li>
-                    <li><a href="chart-chartist.html">Chartist</a></li>
-                    <li><a href="chart-sparkline.html">Sparkline</a></li>
-                    <li><a href="chart-peity.html">Peity</a></li>
+                    <li><a href="reservations.html">All Reservations</a></li>
+                    <li><a href="add-reservation.html">New Reservation</a></li>
+                    <li><a href="reservation-calendar.html">Reservation Calendar</a></li>
+                    <li><a href="table-management.html">Table Management</a></li>
+                    <li><a href="walk-in-customers.html">Walk-in Customers</a></li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-086-star"></i>
-                    <span class="nav-text">Bootstrap</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="ui-accordion.html">Accordion</a></li>
-                    <li><a href="ui-alert.html">Alert</a></li>
-                    <li><a href="ui-badge.html">Badge</a></li>
-                    <li><a href="ui-button.html">Button</a></li>
-                    <li><a href="ui-modal.html">Modal</a></li>
-                    <li><a href="ui-button-group.html">Button Group</a></li>
-                    <li><a href="ui-list-group.html">List Group</a></li>
-                    <li><a href="ui-card.html">Cards</a></li>
-                    <li><a href="ui-carousel.html">Carousel</a></li>
-                    <li><a href="ui-dropdown.html">Dropdown</a></li>
-                    <li><a href="ui-popover.html">Popover</a></li>
-                    <li><a href="ui-progressbar.html">Progressbar</a></li>
-                    <li><a href="ui-tab.html">Tab</a></li>
-                    <li><a href="ui-typography.html">Typography</a></li>
-                    <li><a href="ui-pagination.html">Pagination</a></li>
-                    <li><a href="ui-grid.html">Grid</a></li>
 
-                </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-045-heart"></i>
-                    <span class="nav-text">Plugins</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="uc-select2.html">Select 2</a></li>
-                    <li><a href="uc-nestable.html">Nestedable</a></li>
-                    <li><a href="uc-noui-slider.html">Noui Slider</a></li>
-                    <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                    <li><a href="uc-toastr.html">Toastr</a></li>
-                    <li><a href="map-jqvmap.html">Jqv Map</a></li>
-                    <li><a href="uc-lightgallery.html">Light Gallery</a></li>
-                </ul>
-            </li>
-            <li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-013-checkmark"></i>
-                    <span class="nav-text">Widget</span>
-                </a>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-072-printer"></i>
-                    <span class="nav-text">Forms</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="form-element.html">Form Elements</a></li>
-                    <li><a href="form-wizard.html">Wizard</a></li>
-                    <li><a href="form-ckeditor.html">CkEditor</a></li>
-                    <li><a href="form-pickers.html">Pickers</a></li>
-                    <li><a href="form-validation.html">Form Validate</a></li>
-                </ul>
-            </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <!-- Menu Management -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-043-menu"></i>
-                    <span class="nav-text">Table</span>
+                    <span class="nav-text">Menu</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
-                    <li><a href="table-datatable-basic.html">Datatable</a></li>
+                    <li><a href="menu.html">All Menu Items</a></li>
+                    <li><a href="add-menu.html">Add New Item</a></li>
+                    <li><a href="menu-categories.html">Categories</a></li>
                 </ul>
             </li>
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-022-copy"></i>
-                    <span class="nav-text">Pages</span>
+
+            <!-- Orders -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-086-star"></i>
+                    <span class="nav-text">Orders</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="page-login.html">Login</a></li>
-                    <li><a href="page-register.html">Register</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                        <ul aria-expanded="false">
-                            <li><a href="page-error-400.html">Error 400</a></li>
-                            <li><a href="page-error-403.html">Error 403</a></li>
-                            <li><a href="page-error-404.html">Error 404</a></li>
-                            <li><a href="page-error-500.html">Error 500</a></li>
-                            <li><a href="page-error-503.html">Error 503</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="page-lock-screen.html">Lock Screen</a></li>
-                    <li><a href="empty-page.html">Empty Page</a></li>
+                    <li><a href="orders.html">All Orders</a></li>
+                    <li><a href="pending-orders.html">Pending Orders</a></li>
+                    <li><a href="completed-orders.html">Completed Orders</a></li>
+                    <li><a href="cancelled-orders.html">Cancelled Orders</a></li>
+                    <li><a href="kitchen-dashboard.html">Kitchen Dashboard</a></li>
                 </ul>
             </li>
+
+            <!-- Customers -->
+<li>
+    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+        <i class="flaticon-086-star"></i>
+        <span class="nav-text">Customers</span>
+    </a>
+    <ul aria-expanded="false">
+        <li><a href="customers.html">All Customers</a></li>
+        <li><a href="add-customer.html">Add New Customer</a></li>
+        <li><a href="customer-feedback.html">Customer Feedback</a></li>
+
+    </ul>
+</li>
+
+
+            <!-- Inventory -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-072-printer"></i>
+                    <span class="nav-text">Inventory</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="inventory.html">All Inventory</a></li>
+                    <li><a href="add-inventory.html">Add New Item</a></li>
+                    <li><a href="low-stock.html">Low Stock Alerts</a></li>
+                    <li><a href="inventory-suppliers.html">Suppliers</a></li>
+                </ul>
+            </li>
+
+            <!-- Payments -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-041-graph"></i>
+                    <span class="nav-text">Payments</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="payments.html">All Payments</a></li>
+                    <li><a href="pending-payments.html">Pending Payments</a></li>
+                    <li><a href="completed-payments.html">Completed Payments</a></li>
+                    <li><a href="refunds.html">Refunds</a></li>
+                </ul>
+            </li>
+
+            <!-- Reports -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-041-graph"></i>
+                    <span class="nav-text">Reports</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="sales-reports.html">Sales Reports</a></li>
+                    <li><a href="performance-reports.html">Performance Reports</a></li>
+                    <li><a href="customer-reports.html">Customer Reports</a></li>
+                </ul>
+            </li>
+
+            <!-- Employees -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-086-star"></i>
+                    <span class="nav-text">Employees</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="employees.html">All Employees</a></li>
+                    <li><a href="attendance.html">Attendance</a></li>
+                    <li><a href="payroll.html">Payroll</a></li>
+                </ul>
+            </li>
+
+            <!-- Online Orders -->
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-043-menu"></i>
+                    <span class="nav-text">Online Orders</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="online-orders.html">All Online Orders</a></li>
+                    <li><a href="delivery-status.html">Delivery Status</a></li>
+                    <li><a href="customer-reviews.html">Customer Reviews</a></li>
+                </ul>
+            </li>
+
         </ul>
-
-
-        {{-- <div class="plus-box">
-            <img src="{{ asset('assets') }}/images/plus.png" alt="">
-            <h5 class="fs-18 font-w700">Add Menus</h5>
-            <p class="fs-14 font-w400">Manage your food <br>and beverages menus<i class="fas fa-arrow-right ms-3"></i></p>
-        </div> --}}
-
-
         <div class="copyright">
-            <p><strong>Lezato Restaurant Admin</strong> © 2021 All Rights Reserved</p>
+            <p><strong>Lezato Restaurant Admin</strong> © 2025 All Rights Reserved</p>
             <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
         </div>
     </div>
-</div>
+
+    </div>
+
+
+
+
