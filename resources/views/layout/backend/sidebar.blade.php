@@ -1,7 +1,6 @@
-<div class="deznav">
+<div class="deznav"  style="background-color: #2c3e50;">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
-
             <!-- Dashboard -->
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -25,21 +24,6 @@
                     <li><a href="roles.html">Roles & Permissions</a></li>
                     <li><a href="{{url('login')}}">Login</a></li>
                     <li><a href="{{url('register')}}">Register</a></li>
-                </ul>
-            </li>
-
-            <!-- Reservations -->
-            <li>
-                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-041-graph"></i>
-                    <span class="nav-text">Reservations</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="reservations.html">All Reservations</a></li>
-                    <li><a href="add-reservation.html">New Reservation</a></li>
-                    <li><a href="reservation-calendar.html">Reservation Calendar</a></li>
-                    <li><a href="table-management.html">Table Management</a></li>
-                    <li><a href="walk-in-customers.html">Walk-in Customers</a></li>
                 </ul>
             </li>
 
@@ -72,19 +56,17 @@
             </li>
 
             <!-- Customers -->
-<li>
-    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-        <i class="flaticon-086-star"></i>
-        <span class="nav-text">Customers</span>
-    </a>
-    <ul aria-expanded="false">
-        <li><a href="customers.html">All Customers</a></li>
-        <li><a href="add-customer.html">Add New Customer</a></li>
-        <li><a href="customer-feedback.html">Customer Feedback</a></li>
-
-    </ul>
-</li>
-
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-086-star"></i>
+                    <span class="nav-text">Customers</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="customers.html">All Customers</a></li>
+                    <li><a href="add-customer.html">Add New Customer</a></li>
+                    <li><a href="customer-feedback.html">Customer Feedback</a></li>
+                </ul>
+            </li>
 
             <!-- Inventory -->
             <li>
@@ -152,16 +134,10 @@
                     <li><a href="customer-reviews.html">Customer Reviews</a></li>
                 </ul>
             </li>
-
         </ul>
         <div class="copyright">
             <p><strong>Lezato Restaurant Admin</strong> © 2025 All Rights Reserved</p>
             <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
         </div>
     </div>
-
-    </div>
-
-
-
-
+</div>

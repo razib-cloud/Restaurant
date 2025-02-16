@@ -1,5 +1,5 @@
 
-<div class="nav-header">
+<div class="nav-header"  style="background-color: #2c3e50;">
     <a href="index.html" class="brand-logo">
         <svg class="logo-abbr" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path class="rect-primary-rect" d="M0 20C0 8.95431 8.95431 0 20 0H36C47.0457 0 56 8.95431 56 20V36C56 47.0457 47.0457 56 36 56H20C8.95431 56 0 47.0457 0 36V20Z" fill="url(#paint0_linear)"/>
