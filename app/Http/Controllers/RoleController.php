@@ -83,11 +83,11 @@ class RoleController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            // 'photo' => 'required|image|mimes:jpg,jpeg,png',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'address' => 'required|string|max:255',
+        //     'photo' => 'required|image|mimes:jpg,jpeg,png',
+        // ]);
 
         $result = Role::find($id);
         $result->name = $request->name;

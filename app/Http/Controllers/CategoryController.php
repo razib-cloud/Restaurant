@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+
+
     public function index(Request $request)
     {
         $query = Category::query();
@@ -18,14 +20,19 @@ class CategoryController extends Controller
             $query->where('name', 'LIKE', "%{$search}%");
         }
 
-        $categories = $query->paginate(5); // Paginate results
+        $categories = $query->paginate(10); // Paginate results
         return view('pages.categories.index', compact('categories'));
     }
+
+
+
 
     public function create()
     {
         return view('pages.categories.create');
     }
+
+
 
     public function store(Request $request)
     {
@@ -53,6 +60,9 @@ class CategoryController extends Controller
         }
     }
 
+
+
+
     public function show(Category $category)
     {
         return view('pages.categories.show', compact('category'));
@@ -63,39 +73,38 @@ class CategoryController extends Controller
         return view('pages.categories.update', compact('category'));
     }
 
+
+
+
     public function update(Request $request, $id)
+
+
     {
-        $request->validate([
-            'name' => 'required|string|max:100',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
 
         $category = Category::find($id);
-
-        if (!$category) {
-            return redirect('/categories')->with('error', 'Category not found.');
-        }
-
         $category->name = $request->name;
 
-        // Handle photo upload
-        if ($request->hasFile('photo')) {
-            // Delete the old photo if it exists
-            if ($category->photo && file_exists(public_path('photos/' . $category->photo))) {
-                unlink(public_path('photos/' . $category->photo));
-            }
-            // Store the new photo
+        if ($request->file('photo')) {
             $photoname = $request->name . "." . $request->file('photo')->extension();
+            $photoPath = public_path('photos' . $photoname);
+            if (file_exists($photoPath)) {
+                unlink($photoPath);
+            }
             $request->file('photo')->move(public_path('photos'), $photoname);
             $category->photo = $photoname;
+        } else {
+            $category->photo = $category->photo;
         }
 
         if ($category->save()) {
-            return redirect('/categories')->with('success', 'Category updated successfully!');
+            return redirect('categories')->with('Success', "Category has been updated");
         } else {
-            return back()->with('error', 'Failed to update category.');
-        }
+            echo "error";
+        };
     }
+
+
+
 
     public function destroy($id)
     {

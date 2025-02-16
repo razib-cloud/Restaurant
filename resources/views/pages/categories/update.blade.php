@@ -11,7 +11,7 @@
     @endif
 
     <div class="col-md-12">
-        <form action="{{ url("role/{$category->id}") }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url("categories/{$category->id}") }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

@@ -23,8 +23,8 @@
                 <ul aria-expanded="false">
                     <li><a href="users.html">All Users</a></li>
                     <li><a href="roles.html">Roles & Permissions</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    <li><a href="{{url('login')}}">Login</a></li>
+                    <li><a href="{{url('register')}}">Register</a></li>
                 </ul>
             </li>
 
@@ -52,7 +52,7 @@
                 <ul aria-expanded="false">
                     <li><a href="menu.html">All Menu Items</a></li>
                     <li><a href="add-menu.html">Add New Item</a></li>
-                    <li><a href="menu-categories.html">Categories</a></li>
+                    <li><a href="{{url('categories')}}">Categories</a></li>
                 </ul>
             </li>
 
