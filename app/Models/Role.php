@@ -11,3 +11,7 @@ class Role extends Model
     protected $fillable = ['name', 'address', 'photo'];
 
 }
+
+function isManager(){
+    return $this->roe_id == 1;
+}
