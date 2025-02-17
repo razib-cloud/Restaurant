@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('menu', MenuController::class);
 
 Route::resource('role', RoleController::class);
-Route::resource('categories', CategoryController::class)->middleware("Manager");
+Route::resource('categories', CategoryController::class);
+// Route::resource('categories', CategoryController::class)->middleware("Manager");
 
 require __DIR__ . '/auth.php';
