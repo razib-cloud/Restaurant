@@ -1,6 +1,6 @@
-@extends('layout.backend.main')
+@extends('layout.erp.app')
 
-@section('body_content')
+@section('page')
 
 <a href="{{ url('role/create') }}" class="btn btn-primary mb-3">Add</a>
 

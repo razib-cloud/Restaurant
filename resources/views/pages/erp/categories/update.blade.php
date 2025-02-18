@@ -1,6 +1,6 @@
-@extends('layout.backend.main')
+@extends('layout.erp.app')
 
-@section('body_content')
+@section('page')
 
 <div class="row">
     <!-- Display session error messages -->

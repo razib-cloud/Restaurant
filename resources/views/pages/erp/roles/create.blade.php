@@ -1,6 +1,6 @@
-@extends('layout.backend.main')
+@extends('layout.erp.app')
 
-@section('body_content')
+@section('page')
 
 <div class="row">
     <!-- Display session error messages -->
@@ -11,11 +11,11 @@
     @endif
 
     <div class="col-md-12">
-        <form action="{{ url('categories') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('role') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
-                <label for="name">Category Name</label>
+                <label for="name">Name</label>
                 <input class="form-control" type="text" name="name" value="{{ old('name') }}">
                 @error('name')
                     <span style="color: red">{{ $message }}</span>
@@ -23,7 +23,15 @@
             </div>
 
             <div class="form-group">
-                <label for="photo">Category Photo</label>
+                <label for="address">Address</label>
+                <input class="form-control" type="text" name="address" value="{{ old('address') }}">
+                @error('address')
+                    <span style="color: red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Photo</label>
                 <input class="form-control" type="file" name="photo">
                 @error('photo')
                     <span style="color: red">{{ $message }}</span>
@@ -31,7 +39,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Create Category</button>
+                <button class="btn btn-primary" type="submit">Create</button>
             </div>
         </form>
     </div>

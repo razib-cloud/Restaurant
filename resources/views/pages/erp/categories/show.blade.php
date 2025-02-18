@@ -1,6 +1,6 @@
-@extends('layout.backend.main')
+@extends('layout.erp.app')
 
-@section('body_content')
+@section('page')
 
 <div class="container mt-6">
     <h4>Category Details</h4>
