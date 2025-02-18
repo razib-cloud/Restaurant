@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoleController;
 
 use Illuminate\Support\Facades\Route;
@@ -37,5 +38,6 @@ Route::resource('menu', MenuController::class);
 Route::resource('role', RoleController::class);
 Route::resource('categories', CategoryController::class);
 // Route::resource('categories', CategoryController::class)->middleware("Manager");
+Route::resource('orders', OrderController::class);
 
 require __DIR__ . '/auth.php';
