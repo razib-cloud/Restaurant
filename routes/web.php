@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\MenuController;
@@ -40,6 +41,7 @@ Route::resource('role', RoleController::class);
 Route::resource('categories', CategoryController::class);
 // Route::resource('categories', CategoryController::class)->middleware("Manager");
 Route::resource('orders', OrderController::class);
-Route::resource('orderdetails', OrderDetailController::class);
+Route::resource('customers', CustomerController::class);
+
 
 require __DIR__ . '/auth.php';
