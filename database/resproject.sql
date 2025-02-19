@@ -24,6 +24,24 @@ INSERT INTO `categories` (`id`, `name`, `photo`, `created_at`, `updated_at`) VAL
 (9, 'Salad', 'Salad.jpg', '2025-02-15 12:54:55', '2025-02-15 12:54:55');
 
 -- --------------------------------------------------------
+CREATE TABLE `stock` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu_item_id` int(11) NOT NULL, -- menu_items টেবিলের সাথে সম্পর্ক
+  `supplier_id` int(11) DEFAULT NULL, -- suppliers টেবিলের সাথে সম্পর্ক
+  `quantity` int(11) NOT NULL,
+  `unit` varchar(50) NOT NULL,
+  `min_stock_level` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `stock` (`menu_item_id`, `supplier_id`, `quantity`, `unit`, `min_stock_level`, `created_at`, `updated_at`) VALUES
+(1, 1, 50, 'pcs', 5, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
+(2, 2, 30, 'bowl', 10, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
+(3, 3, 20, 'slice', 3, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
+(4, 4, 100, 'cup', 20, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
+(5, 5, 15, 'plate', 7, '2025-02-17 10:00:00', '2025-02-17 10:00:00');
 
 --
 -- Table structure for table `customers`

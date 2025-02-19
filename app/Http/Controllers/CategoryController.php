@@ -21,7 +21,7 @@ class CategoryController extends Controller
         }
 
         $categories = $query->paginate(10); // Paginate results
-        return view('pages.categories.index', compact('categories'));
+        return view('pages.erp.categories.index', compact('categories'));
     }
 
 
@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('pages.categories.create');
+        return view('pages.erp.categories.create');
     }
 
 
@@ -70,7 +70,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('pages.categories.update', compact('category'));
+        return view('pages.erp.categories.update', compact('category'));
     }
 
 
