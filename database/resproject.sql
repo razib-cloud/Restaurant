@@ -1,5 +1,7 @@
 
 
+
+
 --
 -- Table structure for table `categories`
 --
@@ -10,39 +12,57 @@ CREATE TABLE `categories` (
   `photo` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `photo`, `created_at`, `updated_at`) VALUES
-(2, 'Burgers', 'burgers_category.jpg', '2025-02-15 16:33:54', '2025-02-15 16:33:54'),
-(3, 'Salads', 'salads_category.jpg', '2025-02-15 16:33:54', '2025-02-15 16:33:54'),
-(7, 'Pizza2', 'Pizza.jpg', '2025-02-15 12:16:53', '2025-02-15 12:20:41'),
+(7, 'Pizza', 'Pizza.jpg', '2025-02-15 12:16:53', '2025-02-19 12:04:15'),
 (8, 'Burger', 'Burger.jpg', '2025-02-15 12:43:06', '2025-02-15 12:43:06'),
-(9, 'Salad', 'Salad.jpg', '2025-02-15 12:54:55', '2025-02-15 12:54:55');
+(9, 'Salad', 'Salad.jpg', '2025-02-15 12:54:55', '2025-02-15 12:54:55'),
+(10, 'Lunch', 'Lunch.jpg', '2025-02-19 12:03:51', '2025-02-19 12:03:51'),
+(11, 'Dinner', 'Dinner.jpg', '2025-02-19 12:05:07', '2025-02-19 12:05:07'),
+(12, 'Breakfast', 'Breakfast.jpg', '2025-02-19 12:06:26', '2025-02-19 12:06:26'),
+(13, 'Deserts', 'Deserts.jpg', '2025-02-19 12:07:45', '2025-02-19 12:07:45'),
+(14, 'Beverages', 'Beverages.jpg', '2025-02-19 12:08:51', '2025-02-19 12:08:51');
 
 -- --------------------------------------------------------
-CREATE TABLE `stock` (
+
+
+CREATE TABLE `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu_item_id` int(11) NOT NULL, -- menu_items টেবিলের সাথে সম্পর্ক
-  `supplier_id` int(11) DEFAULT NULL, -- suppliers টেবিলের সাথে সম্পর্ক
-  `quantity` int(11) NOT NULL,
-  `unit` varchar(50) NOT NULL,
-  `min_stock_level` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
+) ;
+INSERT INTO `menus` (`name`, `description`) VALUES
+('Breakfast Menu', 'A variety of breakfast items to start your day.'),
+('Lunch Menu', 'Delicious lunch options for a midday meal.'),
+('Dinner Menu', 'Hearty dinner dishes to end your day.');
+
+
+CREATE TABLE `menu_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `menus_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `is_available` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+
 );
 
-INSERT INTO `stock` (`menu_item_id`, `supplier_id`, `quantity`, `unit`, `min_stock_level`, `created_at`, `updated_at`) VALUES
-(1, 1, 50, 'pcs', 5, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
-(2, 2, 30, 'bowl', 10, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
-(3, 3, 20, 'slice', 3, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
-(4, 4, 100, 'cup', 20, '2025-02-17 10:00:00', '2025-02-17 10:00:00'),
-(5, 5, 15, 'plate', 7, '2025-02-17 10:00:00', '2025-02-17 10:00:00');
-
+INSERT INTO `menu_items` (`menus_id`, `product_id`, `price`) VALUES
+(1, 1, 12.99), -- Grilled Chicken in Breakfast Menu
+(1, 3, 7.99),  -- Caesar Salad in Breakfast Menu
+(2, 2, 8.99),  -- Veggie Burger in Lunch Menu
+(3, 1, 14.99); -- Grilled Chicken in Dinner Menu (different price)
 --
 -- Table structure for table `customers`
 --
@@ -55,7 +75,7 @@ CREATE TABLE `customers` (
   `address` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customers`
@@ -76,24 +96,23 @@ INSERT INTO `customers` (`id`, `name`, `phone`, `email`, `address`, `created_at`
 
 CREATE TABLE `customer_reviews` (
   `id` int(11) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `menu_item_id` int(11) DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL,
-  `comment` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `rating` int(1) NOT NULL CHECK (`rating` between 1 and 5),
+  `review` text DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customer_reviews`
 --
 
-INSERT INTO `customer_reviews` (`id`, `customer_id`, `menu_item_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 5, 'Absolutely delicious! Will order again.', '2025-02-16 18:52:58', '2025-02-16 18:52:58'),
-(2, 2, 5, 4, 'Great taste, but a bit too spicy for me.', '2025-02-16 18:52:58', '2025-02-16 18:52:58'),
-(3, 3, 2, 3, 'Average, could use more seasoning.', '2025-02-16 18:52:58', '2025-02-16 18:52:58'),
-(4, 4, 4, 5, 'Loved it! Perfectly cooked and flavorful.', '2025-02-16 18:52:58', '2025-02-16 18:52:58'),
-(5, 5, 1, 2, 'Not what I expected, portion size was small.', '2025-02-16 18:52:58', '2025-02-16 18:52:58');
+INSERT INTO `customer_reviews` (`id`, `customer_id`, `product_id`, `order_id`, `rating`, `review`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 5, 'Excellent taste, will order again!', '2025-02-21 00:02:48', '2025-02-21 00:02:48'),
+(2, 2, 2, 2, 4, 'Very good, but a little too spicy for me.', '2025-02-21 00:02:48', '2025-02-21 00:02:48'),
+(3, 3, 3, 3, 3, 'Good salad, but it was a bit soggy.', '2025-02-21 00:02:48', '2025-02-21 00:02:48');
 
 -- --------------------------------------------------------
 
@@ -103,23 +122,24 @@ INSERT INTO `customer_reviews` (`id`, `customer_id`, `menu_item_id`, `rating`, `
 
 CREATE TABLE `delivery_orders` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `delivery_boy_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `status_id` int(11) DEFAULT NULL
-) ;
+  `order_id` int(11) NOT NULL,
+  `delivery_address` varchar(255) NOT NULL,
+  `delivery_date` datetime DEFAULT NULL,
+  `status_id` int(11) DEFAULT NULL,
+  `assigned_to` int(11) DEFAULT NULL,
+  `delivery_fee` decimal(8,2) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `delivery_orders`
 --
 
-INSERT INTO `delivery_orders` (`id`, `order_id`, `delivery_boy_id`, `created_at`, `updated_at`, `status_id`) VALUES
-(1, 201, 1, '2025-02-16 18:52:10', '2025-02-17 17:10:04', 5),
-(2, 202, 2, '2025-02-16 18:52:10', '2025-02-17 17:10:04', 3),
-(3, 203, 3, '2025-02-16 18:52:10', '2025-02-17 17:10:04', 1),
-(4, 204, 1, '2025-02-16 18:52:10', '2025-02-17 17:10:04', 4),
-(5, 205, 4, '2025-02-16 18:52:10', '2025-02-17 17:10:04', 3);
+INSERT INTO `delivery_orders` (`id`, `order_id`, `delivery_address`, `delivery_date`, `status_id`, `assigned_to`, `delivery_fee`, `created_at`, `updated_at`) VALUES
+(1, 1, '123 Elm St, Springfield', '2025-02-22 00:05:12', 1, 1, 5.00, '2025-02-21 00:05:12', '2025-02-21 00:05:12'),
+(2, 2, '456 Oak St, Springfield', '2025-02-23 00:05:12', 2, 2, 3.00, '2025-02-21 00:05:12', '2025-02-21 00:05:12'),
+(3, 3, '789 Pine St, Springfield', '2025-02-24 00:05:12', 3, 3, 4.00, '2025-02-21 00:05:12', '2025-02-21 00:05:12');
 
 -- --------------------------------------------------------
 
@@ -129,24 +149,22 @@ INSERT INTO `delivery_orders` (`id`, `order_id`, `delivery_boy_id`, `created_at`
 
 CREATE TABLE `expenses` (
   `id` int(11) NOT NULL,
-  `staff_id` int(11) DEFAULT NULL,
-  `expense_type` varchar(100) DEFAULT NULL,
-  `amount` decimal(12,2) DEFAULT NULL,
-  `expense_date` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+  `category` varchar(100) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `description` text DEFAULT NULL,
+  `date` datetime DEFAULT current_timestamp(),
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `expenses`
 --
 
-INSERT INTO `expenses` (`id`, `staff_id`, `expense_type`, `amount`, `expense_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Kitchen Supplies', 150.00, '2025-02-17', '2025-02-16 18:45:51', '2025-02-16 18:45:51'),
-(2, 2, 'Electricity Bill', 200.50, '2025-02-16', '2025-02-16 18:45:51', '2025-02-16 18:45:51'),
-(3, 3, 'Maintenance', 75.00, '2025-02-15', '2025-02-16 18:45:51', '2025-02-16 18:45:51'),
-(4, 4, 'Staff Lunch', 50.00, '2025-02-14', '2025-02-16 18:45:51', '2025-02-16 18:45:51'),
-(5, 5, 'Marketing', 120.00, '2025-02-13', '2025-02-16 18:45:51', '2025-02-16 18:45:51');
+INSERT INTO `expenses` (`id`, `category`, `amount`, `description`, `date`, `created_at`, `updated_at`) VALUES
+(1, 'Supplies', 100.00, 'Purchase of fresh ingredients', '2025-02-21 00:05:28', '2025-02-21 00:05:28', '2025-02-21 00:05:28'),
+(2, 'Utilities', 50.00, 'Electricity and water bills for the restaurant', '2025-02-21 00:05:28', '2025-02-21 00:05:28', '2025-02-21 00:05:28'),
+(3, 'Staff Salary', 500.00, 'Monthly salary for staff', '2025-02-21 00:05:28', '2025-02-21 00:05:28', '2025-02-21 00:05:28');
 
 -- --------------------------------------------------------
 
@@ -162,35 +180,56 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `income_statement`
+-- Table structure for table `inventory`
 --
 
-CREATE TABLE `income_statement` (
+CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
-  `report_date` date DEFAULT NULL,
-  `total_sales` decimal(12,2) DEFAULT NULL,
-  `total_expenses` decimal(12,2) DEFAULT NULL,
-  `total_withdrawals` decimal(12,2) DEFAULT NULL,
-  `gross_profit` decimal(12,2) DEFAULT NULL,
-  `net_profit` decimal(12,2) GENERATED ALWAYS AS (`gross_profit` - `total_expenses` - `total_withdrawals`) STORED,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ;
+  `product_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `unit_price` decimal(8,2) NOT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `income_statement`
+-- Dumping data for table `inventory`
 --
 
-INSERT INTO `income_statement` (`id`, `report_date`, `total_sales`, `total_expenses`, `total_withdrawals`, `gross_profit`, `created_at`) VALUES
-(1, '2025-02-12', 5000.00, 2000.00, 300.00, 5000.00, '2025-02-16 18:49:41'),
-(2, '2025-02-13', 4500.00, 1800.00, 250.00, 4500.00, '2025-02-16 18:49:41'),
-(3, '2025-02-14', 5200.00, 2100.00, 400.00, 5200.00, '2025-02-16 18:49:41'),
-(4, '2025-02-15', 4800.00, 1900.00, 350.00, 4800.00, '2025-02-16 18:49:41'),
-(5, '2025-02-16', 5300.00, 2200.00, 500.00, 5300.00, '2025-02-16 18:49:41');
+INSERT INTO `inventory` (`id`, `product_id`, `supplier_id`, `quantity`, `unit_price`, `expiry_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 100, 5.00, '2025-12-31', '2025-02-21 00:01:13', '2025-02-21 00:01:13'),
+(2, 2, 2, 50, 3.50, '2025-06-30', '2025-02-21 00:01:13', '2025-02-21 00:01:13'),
+(3, 3, 3, 80, 2.00, '2025-09-30', '2025-02-21 00:01:13', '2025-02-21 00:01:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoices`
+--
+
+CREATE TABLE `invoices` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `invoice_number` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `order_id`, `invoice_number`, `created_at`, `updated_at`) VALUES
+(1, 1, 1001, '2025-02-20 18:02:21', '2025-02-20 18:02:21'),
+(2, 2, 1002, '2025-02-20 18:02:21', '2025-02-20 18:02:21'),
+(3, 3, 1003, '2025-02-20 18:02:21', '2025-02-20 18:02:21');
 
 -- --------------------------------------------------------
 
@@ -200,54 +239,23 @@ INSERT INTO `income_statement` (`id`, `report_date`, `total_sales`, `total_expen
 
 CREATE TABLE `kitchen_orders` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `menu_item_id` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `status_id` int(11) DEFAULT NULL
-) ;
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `status_id` int(11) DEFAULT NULL,
+  `assigned_to` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kitchen_orders`
 --
 
-INSERT INTO `kitchen_orders` (`id`, `order_id`, `menu_item_id`, `quantity`, `created_at`, `updated_at`, `status_id`) VALUES
-(1, 101, 3, 2, '2025-02-16 18:51:30', '2025-02-17 17:10:23', 2),
-(2, 102, 5, 1, '2025-02-16 18:51:30', '2025-02-17 17:10:23', 3),
-(3, 103, 2, 3, '2025-02-16 18:51:30', '2025-02-17 17:10:23', 2),
-(4, 104, 4, 1, '2025-02-16 18:51:30', '2025-02-17 17:10:23', 1),
-(5, 105, 1, 4, '2025-02-16 18:51:30', '2025-02-17 17:10:23', 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu_items`
---
-
-CREATE TABLE `menu_items` (
-  `id` int(11) NOT NULL,
-  `name` varchar(150) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `purchase_price` decimal(10,2) DEFAULT NULL,
-  `selling_price` decimal(10,2) DEFAULT NULL,
-  `min_stock_level` int(11) DEFAULT NULL,
-  `unit` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
-
---
--- Dumping data for table `menu_items`
---
-
-INSERT INTO `menu_items` (`id`, `name`, `category_id`, `photo`, `purchase_price`, `selling_price`, `min_stock_level`, `unit`, `created_at`, `updated_at`) VALUES
-(1, 'Margherita Pizza', 2, 'images/menu/margherita_pizza.jpg', 5.00, 10.00, 5, 'pcs', '2025-02-16 18:40:38', '2025-02-16 18:40:38'),
-(2, 'Caesar Salad', 5, 'images/menu/caesar_salad.jpg', 3.00, 7.00, 10, 'bowl', '2025-02-16 18:40:38', '2025-02-16 18:40:38'),
-(3, 'Chocolate Cake', 3, 'images/menu/chocolate_cake.jpg', 4.50, 9.00, 3, 'slice', '2025-02-16 18:40:38', '2025-02-16 18:40:38'),
-(4, 'Espresso', 4, 'images/menu/espresso.jpg', 1.50, 3.00, 20, 'cup', '2025-02-16 18:40:38', '2025-02-16 18:40:38'),
-(5, 'Grilled Chicken', 2, 'images/menu/grilled_chicken.jpg', 6.00, 12.00, 7, 'plate', '2025-02-16 18:40:38', '2025-02-16 18:40:38');
+INSERT INTO `kitchen_orders` (`id`, `order_id`, `product_id`, `quantity`, `status_id`, `assigned_to`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 1, 1, '2025-02-21 00:03:01', '2025-02-21 00:03:01'),
+(2, 2, 2, 1, 2, 2, '2025-02-21 00:03:01', '2025-02-21 00:03:01'),
+(3, 3, 3, 3, 3, 3, '2025-02-21 00:03:01', '2025-02-21 00:03:01');
 
 -- --------------------------------------------------------
 
@@ -259,7 +267,7 @@ CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -281,63 +289,49 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
-  `staff_id` int(11) DEFAULT NULL,
-  `order_date` date DEFAULT NULL,
-  `total_amount` decimal(12,2) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `status_id` int(11) DEFAULT NULL
-) ;
+  `user_id` int(11) DEFAULT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `discount` decimal(10,2) DEFAULT NULL,
+  `status_id` int(11) DEFAULT NULL,
+  `order_date` datetime DEFAULT current_timestamp(),
+  `delivery_date` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `customer_id`, `staff_id`, `order_date`, `total_amount`, `created_at`, `updated_at`, `status_id`) VALUES
-(1, 1, 2, '2025-02-17', 25.00, '2025-02-16 18:42:03', '2025-02-17 17:10:54', 3),
-(2, 2, 3, '2025-02-16', 40.50, '2025-02-16 18:42:03', '2025-02-17 17:10:54', 1),
-(3, 3, 1, '2025-02-15', 15.75, '2025-02-16 18:42:03', '2025-02-17 17:10:54', 3),
-(4, 4, 4, '2025-02-14', 60.00, '2025-02-16 18:42:03', '2025-02-17 17:10:54', 4),
-(5, 5, 2, '2025-02-13', 33.25, '2025-02-16 18:42:03', '2025-02-17 17:10:54', 3);
+INSERT INTO `orders` (`id`, `customer_id`, `user_id`, `total_amount`, `discount`, `status_id`, `order_date`, `delivery_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 35.50, 5.00, 1, '2025-02-21 00:00:42', '2025-02-22 00:00:42', '2025-02-21 00:00:42', '2025-02-21 00:00:42'),
+(2, 2, 2, 25.00, 0.00, 2, '2025-02-21 00:00:42', '2025-02-23 00:00:42', '2025-02-21 00:00:42', '2025-02-21 00:00:42'),
+(3, 3, 1, 45.75, 3.00, 3, '2025-02-21 00:00:42', '2025-02-24 00:00:42', '2025-02-21 00:00:42', '2025-02-21 00:00:42');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_details`
+-- Table structure for table `order_items`
 --
 
-CREATE TABLE `order_details` (
+CREATE TABLE `order_items` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) DEFAULT NULL,
-  `menu_item_id` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `order_details`
+-- Dumping data for table `order_items`
 --
 
-INSERT INTO `order_details` (`id`, `order_id`, `menu_item_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 2, 13.98, '2025-02-16 18:43:57', '2025-02-16 18:43:57'),
-(2, 1, 3, 1, 6.99, '2025-02-16 18:43:57', '2025-02-16 18:43:57'),
-(3, 2, 2, 1, 12.99, '2025-02-16 18:43:57', '2025-02-16 18:43:57'),
-(4, 3, 4, 2, 7.98, '2025-02-16 18:43:57', '2025-02-16 18:43:57'),
-(5, 4, 5, 1, 14.99, '2025-02-16 18:43:57', '2025-02-16 18:43:57');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_models`
---
-
-CREATE TABLE `order_models` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ;
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 2, 12.99, '2025-02-21 00:00:59', '2025-02-21 00:00:59'),
+(2, 2, 2, 1, 8.99, '2025-02-21 00:00:59', '2025-02-21 00:00:59'),
+(3, 3, 3, 3, 7.99, '2025-02-21 00:00:59', '2025-02-21 00:00:59');
 
 -- --------------------------------------------------------
 
@@ -349,7 +343,7 @@ CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -359,24 +353,71 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `payments` (
   `id` int(11) NOT NULL,
-  `transaction_type` varchar(50) DEFAULT NULL,
-  `transaction_id` int(11) DEFAULT NULL,
-  `amount_paid` decimal(12,2) DEFAULT NULL,
-  `payment_date` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-);
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `payment_method_id` int(11) NOT NULL,
+  `payment_status_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `transaction_id` varchar(100) DEFAULT NULL,
+  `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`id`, `transaction_type`, `transaction_id`, `amount_paid`, `payment_date`, `created_at`, `updated_at`) VALUES
-(1, 'Credit Card', 1001, 50.00, '2025-02-17', '2025-02-16 18:44:57', '2025-02-16 18:44:57'),
-(2, 'Cash', 1002, 30.00, '2025-02-17', '2025-02-16 18:44:57', '2025-02-16 18:44:57'),
-(3, 'Online Transfer', 1003, 75.50, '2025-02-16', '2025-02-16 18:44:57', '2025-02-16 18:44:57'),
-(4, 'Debit Card', 1004, 40.00, '2025-02-15', '2025-02-16 18:44:57', '2025-02-16 18:44:57'),
-(5, 'Cash', 1005, 20.00, '2025-02-14', '2025-02-16 18:44:57', '2025-02-16 18:44:57');
+INSERT INTO `payments` (`id`, `order_id`, `customer_id`, `payment_method_id`, `payment_status_id`, `amount`, `transaction_id`, `payment_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 1, 30.50, 'TXN001', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29'),
+(2, 2, 2, 2, 2, 25.00, 'TXN002', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29'),
+(3, 3, 3, 3, 3, 42.75, 'TXN003', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_methods`
+--
+
+CREATE TABLE `payment_methods` (
+  `id` int(11) NOT NULL,
+  `method_name` varchar(50) NOT NULL,
+  `details` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_methods`
+--
+
+INSERT INTO `payment_methods` (`id`, `method_name`, `details`, `created_at`, `updated_at`) VALUES
+(1, 'Credit Card', 'Visa, MasterCard, etc.', '2025-02-20 18:02:01', '2025-02-20 18:02:01'),
+(2, 'PayPal', 'Online payment platform', '2025-02-20 18:02:01', '2025-02-20 18:02:01'),
+(3, 'Cash', 'Cash payment at delivery', '2025-02-20 18:02:01', '2025-02-20 18:02:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_status`
+--
+
+CREATE TABLE `payment_status` (
+  `id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_status`
+--
+
+INSERT INTO `payment_status` (`id`, `status`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Pending', 'Payment is yet to be processed', '2025-02-20 18:01:45', '2025-02-20 18:01:45'),
+(2, 'Completed', 'Payment has been successfully processed', '2025-02-20 18:01:45', '2025-02-20 18:01:45'),
+(3, 'Failed', 'Payment processing failed', '2025-02-20 18:01:45', '2025-02-20 18:01:45');
 
 -- --------------------------------------------------------
 
@@ -395,7 +436,36 @@ CREATE TABLE `personal_access_tokens` (
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `photo` varchar(150) DEFAULT NULL,
+  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `stock_quantity` int(11) DEFAULT NULL,
+  `reorder_level` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `category_id`, `price`, `description`, `photo`, `is_featured`, `stock_quantity`, `reorder_level`, `created_at`, `updated_at`) VALUES
+(1, 'Grilled Chicken', 1, 12.99, 'Tender grilled chicken with herbs', 'grilled_chicken.jpg', 1, 50, 5, '2025-02-21 00:00:24', '2025-02-21 00:00:24'),
+(2, 'Veggie Burger', 2, 8.99, 'Delicious vegetarian patty with fresh veggies', 'veggie_burger.jpg', 0, 30, 3, '2025-02-21 00:00:24', '2025-02-21 00:00:24'),
+(3, 'Caesar Salad', 3, 7.99, 'Crispy romaine lettuce with Caesar dressing', 'caesar_salad.jpg', 1, 40, 4, '2025-02-21 00:00:24', '2025-02-21 00:00:24');
 
 -- --------------------------------------------------------
 
@@ -410,7 +480,7 @@ CREATE TABLE `roles` (
   `photo` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `roles`
@@ -419,7 +489,7 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `position`, `name`, `photo`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'Razib Farhan', 'https://www.freepik.com/free-vector/smiling-young-man-illustration_336635642.htm#fromView=keyword&page=1&position=2&uuid=a7d3d90b-44d3-4df8-b187-10112ebfe2a6&query=Avatar', '2025-02-17 04:23:42', '2025-02-17 18:45:53'),
 (2, 'Manager', 'Salman Shah', 'https://www.freepik.com/free-vector/mysterious-mafia-man-wearing-hat_7074313.htm#fromView=keyword&page=1&position=4&uuid=a7d3d90b-44d3-4df8-b187-10112ebfe2a6&query=Avatar', '2025-02-17 04:23:42', '2025-02-17 18:46:19'),
-(3, 'Chef', 'Shourov Das', '', '2025-02-17 04:23:42', '2025-02-17 07:00:34'),
+(3, 'Chef', 'Rana', '', '2025-02-17 04:23:42', '2025-02-19 18:21:39'),
 (4, 'Waiter', 'Abdul Kader', '', '2025-02-17 04:23:42', '2025-02-17 07:00:50'),
 (5, 'Cashier', 'Aslam Khan', '', '2025-02-17 04:23:42', '2025-02-17 07:01:07'),
 (6, 'Customer', 'Raqeebul Khan', '', '2025-02-17 04:23:42', '2025-02-17 07:01:43');
@@ -432,24 +502,24 @@ INSERT INTO `roles` (`id`, `position`, `name`, `photo`, `created_at`, `updated_a
 
 CREATE TABLE `staff` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `photo` varchar(150) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `role` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+  `email` varchar(255) DEFAULT NULL,
+  `position` varchar(100) DEFAULT NULL,
+  `status` varchar(10) DEFAULT 'Active',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`id`, `name`, `email`, `phone`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'John Doe', 'john.doe@example.com', '123-456-7890', 'Manager', '2025-02-16 18:46:41', '2025-02-16 18:46:41'),
-(2, 'Jane Smith', 'jane.smith@example.com', '234-567-8901', 'Chef', '2025-02-16 18:46:41', '2025-02-16 18:46:41'),
-(3, 'Michael Brown', 'michael.brown@example.com', '345-678-9012', 'Waiter', '2025-02-16 18:46:41', '2025-02-16 18:46:41'),
-(4, 'Emily Davis', 'emily.davis@example.com', '456-789-0123', 'Cashier', '2025-02-16 18:46:41', '2025-02-16 18:46:41'),
-(5, 'Robert Wilson', 'robert.wilson@example.com', '567-890-1234', 'Cleaner', '2025-02-16 18:46:41', '2025-02-16 18:46:41');
+INSERT INTO `staff` (`id`, `name`, `photo`, `phone`, `email`, `position`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Jack Daniels', 'jack.jpg', '555-111-2222', 'jack@restaurant.com', 'Chef', 'Active', '2025-02-21 00:04:50', '2025-02-21 00:04:50'),
+(2, 'Olivia Brown', 'olivia.jpg', '555-333-4444', 'olivia@restaurant.com', 'Waiter', 'Active', '2025-02-21 00:04:50', '2025-02-21 00:04:50'),
+(3, 'Sophia White', 'sophia.jpg', '555-555-6666', 'sophia@restaurant.com', 'Manager', 'Active', '2025-02-21 00:04:50', '2025-02-21 00:04:50');
 
 -- --------------------------------------------------------
 
@@ -463,7 +533,7 @@ CREATE TABLE `status` (
   `description` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `status`
@@ -491,7 +561,7 @@ CREATE TABLE `suppliers` (
   `address` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `suppliers`
@@ -520,7 +590,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -529,41 +599,11 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `role_id`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Razib Farhan', 'mdrazib@gmail.com', 1, NULL, '$2y$10$Wek2wM28C3mdWamqgUhB2u4uN.wquj6fngwZptw59EQb5sMJ5yEb6', NULL, '2025-02-13 11:16:30', '2025-02-13 11:16:30'),
 (2, 'Salman Shah', 'salman@gmail.com', 2, NULL, '$2y$10$QvX/2tDi.fNDoE5R9b6WIu7qHTn7IpcmBrwsLdL72cp4X8ebqQePi', NULL, '2025-02-13 11:43:54', '2025-02-13 11:43:54'),
-(3, 'Aslam', 'aslam@gmail.com', 0, NULL, '$2y$10$CLgBMptWWn5uRljzqgKysuyQfcZSB2KvkLohizlJWiaGMOM8Fod8W', NULL, '2025-02-13 12:21:45', '2025-02-13 12:21:45'),
-(4, 'Ana', 'ana@gmail.com', 0, NULL, '$2y$10$dClJ/brypf4b6fLloML8k.vJ845By8XDF2vd4xYPhgP.mWNg4QDka', NULL, '2025-02-13 13:32:22', '2025-02-13 13:32:22'),
+(3, 'Aslam Khan', 'aslam@gmail.com', 5, NULL, '$2y$10$CLgBMptWWn5uRljzqgKysuyQfcZSB2KvkLohizlJWiaGMOM8Fod8W', NULL, '2025-02-13 12:21:45', '2025-02-13 12:21:45'),
 (5, 'Delowar Shah', 'delowar@gmail.com', 0, NULL, '$2y$10$CqYCMSGDEntTHX2/TsGcAuAXUenahS.ou9VrGXgpNvbwb21w.4Ybi', NULL, '2025-02-13 23:45:05', '2025-02-13 23:45:05'),
-(6, 'Rana', 'rana@gmail.com', 0, NULL, '$2y$10$kxPRy1C4GCW7P8SFox.4OOqZsg0Dcd52gsFGAQwQIcAQVBZkhWoGm', NULL, '2025-02-13 23:49:56', '2025-02-13 23:49:56'),
+(6, 'Rana', 'rana@gmail.com', 3, NULL, '$2y$10$kxPRy1C4GCW7P8SFox.4OOqZsg0Dcd52gsFGAQwQIcAQVBZkhWoGm', NULL, '2025-02-13 23:49:56', '2025-02-13 23:49:56'),
 (7, 'Helal', 'helal@gmail.com', 0, NULL, '$2y$10$ThnaxzBZKl04sAzmuszkUukbNFltEsweiTqvhZKoDIVaX5EVUnIkG', NULL, '2025-02-15 01:20:43', '2025-02-15 01:20:43'),
 (8, 'Kader', 'kader@gmail.com', 0, NULL, '$2y$10$RZH9veR0u8casw/8cRXV4.c0vWh/UiteHStasmOGXF0cx1kocZCk.', NULL, '2025-02-15 01:57:57', '2025-02-15 01:57:57'),
 (9, 'Akash', 'akash@gmail.com', 0, NULL, '$2y$10$hATMjK1wCmAewmcK2QAn2eN6kIdPsP0.7JkIfgJASiV0AwUftSiM2', NULL, '2025-02-15 08:19:12', '2025-02-15 08:19:12'),
 (10, 'Rasel', 'rasel@gmail.com', 0, NULL, '$2y$10$AUV.qi15j8c77yhY47inx.CT0yAYThhoMClgM3MeFVLoYI3VT852S', NULL, '2025-02-15 11:47:58', '2025-02-15 11:47:58');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `withdraw`
---
-
-CREATE TABLE `withdraw` (
-  `id` int(11) NOT NULL,
-  `staff_id` int(11) DEFAULT NULL,
-  `withdraw_type` varchar(50) DEFAULT NULL,
-  `amount` decimal(12,2) DEFAULT NULL,
-  `menu_item_id` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `withdraw_date` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ;
-
---
--- Dumping data for table `withdraw`
---
-
-INSERT INTO `withdraw` (`id`, `staff_id`, `withdraw_type`, `amount`, `menu_item_id`, `quantity`, `withdraw_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Stock Out', 0.00, 3, 5, '2025-02-17', '2025-02-16 18:48:39', '2025-02-16 18:48:39'),
-(2, 2, 'Refund', 150.00, 7, 1, '2025-02-16', '2025-02-16 18:48:39', '2025-02-16 18:48:39'),
-(3, 3, 'Stock Out', 0.00, 10, 3, '2025-02-15', '2025-02-16 18:48:39', '2025-02-16 18:48:39'),
-(4, 4, 'Spoilage', 0.00, 5, 2, '2025-02-14', '2025-02-16 18:48:39', '2025-02-16 18:48:39'),
-(5, 1, 'Refund', 250.00, 2, 1, '2025-02-13', '2025-02-16 18:48:39', '2025-02-16 18:48:39');
 
