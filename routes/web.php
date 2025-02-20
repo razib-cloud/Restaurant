@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StatuController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,11 +49,10 @@ Route::resource('customers', CustomerController::class);
 Route::resource('menuitems', MenuItemController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('payments', PaymentController::class);
+Route::resource('status', StatuController::class);
 
 
-//Frontend Route
-Route::resource('cart', );
-Route::resource('reserve', );
+
 
 
 require __DIR__ . '/auth.php';
