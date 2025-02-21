@@ -54,5 +54,13 @@ Route::resource('status', StatuController::class);
 
 
 
+    Route::prefix('res')->group(function(){
+        
+
+    });
+
+
+
+
 
 require __DIR__ . '/auth.php';
