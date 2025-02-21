@@ -8,7 +8,9 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\SupplierController;
@@ -44,20 +46,20 @@ Route::resource('roles', RoleController::class);
 Route::resource('categories', CategoryController::class);
 // Route::resource('categories', CategoryController::class)->middleware("Manager");
 Route::resource('orders', OrderController::class);
-Route::resource('orderdetails', OrderDetailController::class);
+Route::resource('orderdetails', OrderItemController::class);
 Route::resource('customers', CustomerController::class);
 Route::resource('menuitems', MenuItemController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('status', StatuController::class);
+Route::resource('product', ProductController::class);
 
 
 
 
-    Route::prefix('res')->group(function(){
-        
-
-    });
+Route::prefix('res')->group(function () {
+    Route::view('/', 'pages.frontend.index');
+});
 
 
 

@@ -14,8 +14,8 @@
 
 @endsection
 @section('page')
-<a class='btn btn-success' href="{{route('products.index')}}">Manage</a>
-<form action="{{route('products.store')}}" method ="post" enctype="multipart/form-data">
+<a class='btn btn-success' href="{{route('product.index')}}">Manage</a>
+<form action="{{route('product.store')}}" method ="post" enctype="multipart/form-data">
 @csrf
 <div class="row mb-3">
 	<label for="name" class="col-sm-2 col-form-label">Name</label>
