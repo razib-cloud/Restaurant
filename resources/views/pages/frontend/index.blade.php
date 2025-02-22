@@ -4,10 +4,8 @@
 
 
 <!-- CATEGORIES SECION  -->
-
-
- <section class="float-left w-100 position-relative categories-con padding-top padding-bottom main-box">
-    <figure class=""><img src="{{asset('frontasset')}}/images/vector.png" alt="vector" class="position-absolute vector"></figure>
+<section class="float-left w-100 position-relative categories-con padding-top padding-bottom main-box">
+    <figure class=""><img src="{{asset('frontassets')}}/images/vector.png" alt="vector" class="position-absolute vector"></figure>
     <div class="container wow fadeIn" data-wow-duration="2s" data-wow-delay="0.3s">
       <div class="row">
         <div class="col-lg-6 col-md-6 d-flex">
@@ -90,22 +88,22 @@
             </div>
             <div class="about-services">
               <div class="abt-service-box text-center">
-                <figure><img src="{{asset('frontasset')}}/images/about-services-img1.png" alt="icon" class="img-fluid"></figure>
+                <figure><img src="{{asset('frontassets')}}/images/about-services-img1.png" alt="icon" class="img-fluid"></figure>
                 <span class="barlow-font d-block mb-0">Buffet Service</span>
                 <!--  -->
               </div>
               <div class="abt-service-box text-center">
-                <figure><img src="{{asset('frontasset')}}/images/about-services-img2.png" alt="icon" class="img-fluid"></figure>
+                <figure><img src="{{asset('frontassets')}}/images/about-services-img2.png" alt="icon" class="img-fluid"></figure>
                 <span class="barlow-font d-block mb-0">Home Delivery</span>
                 <!--  -->
               </div>
               <div class="abt-service-box text-center">
-                <figure><img src="{{asset('frontasset')}}/images/about-services-img3.png" alt="icon" class="img-fluid"></figure>
+                <figure><img src="{{asset('frontassets')}}/images/about-services-img3.png" alt="icon" class="img-fluid"></figure>
                 <span class="barlow-font d-block mb-0">Online Booking</span>
                 <!--  -->
               </div>
               <div class="abt-service-box text-center">
-                <figure><img src="{{asset('frontasset')}}/images/about-services-img4.png" alt="icon" class="img-fluid"></figure>
+                <figure><img src="{{asset('frontassets')}}/images/about-services-img4.png" alt="icon" class="img-fluid"></figure>
                 <span class="barlow-font d-block mb-0">Discount</span>
                 <!--  -->
               </div>
@@ -117,10 +115,10 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="about-img-con position-relative">
-            <figure><img src="{{asset('frontasset')}}/images/about-img.jpg" alt="image"
+            <figure><img src="{{asset('frontassets')}}/images/about-img.jpg" alt="image"
                 class="img-fluid position-relative z-index-1 border-radius5">
             </figure>
-            <figure><img src="{{asset('frontasset')}}/images/ellipse2.png" alt="image" class="position-absolute elipse2"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/ellipse2.png" alt="image" class="position-absolute elipse2"></figure>
 
             <!-- about img con -->
           </div>
@@ -160,17 +158,17 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Eggs Chopies <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$15</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -182,17 +180,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Chochin Cake <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -204,17 +202,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Buna Kirchi <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$40</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -233,17 +231,17 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Buna Kirchi <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$40</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -255,17 +253,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Chochin Cake <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -277,17 +275,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Eggs Chopies <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$15</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -306,17 +304,17 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Buna Kirchi <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$40</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -328,17 +326,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Eggs Chopies <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$15</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -350,17 +348,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Chochin Cake <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -379,17 +377,17 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Buna Kirchi <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$40</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -401,17 +399,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Eggs Chopies <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$15</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -423,17 +421,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Chochin Cake <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -452,17 +450,17 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Chochin Cake <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -474,17 +472,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Eggs Chopies <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$15</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -496,17 +494,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Buna Kirchi <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$40</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -524,17 +522,17 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Chochin Cake <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -546,17 +544,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Buna Kirchi <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$40</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -568,17 +566,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Eggs Chopies <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$15</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -596,17 +594,17 @@
                 <div class="row">
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img1.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Eggs Chopies <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$15</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -618,17 +616,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img3.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Buna Kirchi <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$40</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -640,17 +638,17 @@
                   </div>
                   <div class="col-lg-4 col-md-4 d-flex">
                     <div class="feature-dish-box position-relative w-100">
-                      <figure><img src="{{asset('frontasset')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
+                      <figure><img src="{{asset('frontassets')}}/images/food-dish-img2.jpg" alt="image" class="img-fluid"></figure>
                       <div class="dish-content">
                         <h4>Chochin Cake <span
                             class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
                         </h4>
                         <p>Fugiat quo voluptas nulla
                           inventore veritatis .</p>
-                        <img src="{{asset('frontasset')}}/images/stars.png" alt="image" class="border-radius0">
+                        <img src="{{asset('frontassets')}}/images/stars.png" alt="image" class="border-radius0">
                         <a href="cart.html">
                           <div class="plus-icon-box position-absolute">
-                            <figure><img src="{{asset('frontasset')}}/images/plus-icon.png" alt="icon"></figure>
+                            <figure><img src="{{asset('frontassets')}}/images/plus-icon.png" alt="icon"></figure>
                           </div>
                         </a>
                         <!-- dish content -->
@@ -679,7 +677,7 @@
 
   <!-- OUR MENU SECTION -->
   <section class="float-left w-100 position-relative our-menu-con padding-top padding-bottom main-box background-f7f9ff">
-    <figure class=""><img src="{{asset('frontasset')}}/images/vector1.png" alt="vector" class="position-absolute vector"></figure>
+    <figure class=""><img src="{{asset('frontassets')}}/images/vector1.png" alt="vector" class="position-absolute vector"></figure>
     <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.3s">
       <div class="heading-title-con text-center">
         <span class="d-block special-text green-text playfair-font font-weight-light">All Items</span>
@@ -689,7 +687,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 d-flex left-side flex-column">
           <div class="menu-box w-100 position-relative d-flex align-items-center justify-content-between">
-            <figure><img src="{{asset('frontasset')}}/images/menu-img1.png" alt="image"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/menu-img1.png" alt="image"></figure>
             <div class="menu-content">
               <h4>Thai Noodles <span
                   class="d-inline-block float-right green-text price barlow-font font-weight-600">$30</span>
@@ -701,7 +699,7 @@
             <!-- menu box -->
           </div>
           <div class="menu-box w-100 position-relative d-flex align-items-center justify-content-between">
-            <figure><img src="{{asset('frontasset')}}/images/menu-img2.png" alt="image"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/menu-img2.png" alt="image"></figure>
             <div class="menu-content">
               <h4>Italian Pasta <span
                   class="d-inline-block float-right green-text price barlow-font font-weight-600">$50</span>
@@ -713,7 +711,7 @@
             <!-- menu box -->
           </div>
           <div class="menu-box w-100 position-relative d-flex align-items-center justify-content-between">
-            <figure><img src="{{asset('frontasset')}}/images/menu-img3.png" alt="image"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/menu-img3.png" alt="image"></figure>
             <div class="menu-content">
               <h4>Cajun Chicken <span
                   class="d-inline-block float-right green-text price barlow-font font-weight-600">$90</span>
@@ -728,7 +726,7 @@
         </div>
         <div class="col-lg-6 col-md-6 d-flex right-side flex-column">
           <div class="menu-box w-100 position-relative d-flex align-items-center justify-content-between">
-            <figure><img src="{{asset('frontasset')}}/images/menu-img4.png" alt="image"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/menu-img4.png" alt="image"></figure>
             <div class="menu-content">
               <h4>Fresh Salad <span
                   class="d-inline-block float-right green-text price barlow-font font-weight-600">$20</span>
@@ -740,7 +738,7 @@
             <!-- menu box -->
           </div>
           <div class="menu-box w-100 position-relative d-flex align-items-center justify-content-between">
-            <figure><img src="{{asset('frontasset')}}/images/menu-img5.png" alt="image"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/menu-img5.png" alt="image"></figure>
             <div class="menu-content">
               <h4>French Fries <span
                   class="d-inline-block float-right green-text price barlow-font font-weight-600">$60</span>
@@ -752,7 +750,7 @@
             <!-- menu box -->
           </div>
           <div class="menu-box w-100 position-relative d-flex align-items-center justify-content-between">
-            <figure><img src="{{asset('frontasset')}}/images/menu-img6.png" alt="image"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/menu-img6.png" alt="image"></figure>
             <div class="menu-content">
               <h4>Crispy Burger <span
                   class="d-inline-block float-right green-text price barlow-font font-weight-600">$70</span>
@@ -784,10 +782,10 @@
       <div class="row align-items-center">
         <div class="col-lg-5 col-md-5">
           <div class="testimonial-img-con position-relative">
-            <figure><img src="{{asset('frontasset')}}/images/testimonial-img.jpg" alt="image"
+            <figure><img src="{{asset('frontassets')}}/images/testimonial-img.jpg" alt="image"
                 class="img-fluid border-radius5 z-index-1 position-relative img1">
             </figure>
-            <figure><img src="{{asset('frontasset')}}/images/green-elipse.png" alt="image" class="position-absolute green-elipse"></figure>
+            <figure><img src="{{asset('frontassets')}}/images/green-elipse.png" alt="image" class="position-absolute green-elipse"></figure>
             <!-- testimonial img con -->
           </div>
 
@@ -798,13 +796,13 @@
           <div class="owl-carousel owl-theme">
             <div class="item">
               <div class="project-testimonial-content-con">
-                <figure><img src="{{asset('frontasset')}}/images/testimonial-quote-icon.png" alt="icon" class="img-fluid quote-icon">
+                <figure><img src="{{asset('frontassets')}}/images/testimonial-quote-icon.png" alt="icon" class="img-fluid quote-icon">
                 </figure>
                 <p class="font-italic">”Quisquam est, qui dolorem ipsum quia dolor sit
                   consectetur adipisci velit sed quia non numquam
                   eius modi tempora incidunt ut labore et dolore
                   magnam aliquam quaerat voluptatem”</p>
-                <img src="{{asset('frontasset')}}/images/testimonials-stars.png" alt="stars" class="img-fluid stars">
+                <img src="{{asset('frontassets')}}/images/testimonials-stars.png" alt="stars" class="img-fluid stars">
                 <span class="d-inline-block green-text playfair-font font-weight-bold name">Alina Parker</span> <span
                   class="d-inline-block designation playfair-font font-weight-bold">Ceo, GTD</span>
                 <!-- project testimonial content con -->
@@ -813,13 +811,13 @@
             </div>
             <div class="item">
               <div class="project-testimonial-content-con">
-                <figure><img src="{{asset('frontasset')}}/images/testimonial-quote-icon.png" alt="icon" class="img-fluid quote-icon">
+                <figure><img src="{{asset('frontassets')}}/images/testimonial-quote-icon.png" alt="icon" class="img-fluid quote-icon">
                 </figure>
                 <p class="font-italic">”Quisquam est, qui dolorem ipsum quia dolor sit
                   consectetur adipisci velit sed quia non numquam
                   eius modi tempora incidunt ut labore et dolore
                   magnam aliquam quaerat voluptatem”</p>
-                <img src="{{asset('frontasset')}}/images/testimonials-stars.png" alt="stars" class="img-fluid stars">
+                <img src="{{asset('frontassets')}}/images/testimonials-stars.png" alt="stars" class="img-fluid stars">
                 <span class="d-inline-block green-text playfair-font font-weight-bold name">Alina Parker</span> <span
                   class="d-inline-block designation playfair-font font-weight-bold">Ceo, GTD</span>
                 <!-- project testimonial content con -->

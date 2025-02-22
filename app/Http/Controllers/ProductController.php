@@ -54,17 +54,20 @@ class ProductController extends Controller
 
         // Handle photo upload
         if ($request->hasFile('photo')) {
-            $imageName = $product->id . '.' . $request->photo->extension();
-            $request->photo->move(public_path('products'), $imageName);
-            $product->photo = $imageName;
+            $photoname = $request->name . "." . $request->file('photo')->extension();
+            $request->file('photo')->move(public_path('product'), $photoname);
+            $product->photo = $photoname;
+        } else {
+            return back()->with('error', 'Photo upload failed.');
         }
 
         if ($product->save()) {
-            return redirect('product')->with('success', 'Product created successfully!');
+            return redirect('products')->with('success', 'Product created successfully!');
         } else {
             return back()->with('error', 'Failed to create product.');
         }
     }
+
 
     public function show($id)
     {

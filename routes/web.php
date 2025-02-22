@@ -59,6 +59,7 @@ Route::resource('product', ProductController::class);
 
 Route::prefix('res')->group(function () {
     Route::view('/', 'pages.frontend.index');
+    Route::view('shop', 'pages.frontend.shop');
 });
 
 

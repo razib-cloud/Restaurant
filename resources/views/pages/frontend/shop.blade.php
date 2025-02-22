@@ -3,9 +3,6 @@
 @section('page')
 
 
-
-
-
 <section class="shop-con w-100 float-left padding-top padding-bottom gradient">
     <div class="container wow fadeIn" data-wow-duration="2s" data-wow-delay="0.3s">
         <div class="generic-title text-center">
