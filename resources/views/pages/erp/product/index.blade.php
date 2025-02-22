@@ -7,9 +7,7 @@
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
@@ -17,135 +15,80 @@
     @if (session('error'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ session('error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     <div class="col-md-12">
-        <div class="card shadow-lg">
-            <div class="card-header bg-gradient-primary text-white">
-                <h3 class="card-title">Products List</h3>
-                <div class="card-tools">
-                    <a href="{{ route('product.create') }}" class="btn btn-light">
-                        <i class="fas fa-plus"></i> Add New Product
-                    </a>
-                </div>
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">Product List</h3>
+                <a href="{{ route('products.create') }}" class="btn btn-light btn-sm">
+                    <i class="fas fa-plus"></i> Add New Product
+                </a>
             </div>
-            <div class="card-body">
-                <!-- Search Bar -->
-                <div class="mb-3">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
-                </div>
-
-                <!-- Table with Custom Scrollbar -->
-                <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
-                    <style>
-                        /* Custom Scrollbar */
-                        .table-responsive::-webkit-scrollbar {
-                            width: 8px;
-                        }
-                        .table-responsive::-webkit-scrollbar-track {
-                            background: #f1f1f1;
-                            border-radius: 10px;
-                        }
-                        .table-responsive::-webkit-scrollbar-thumb {
-                            background: #888;
-                            border-radius: 10px;
-                        }
-                        .table-responsive::-webkit-scrollbar-thumb:hover {
-                            background: #555;
-                        }
-                    </style>
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead class="thead-dark">
+            <div class="card-body p-0">
+                <table class="table table-striped table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Is Featured</th>
+                            <th scope="col">Stock Quantity</th>
+                            <th scope="col">Reorder Level</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Updated At</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($products as $product)
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Photo</th>
-                                <th>Is Featured</th>
-                                <th>Stock Quantity</th>
-                                <th>Reorder Level</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($products as $product)
-                                <tr>
-                                    <td>{{ $product->id }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>{{ $product->category_id }}</td>
-                                    <td>${{ number_format($product->price, 2) }}</td>
-                                    <td>{{ Str::limit($product->description, 50) }}</td>
-                                    <td>
-                                        @if ($product->photo)
-                                            <img width="50" height="50" src="{{ asset('products') }}/{{ $product->photo }}" alt="{{ $product->name }}" class="img-thumbnail">
-                                        @else
-                                            <span class="text-muted">No Photo</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <span class="badge {{ $product->is_featured ? 'badge-success' : 'badge-secondary' }}">
-                                            {{ $product->is_featured ? 'Yes' : 'No' }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $product->stock_quantity }}</td>
-                                    <td>{{ $product->reorder_level }}</td>
-                                    <td>{{ $product->created_at->format('Y-m-d H:i:s') }}</td>
-                                    <td>{{ $product->updated_at->format('Y-m-d H:i:s') }}</td>
-                                    <td>
-                                        <a class="btn btn-sm btn-info" href="{{ route('product.show', $product->id) }}" title="View">
-                                            <i class="fas fa-eye"></i>
+                                <td>{{ $product->id }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->category_id }}</td>
+                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->description }}</td>
+                                <td>
+                                    <img src="{{ asset('img/' . $product->photo) }}" width="100" alt="{{ $product->name }}">
+                                </td>
+                                <td>{{ $product->is_featured ? 'Yes' : 'No' }}</td>
+                                <td>{{ $product->stock_quantity }}</td>
+                                <td>{{ $product->reorder_level }}</td>
+                                <td>{{ $product->created_at->format('Y-m-d H:i:s') }}</td>
+                                <td>{{ $product->updated_at->format('Y-m-d H:i:s') }}</td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a class="btn btn-sm btn-outline-secondary" href="{{ route('products.edit', $product->id) }}">
+                                            <i class="fas fa-edit"></i> Edit
                                         </a>
-                                        <a class="btn btn-sm btn-warning" href="{{ route('product.edit', $product->id) }}" title="Edit">
-                                            <i class="fas fa-edit"></i>
+                                        <a class="btn btn-sm btn-outline-primary" href="{{ route('products.show', $product->id) }}">
+                                            <i class="fas fa-eye"></i> Show
                                         </a>
-                                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display: inline-block;">
+                                        <form method="POST" action="{{ route('products.destroy', $product->id) }}" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')" title="Delete">
-                                                <i class="fas fa-trash"></i>
+                                            <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Are you sure you want to delete this product?')">
+                                                <i class="fas fa-trash"></i> Delete
                                             </button>
                                         </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="12" class="text-center">No products found.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Pagination -->
-                <div class="d-flex justify-content-center mt-3">
-                    {{ $products->links() }}
-                </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="12" class="text-center py-4">No products found.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
 @endsection
-
-@push('scripts')
-<script>
-    // Add search functionality
-    document.getElementById('searchInput').addEventListener('input', function () {
-        const searchValue = this.value.toLowerCase();
-        const rows = document.querySelectorAll('tbody tr');
-
-        rows.forEach(row => {
-            const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(searchValue) ? '' : 'none';
-        });
-    });
-</script>
-@endpush

@@ -52,7 +52,8 @@ Route::resource('menuitems', MenuItemController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('status', StatuController::class);
-Route::resource('product', ProductController::class);
+Route::resource('products', ProductController::class);
+
 
 
 
@@ -60,6 +61,7 @@ Route::resource('product', ProductController::class);
 Route::prefix('res')->group(function () {
     Route::view('/', 'pages.frontend.index');
     Route::view('shop', 'pages.frontend.shop');
+    Route::view('cart', 'pages.frontend.cart');
 });
 
 

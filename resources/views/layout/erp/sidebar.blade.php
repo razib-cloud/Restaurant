@@ -9,7 +9,19 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="dashboard-light.html">Dashboard Light</a></li>
-                    <li><a href="dashboard-dark.html">Dashboard Dark</a></li>
+
+                </ul>
+            </li>
+
+              <!-- Dashboard -->
+              <li>
+                <a class="has-arrow ai-icon" href="#" aria-expanded="false">
+                    <i class="flaticon-025-dashboard" aria-hidden="true"></i>
+                    <span class="nav-text">Frontend</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="dashboard-light.html">Home</a></li>
+
                 </ul>
             </li>
 

@@ -1,27 +1,17 @@
 @extends('layout.erp.app')
 
-@section('title', 'Show Product')
-
-@section('style')
-@endsection
-
 @section('page')
 
 <div class="container mt-6">
     <h4>Product Details</h4>
     <fieldset disabled>
         <div class="mb-2">
-            <label for="id" class="form-label">ID</label>
-            <input type="text" id="id" name="id" value="{{ $product->id }}" class="form-control">
-        </div>
-
-        <div class="mb-2">
             <label for="name" class="form-label">Name</label>
             <input type="text" id="name" name="name" value="{{ $product->name }}" class="form-control">
         </div>
 
         <div class="mb-2">
-            <label for="category_id" class="form-label">Category ID</label>
+            <label for="category_id" class="form-label">Category</label>
             <input type="text" id="category_id" name="category_id" value="{{ $product->category_id }}" class="form-control">
         </div>
 
@@ -39,7 +29,7 @@
             <label for="photo" class="form-label">Photo</label>
             <br>
             @if ($product->photo)
-                <img src="{{ asset('img/' . $product->photo) }}" width="100" alt="{{ $product->name }}">
+                <img width="100" src="{{ asset('img/' . $product->photo) }}" alt="{{ $product->name }}" srcset="">
             @else
                 <p>No photo available.</p>
             @endif
@@ -73,7 +63,4 @@
     <a href="{{ route('products.index') }}" class="btn btn-primary">Back</a>
 </div>
 
-@endsection
-
-@section('script')
 @endsection
