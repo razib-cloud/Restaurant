@@ -52,6 +52,8 @@
                 Arrivals</h2>
         </div>
         <div class="shop-box main-shop-page">
+
+
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <div class="sale-lable shop-label">Sale</div>
@@ -80,6 +82,13 @@
                 </div>
                 <!-- shop-box-item -->
             </div>
+
+
+
+
+
+
+{{-- 
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <figure class="mb-0">
@@ -107,6 +116,7 @@
                 </div>
                 <!-- shop-box-item -->
             </div>
+
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <figure class="mb-0">
@@ -134,6 +144,7 @@
                 </div>
                 <!-- shop-box-item -->
             </div>
+
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <div class="sale-lable shop-label">Sale</div>
@@ -162,6 +173,7 @@
                 </div>
                 <!-- shop-box-item -->
             </div>
+
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <figure class="mb-0">
@@ -189,6 +201,7 @@
                 </div>
                 <!-- shop-box-item -->
             </div>
+
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <div class="new-lable shop-label">New</div>
@@ -217,6 +230,7 @@
                 </div>
                 <!-- shop-box-item -->
             </div>
+
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <div class="Hot-lable shop-label">Hot</div>
@@ -245,6 +259,7 @@
                 </div>
                 <!-- shop-box-item -->
             </div>
+
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <figure class="mb-0">
@@ -273,7 +288,9 @@
                 <!-- shop-box-item -->
             </div>
             <!-- shop-box -->
-        </div>
+        </div> --}}
+
+
         <div class="pagination-con">
             <ul class="pagination mb-0 justify-content-center">
                 <li class="page-item"><a class="page-link" href="shop.html">Previous</a></li>
