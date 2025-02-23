@@ -53,7 +53,15 @@
 <div class="row mb-3">
 	<label for="photo" class="col-sm-2 col-form-label">Photo</label>
 	<div class="col-sm-10">
+        @if ($product->photo)
+        <img width="100" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}" class="img-thumbnail mb-2">
+    @else
+        <p>No photo available.</p>
+    @endif
 		<input type = "file" class="form-control" name="photo"  id="photo" placeholder="Photo">
+        @error('photo')
+        <span style="color: red">{{ $message }}</span>
+    @enderror
 	</div>
 </div>
 <div class="row mb-3">

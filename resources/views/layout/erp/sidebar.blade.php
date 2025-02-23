@@ -21,7 +21,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{url('/res')}}">Web</a></li>
-                   
+
 
                 </ul>
             </li>
@@ -36,6 +36,7 @@
                     <li><a href="{{ route('menuitems.index') }}">All Menu Items</a></li>
                     <li><a href="{{ route('menuitems.create') }}">Add New Item</a></li>
                     <li><a href="{{ route('categories.index') }}">Categories</a></li>
+                    <li><a href="{{ route('erp_products.index') }}">Products</a></li>
                 </ul>
             </li>
 
@@ -77,7 +78,7 @@
                     <li><a href="#">All Payments</a></li>
                     <li><a href="pending-payments.html">Pending Payments</a></li>
                     <li><a href="completed-payments.html">Completed Payments</a></li>
-                    <li><a href="refunds.html">Refunds</a></li>
+
                 </ul>
             </li>
 

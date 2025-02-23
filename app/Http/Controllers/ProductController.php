@@ -1,16 +1,10 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
@@ -24,83 +18,96 @@ class ProductController extends Controller
     {
         return view("pages.erp.product.create", ["categories" => Category::all()]);
     }
+
     public function store(Request $request)
     {
-        //Product::create($request->all());
-        $product = new Product;
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'category_id' => 'required|integer|exists:categories,id',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'is_featured' => 'required|boolean',
+            'stock_quantity' => 'required|integer|min:0',
+            'reorder_level' => 'required|integer|min:0',
+        ]);
+
+        $product = new Product();
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->description = $request->description;
-        if (isset($request->photo)) {
-            $product->photo = $request->photo;
-        }
         $product->is_featured = $request->is_featured;
         $product->stock_quantity = $request->stock_quantity;
         $product->reorder_level = $request->reorder_level;
-        date_default_timezone_set("Asia/Dhaka");
-        $product->created_at = date('Y-m-d H:i:s');
-        date_default_timezone_set("Asia/Dhaka");
-        $product->updated_at = date('Y-m-d H:i:s');
 
-        $product->save();
-        if (isset($request->photo)) {
-            $imageName = $product->id . '.' . $request->photo->extension();
+        // Handle photo upload
+        if ($request->hasFile('photo')) {
+            $imageName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('products'), $imageName);
             $product->photo = $imageName;
-            $product->update();
-            $request->photo->move(public_path('img'), $imageName);
+        } else {
+            return back()->with('error', 'Photo upload failed.');
         }
 
-        return back()->with('success', 'Created Successfully.');
+        if ($product->save()) {
+            return redirect('erp_products')->with('success', 'Product created successfully!');
+        } else {
+            return back()->with('error', 'Failed to create product.');
+        }
     }
+
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         return view("pages.erp.product.show", ["product" => $product]);
     }
 
-
     public function edit($id)
     {
-        $product = Product::findOrFail($id); // Ensure product exists
+        $product = Product::findOrFail($id);
         $categories = Category::all();
         return view('pages.erp.product.edit', compact('product', 'categories'));
     }
 
-
-
     public function update(Request $request, Product $product)
     {
-        //Product::update($request->all());
-        $product = Product::find($product->id);
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'category_id' => 'required|integer|exists:categories,id',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'is_featured' => 'required|boolean',
+            'stock_quantity' => 'required|integer|min:0',
+            'reorder_level' => 'required|integer|min:0',
+        ]);
+
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->description = $request->description;
-        if (isset($request->photo)) {
-            $product->photo = $request->photo;
-        }
         $product->is_featured = $request->is_featured;
         $product->stock_quantity = $request->stock_quantity;
         $product->reorder_level = $request->reorder_level;
-        date_default_timezone_set("Asia/Dhaka");
-        $product->created_at = date('Y-m-d H:i:s');
-        date_default_timezone_set("Asia/Dhaka");
-        $product->updated_at = date('Y-m-d H:i:s');
 
-        $product->save();
-        if (isset($request->photo)) {
-            $imageName = $product->id . '.' . $request->photo->extension();
+        // Handle photo upload
+        if ($request->hasFile('photo')) {
+            $imageName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('products'), $imageName);
             $product->photo = $imageName;
-            $product->update();
-            $request->photo->move(public_path('img'), $imageName);
         }
 
-        return redirect()->route("products.index")->with('success', 'Updated Successfully.');
+        $product->save();
+
+        return redirect()->route("erp_products.index")->with('success', 'Updated Successfully.');
     }
-    public function destroy(Product $product)
+
+    public function destroy($id)
     {
-        $product->delete();
-        return redirect()->route("products.index")->with('success', 'Deleted Successfully.');
+
+
+        product::destroy($id);
+        return redirect('erp_products')->with('success', 'Product is deleted');
     }
 }

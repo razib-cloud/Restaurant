@@ -21,7 +21,7 @@
                 <a class="nav-link p-0 active" href="/res">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link p-0" href="about.html">About</a>
+                <a class="nav-link p-0" href="/res/about">About</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link p-0" href="/res/menu">Menu</a>
@@ -30,15 +30,15 @@
                 <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown5" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">Pages</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown5">
-                  <a class="dropdown-item" href="about.html">About</a>
+                  <a class="dropdown-item" href="{{ route('res.about') }}">About</a>
                   <a class="dropdown-item" href="gallery.html">Gallery</a>
                   <a class="dropdown-item" href="{{ route('res.menu') }}">Menu</a>
                   <a class="dropdown-item" href="team.html">Team</a>
                   <a class="dropdown-item" href="{{ route('res.shop') }}">Shop</a>
                   <a class="dropdown-item" href="{{ route('res.cart') }}">Cart</a>
 
-                  <a class="dropdown-item" href="product-detail.html">Product Detail</a>
-                  <a class="dropdown-item" href="checkout.html">Checkout</a>
+                  <a class="dropdown-item" href="{{ route('res.productdetails') }}">Product Detail</a>
+                  <a class="dropdown-item" href="{{ route('res.checkout') }}">Checkout</a>
                   <a class="dropdown-item" href="404.html">404</a>
                   <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
                   <a class="dropdown-item" href="testimonial.html">Testimonial</a>
@@ -61,7 +61,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link p-0" href="contact.html">Contact</a>
+                <a class="nav-link p-0" href="/res/contact">Contact</a>
               </li>
             </ul>
             <!-- navbar collapse -->
@@ -71,7 +71,7 @@
               <li class="d-inline-block icon-listing"><a class="icon position-relative d-inline-block" href="#search">
                   <figure class=""><img src="{{asset('frontassets')}}/images/search-icon.png" alt=""></figure>
                 </a></li>
-              <li class="d-inline-block btn-listing"><a href="shop.html" class="contact-btn d-inline-block">Order
+              <li class="d-inline-block btn-listing"><a href="/res/shop" class="contact-btn d-inline-block">Order
                   Now</a></li>
               <!-- list unstyled -->
             </ul>

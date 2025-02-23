@@ -22,7 +22,15 @@
 		<tr><th>Category Id</th><td>{{$product->category_id}}</td></tr>
 		<tr><th>Price</th><td>{{$product->price}}</td></tr>
 		<tr><th>Description</th><td>{{$product->description}}</td></tr>
-		<tr><th>Photo</th><td><img src="{{asset('img/'.$product->photo)}}" width="100" /></td></tr>
+		<tr><th>Photo</th><td>
+            <br>
+            @if ($product->photo)
+            <img width="50" height="" src="{{asset('products')}}/{{$product['photo']}}" alt="{{$product['name']}}" srcset="">
+            @else
+                <p>No photo available.</p>
+            @endif
+        </td>
+        </tr>
 		<tr><th>Is Featured</th><td>{{$product->is_featured}}</td></tr>
 		<tr><th>Stock Quantity</th><td>{{$product->stock_quantity}}</td></tr>
 		<tr><th>Reorder Level</th><td>{{$product->reorder_level}}</td></tr>
