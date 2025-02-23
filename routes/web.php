@@ -7,7 +7,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -52,17 +51,20 @@ Route::resource('menuitems', MenuItemController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('status', StatuController::class);
-Route::resource('products', ProductController::class);
+
+Route::resource('erp_products', ProductController::class);
+
 
 
 
 
 
 Route::prefix('res')->group(function () {
-    Route::view('/', 'pages.frontend.index');
-    Route::view('shop', 'pages.frontend.shop');
-    Route::view('cart', 'pages.frontend.cart');
+    Route::view('/', 'pages.frontend.index')->name('res.index');
+    Route::view('shop', 'pages.frontend.shop')->name('res.shop');
+    Route::view('cart', 'pages.frontend.cart')->name('res.cart');
 });
+
 
 
 

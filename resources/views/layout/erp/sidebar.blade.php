@@ -20,7 +20,8 @@
                     <span class="nav-text">Frontend</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="dashboard-light.html">Home</a></li>
+                    <li><a href="{{url('/res')}}">Web</a></li>
+                   
 
                 </ul>
             </li>

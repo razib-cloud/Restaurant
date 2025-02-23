@@ -34,8 +34,9 @@
                   <a class="dropdown-item" href="gallery.html">Gallery</a>
                   <a class="dropdown-item" href="menu.html">Menu</a>
                   <a class="dropdown-item" href="team.html">Team</a>
-                  <a class="dropdown-item" href="shop.html">Shop</a>
-                  <a class="dropdown-item" href="cart.html">Cart</a>
+                  <a class="dropdown-item" href="{{ route('res.shop') }}">Shop</a>
+                  <a class="dropdown-item" href="{{ route('res.cart') }}">Cart</a>
+
                   <a class="dropdown-item" href="product-detail.html">Product Detail</a>
                   <a class="dropdown-item" href="checkout.html">Checkout</a>
                   <a class="dropdown-item" href="404.html">404</a>
@@ -83,6 +84,6 @@
     </header>
 
     <!-- BANNER SECTION -->
-    
+
 
 

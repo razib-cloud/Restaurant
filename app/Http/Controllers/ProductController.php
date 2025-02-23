@@ -1,131 +1,106 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $query = Product::query();
-
-        // Search functionality
-        if ($request->has('search')) {
-            $search = $request->input('search');
-            $query->where('name', 'LIKE', "%{$search}%")
-                  ->orWhere('description', 'LIKE', "%{$search}%");
-        }
-
-        $products = $query->paginate(10); // Paginate results
-        return view('pages.erp.product.index', compact('products'));
+        $products = Product::paginate(10);
+        return view("pages.erp.product.index", ["products" => $products]);
     }
 
     public function create()
     {
-        $categories = Category::all();
-        return view('pages.erp.product.create', compact('categories'));
+        return view("pages.erp.product.create", ["categories" => Category::all()]);
     }
-
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|numeric',
-            'description' => 'nullable|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'stock_quantity' => 'required|integer',
-            'reorder_level' => 'required|integer',
-        ]);
-
-        $product = new Product();
+        //Product::create($request->all());
+        $product = new Product;
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->is_featured = $request->has('is_featured') ? 1 : 0;
+        if (isset($request->photo)) {
+            $product->photo = $request->photo;
+        }
+        $product->is_featured = $request->is_featured;
         $product->stock_quantity = $request->stock_quantity;
         $product->reorder_level = $request->reorder_level;
+        date_default_timezone_set("Asia/Dhaka");
+        $product->created_at = date('Y-m-d H:i:s');
+        date_default_timezone_set("Asia/Dhaka");
+        $product->updated_at = date('Y-m-d H:i:s');
 
-        // Handle photo upload
-        if ($request->hasFile('photo')) {
-            $imageName = time() . '.' . $request->file('photo')->extension();
-            $request->file('photo')->move(public_path('img'), $imageName);
+        $product->save();
+        if (isset($request->photo)) {
+            $imageName = $product->id . '.' . $request->photo->extension();
             $product->photo = $imageName;
+            $product->update();
+            $request->photo->move(public_path('img'), $imageName);
         }
 
-        if ($product->save()) {
-            return redirect()->route('products.index')->with('success', 'Product created successfully!');
-        } else {
-            return back()->with('error', 'Failed to create product.');
-        }
+        return back()->with('success', 'Created Successfully.');
+    }
+    public function show($id)
+    {
+        $product = Product::find($id);
+        return view("pages.erp.product.show", ["product" => $product]);
     }
 
-    public function show(Product $product)
-    {
-        return view('pages.erp.product.show', compact('product'));
-    }
 
-    public function edit(Product $product)
+    public function edit($id)
     {
+        $product = Product::findOrFail($id); // Ensure product exists
         $categories = Category::all();
         return view('pages.erp.product.edit', compact('product', 'categories'));
     }
 
+
+
     public function update(Request $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|numeric',
-            'description' => 'nullable|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'stock_quantity' => 'required|integer',
-            'reorder_level' => 'required|integer',
-        ]);
-
+        //Product::update($request->all());
+        $product = Product::find($product->id);
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->is_featured = $request->has('is_featured') ? 1 : 0;
+        if (isset($request->photo)) {
+            $product->photo = $request->photo;
+        }
+        $product->is_featured = $request->is_featured;
         $product->stock_quantity = $request->stock_quantity;
         $product->reorder_level = $request->reorder_level;
+        date_default_timezone_set("Asia/Dhaka");
+        $product->created_at = date('Y-m-d H:i:s');
+        date_default_timezone_set("Asia/Dhaka");
+        $product->updated_at = date('Y-m-d H:i:s');
 
-        // Handle photo upload
-        if ($request->hasFile('photo')) {
-            // Delete old photo if it exists
-            if ($product->photo && file_exists(public_path('img/' . $product->photo))) {
-                unlink(public_path('img/' . $product->photo));
-            }
-
-            $imageName = time() . '.' . $request->file('photo')->extension();
-            $request->file('photo')->move(public_path('img'), $imageName);
+        $product->save();
+        if (isset($request->photo)) {
+            $imageName = $product->id . '.' . $request->photo->extension();
             $product->photo = $imageName;
+            $product->update();
+            $request->photo->move(public_path('img'), $imageName);
         }
 
-        if ($product->save()) {
-            return redirect()->route('products.index')->with('success', 'Product updated successfully!');
-        } else {
-            return back()->with('error', 'Failed to update product.');
-        }
+        return redirect()->route("products.index")->with('success', 'Updated Successfully.');
     }
-
     public function destroy(Product $product)
     {
-        // Delete photo if it exists
-        if ($product->photo && file_exists(public_path('img/' . $product->photo))) {
-            unlink(public_path('img/' . $product->photo));
-        }
-
-        if ($product->delete()) {
-            return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
-        } else {
-            return back()->with('error', 'Failed to delete product.');
-        }
+        $product->delete();
+        return redirect()->route("products.index")->with('success', 'Deleted Successfully.');
     }
 }
