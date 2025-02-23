@@ -63,6 +63,7 @@ Route::prefix('res')->group(function () {
     Route::view('/', 'pages.frontend.index')->name('res.index');
     Route::view('shop', 'pages.frontend.shop')->name('res.shop');
     Route::view('cart', 'pages.frontend.cart')->name('res.cart');
+    Route::view('menu', 'pages.frontend.menu')->name('res.menu');
 });
 
 

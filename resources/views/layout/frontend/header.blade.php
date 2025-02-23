@@ -18,13 +18,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link p-0 active" href="index-2.html">Home</a>
+                <a class="nav-link p-0 active" href="/res">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link p-0" href="about.html">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link p-0" href="menu.html">Menu</a>
+                <a class="nav-link p-0" href="/res/menu">Menu</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown5" role="button" data-toggle="dropdown"
@@ -32,7 +32,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown5">
                   <a class="dropdown-item" href="about.html">About</a>
                   <a class="dropdown-item" href="gallery.html">Gallery</a>
-                  <a class="dropdown-item" href="menu.html">Menu</a>
+                  <a class="dropdown-item" href="{{ route('res.menu') }}">Menu</a>
                   <a class="dropdown-item" href="team.html">Team</a>
                   <a class="dropdown-item" href="{{ route('res.shop') }}">Shop</a>
                   <a class="dropdown-item" href="{{ route('res.cart') }}">Cart</a>
