@@ -89,10 +89,10 @@
                     <span class="nav-text">Inventory</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="inventory.html">All Inventory</a></li>
-                    <li><a href="add-inventory.html">Add New Item</a></li>
+                    <li><a href="{{ route('inventorys.index') }}">All Inventory</a></li>
+                    <li><a href="{{ route('inventorys.create') }}">Add New Item</a></li>
                     <li><a href="low-stock.html">Low Stock Alerts</a></li>
-                    <li><a href="inventory-suppliers.html">Suppliers</a></li>
+
                 </ul>
             </li>
 

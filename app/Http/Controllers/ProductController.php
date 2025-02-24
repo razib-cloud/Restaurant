@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::paginate(8);
         return view("pages.erp.product.index", ["products" => $products]);
     }
 
@@ -28,7 +28,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_featured' => 'required|boolean',
-            'stock_quantity' => 'required|integer|min:0',
+            // 'stock_quantity' => 'required|integer|min:0',
             'reorder_level' => 'required|integer|min:0',
         ]);
 
@@ -38,7 +38,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->is_featured = $request->is_featured;
-        $product->stock_quantity = $request->stock_quantity;
+        // $product->stock_quantity = $request->stock_quantity;
         $product->reorder_level = $request->reorder_level;
 
         // Handle photo upload

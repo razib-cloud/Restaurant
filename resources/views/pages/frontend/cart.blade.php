@@ -58,6 +58,8 @@
                         <label class="product-quantity">Qty</label>
                         <label class="product-line-price">Total</label>
                     </div>
+
+
                     <div class="shopping-cart-info">
                         <div class="product d-sm-flex d-block align-items-center">
                             <div class="product-removal">
@@ -85,6 +87,10 @@
                             <div class="product-removal">
                                 <button class="remove-product"><i class="fas fa-times"></i></button>
                             </div>
+
+                            
+
+
                             <div class="product-image">
                                 <img src="{{asset('frontassets')}}/images/blog-image2.jpg" alt="blog-image"
                                     class="img-fluid hover-effect">

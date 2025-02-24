@@ -6,7 +6,9 @@
 * Date: 2/21/2025 12:56:01 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\Models\Inventory;
 use App\Models\Product;
@@ -16,58 +18,69 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
-class InventoryController extends Controller{
-	public function index(){
-		$inventorys = Inventory::paginate(10);
-		return view("pages.erp.inventory.index",["inventorys"=>$inventorys]);
-	}
-	public function create(){
-		return view("pages.erp.inventory.create",["products"=>Product::all(),"suppliers"=>Supplier::all()]);
-	}
-	public function store(Request $request){
-		//Inventory::create($request->all());
-		$inventory = new Inventory;
-		$inventory->product_id=$request->product_id;
-		$inventory->supplier_id=$request->supplier_id;
-		$inventory->quantity=$request->quantity;
-		$inventory->unit_price=$request->unit_price;
-		$inventory->expiry_date=$request->expiry_date;
-date_default_timezone_set("Asia/Dhaka");
-		$inventory->created_at=date('Y-m-d H:i:s');
-date_default_timezone_set("Asia/Dhaka");
-		$inventory->updated_at=date('Y-m-d H:i:s');
 
-		$inventory->save();
+class InventoryController extends Controller
+{
+    public function index()
+    {
 
-		return back()->with('success', 'Created Successfully.');
-	}
-	public function show($id){
-		$inventory = Inventory::find($id);
-		return view("pages.erp.inventory.show",["inventory"=>$inventory]);
-	}
-	public function edit(Inventory $inventory){
-		return view("pages.erp.inventory.edit",["inventory"=>$inventory,"products"=>Product::all(),"suppliers"=>Supplier::all()]);
-	}
-	public function update(Request $request,Inventory $inventory){
-		//Inventory::update($request->all());
-		$inventory = Inventory::find($inventory->id);
-		$inventory->product_id=$request->product_id;
-		$inventory->supplier_id=$request->supplier_id;
-		$inventory->quantity=$request->quantity;
-		$inventory->unit_price=$request->unit_price;
-		$inventory->expiry_date=$request->expiry_date;
-date_default_timezone_set("Asia/Dhaka");
-		$inventory->created_at=date('Y-m-d H:i:s');
-date_default_timezone_set("Asia/Dhaka");
-		$inventory->updated_at=date('Y-m-d H:i:s');
+        $inventorys = Inventory::get();
 
-		$inventory->save();
 
-		return redirect()->route("inventorys.index")->with('success','Updated Successfully.');
-	}
-	public function destroy(Inventory $inventory){
-		$inventory->delete();
-		return redirect()->route("inventorys.index")->with('success', 'Deleted Successfully.');
-	}
+        return view("pages.erp.inventory.index", ["inventorys" => $inventorys]);
+    }
+    public function create()
+    {
+        return view("pages.erp.inventory.create", ["products" => Product::all(), "suppliers" => Supplier::all()]);
+    }
+    public function store(Request $request)
+    {
+        //Inventory::create($request->all());
+        $inventory = new Inventory;
+        $inventory->product_id = $request->product_id;
+        // $inventory->supplier_id = $request->supplier_id;
+        $inventory->quantity = $request->quantity;
+        // $inventory->unit_price = $request->unit_price;
+        $inventory->expiry_date = $request->expiry_date;
+        date_default_timezone_set("Asia/Dhaka");
+        $inventory->created_at = date('Y-m-d H:i:s');
+        date_default_timezone_set("Asia/Dhaka");
+        $inventory->updated_at = date('Y-m-d H:i:s');
+
+        $inventory->save();
+
+        return back()->with('success', 'Created Successfully.');
+    }
+    public function show($id)
+    {
+        $inventory = Inventory::find($id);
+        return view("pages.erp.inventory.show", ["inventory" => $inventory]);
+    }
+    public function edit(Inventory $inventory)
+    {
+        return view("pages.erp.inventory.edit", ["inventory" => $inventory, "products" => Product::all(), "suppliers" => Supplier::all()]);
+    }
+    public function update(Request $request, Inventory $inventory)
+    {
+        //Inventory::update($request->all());
+        $inventory = Inventory::find($inventory->id);
+        $inventory->product_id = $request->product_id;
+        $inventory->supplier_id = $request->supplier_id;
+        $inventory->quantity = $request->quantity;
+        $inventory->unit_price = $request->unit_price;
+        $inventory->expiry_date = $request->expiry_date;
+        date_default_timezone_set("Asia/Dhaka");
+        $inventory->created_at = date('Y-m-d H:i:s');
+        date_default_timezone_set("Asia/Dhaka");
+        $inventory->updated_at = date('Y-m-d H:i:s');
+
+        $inventory->save();
+
+        return redirect()->route("inventorys.index")->with('success', 'Updated Successfully.');
+    }
+    public function destroy(Inventory $inventory)
+    {
+        $inventory->delete();
+        return redirect()->route("inventorys.index")->with('success', 'Deleted Successfully.');
+    }
 }
-?>

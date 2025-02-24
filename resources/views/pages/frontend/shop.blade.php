@@ -54,102 +54,14 @@
         <div class="shop-box main-shop-page">
 
 
-            <div class="shop-box-item">
-                <div class="shop-box-img">
-                    <div class="sale-lable shop-label">Sale</div>
-                    <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img1.jpg" alt="shop-img">
-                    </figure>
-                    <div class="shop-box-cart">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-eye"></i></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="shop-box-details">
-                    <figure>
-                        <img src="{{asset('frontassets')}}/images/star-img3.png" alt="star-img">
-                    </figure>
-                    <h6>Nuggets</h6>
-                    <div class="shop-price">
-                        <span class="inline-block">$152.00 - </span>$152.00
-                    </div>
-                </div>
-                <!-- shop-box-item -->
-            </div>
+            @foreach ($products as $product)
 
-
-
-
-
-
-{{-- 
-            <div class="shop-box-item">
-                <div class="shop-box-img">
-                    <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img2.jpg" alt="shop-img">
-                    </figure>
-                    <div class="shop-box-cart">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-eye"></i></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="shop-box-details">
-                    <figure>
-                        <img src="{{asset('frontassets')}}/images/star-img3.png" alt="star-img">
-                    </figure>
-                    <h6>Burger</h6>
-                    <div class="shop-price">
-                        <span class="inline-block">$152.00</span>
-                    </div>
-                </div>
-                <!-- shop-box-item -->
-            </div>
-
-            <div class="shop-box-item">
-                <div class="shop-box-img">
-                    <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img3.jpg" alt="shop-img">
-                    </figure>
-                    <div class="shop-box-cart">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-eye"></i></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="shop-box-details">
-                    <figure>
-                        <img src="{{asset('frontassets')}}/images/star-img3.png" alt="star-img">
-                    </figure>
-                    <h6>Sandwich</h6>
-                    <div class="shop-price">
-                        <span class="inline-block">$152.00</span>
-                    </div>
-                </div>
-                <!-- shop-box-item -->
-            </div>
 
             <div class="shop-box-item">
                 <div class="shop-box-img">
                     <div class="sale-lable shop-label">Sale</div>
                     <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img4.jpg" alt="shop-img">
+                        <img src="{{asset('products')}}/{{$product->photo}}" alt="shop-img">
                     </figure>
                     <div class="shop-box-cart">
                         <ul class="list-unstyled mb-0">
@@ -158,35 +70,7 @@
                             <li><a href="#"></a></li>
                         </ul>
                         <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="shop-box-details">
-                    <figure>
-                        <img src="{{asset('frontassets')}}images/star-img3.png" alt="star-img">
-                    </figure>
-                    <h6>Noodles</h6>
-                    <div class="shop-price">
-                        <span class="inline-block">$152.00</span>
-                    </div>
-                </div>
-                <!-- shop-box-item -->
-            </div>
-
-            <div class="shop-box-item">
-                <div class="shop-box-img">
-                    <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img5.jpg" alt="shop-img">
-                    </figure>
-                    <div class="shop-box-cart">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-eye"></i></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
+                            <a style="cursor: pointer" class="add_cart_btn" data-product='{{json_encode($product)}}'>Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -194,102 +78,21 @@
                     <figure>
                         <img src="{{asset('frontassets')}}/images/star-img3.png" alt="star-img">
                     </figure>
-                    <h6>Pizza</h6>
+                    <h6>{{$product->name}}</h6>
                     <div class="shop-price">
-                        <span class="inline-block">$152.00</span>
+                        <span class="inline-block">${{$product->price}}.00 - </span>${{$product->price}}.00
                     </div>
                 </div>
                 <!-- shop-box-item -->
             </div>
 
-            <div class="shop-box-item">
-                <div class="shop-box-img">
-                    <div class="new-lable shop-label">New</div>
-                    <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img6.jpg" alt="shop-img">
-                    </figure>
-                    <div class="shop-box-cart">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-eye"></i></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="shop-box-details">
-                    <figure>
-                        <img src="{{asset('frontassets')}}/images/star-img3.png" alt="star-img">
-                    </figure>
-                    <h6>Omelete</h6>
-                    <div class="shop-price">
-                        <span class="inline-block">$152.00</span>
-                    </div>
-                </div>
-                <!-- shop-box-item -->
-            </div>
 
-            <div class="shop-box-item">
-                <div class="shop-box-img">
-                    <div class="Hot-lable shop-label">Hot</div>
-                    <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img7.jpg" alt="shop-img">
-                    </figure>
-                    <div class="shop-box-cart">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-eye"></i></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="shop-box-details">
-                    <figure>
-                        <img src="{{asset('frontassets')}}/images/star-img3.png" alt="star-img">
-                    </figure>
-                    <h6>Burger Fries</h6>
-                    <div class="shop-price">
-                        <span class="inline-block">$152.00</span>
-                    </div>
-                </div>
-                <!-- shop-box-item -->
-            </div>
 
-            <div class="shop-box-item">
-                <div class="shop-box-img">
-                    <figure class="mb-0">
-                        <img src="{{asset('frontassets')}}/images/shop-img8.jpg" alt="shop-img">
-                    </figure>
-                    <div class="shop-box-cart">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                            <li><a href="#"><i class="far fa-eye"></i></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="generic-btn">
-                            <a href="cart.html">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="shop-box-details">
-                    <figure>
-                        <img src="{{asset('frontassets')}}/images/star-img3.png" alt="star-img">
-                    </figure>
-                    <h6>Chiken Bites</h6>
-                    <div class="shop-price">
-                        <span class="inline-block">$152.00 - </span>$152.00
-                    </div>
-                </div>
-                <!-- shop-box-item -->
-            </div>
-            <!-- shop-box -->
-        </div> --}}
+            @endforeach
 
+
+<!-- shop-box -->
+</div>
 
         <div class="pagination-con">
             <ul class="pagination mb-0 justify-content-center">
@@ -302,5 +105,62 @@
         </div>
     </div>
 </section>
+
+@endsection
+
+
+@section('script')
+<script src="{{ asset('assets/js/cart_.js') }}"></script>
+
+<script>
+    $(function(){
+
+        const cart = new Cart('restaurant');
+
+
+        $(document).on('click', '.add_cart_btn', function() {
+            let product = JSON.parse($(this).attr('data-product'));
+
+            console.log(product);
+
+
+
+            let item = {
+                    "name": product.name,
+                    "item_id": product.id,
+                    "price": product.price,
+                    "qty": 1,
+                    "discount":0,
+                    'total_discount': 0,
+                    "subtotal":  product.price,
+                };
+
+                  cart.save(item);
+                  cart_length();
+
+
+
+
+        });
+
+
+        function cart_length() {
+                let items=  cart.getCart()?.length ?? 0;
+                $('.cartlength').text(items);
+
+        }
+        cart_length()
+
+
+    })
+
+
+
+
+</script>
+
+
+
+
 
 @endsection

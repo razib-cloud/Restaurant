@@ -18,27 +18,27 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link p-0 active" href="/res">Home</a>
+                <a class="nav-link p-0 active" href="{{url('res/')}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link p-0" href="/res/about">About</a>
+                <a class="nav-link p-0" href="{{url('res/about')}}">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link p-0" href="/res/menu">Menu</a>
+                <a class="nav-link p-0" href="{{url('res/menu')}}">Menu</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown5" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">Pages</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown5">
-                  <a class="dropdown-item" href="{{ route('res.about') }}">About</a>
+                  <a class="dropdown-item" href="{{url('res/about')}}">About</a>
                   <a class="dropdown-item" href="gallery.html">Gallery</a>
-                  <a class="dropdown-item" href="{{ route('res.menu') }}">Menu</a>
+                  <a class="dropdown-item" href="{{url('res/menu')}}">Menu</a>
                   <a class="dropdown-item" href="team.html">Team</a>
-                  <a class="dropdown-item" href="{{ route('res.shop') }}">Shop</a>
-                  <a class="dropdown-item" href="{{ route('res.cart') }}">Cart</a>
+                  <a class="dropdown-item" href="{{url('res/shop')}}">Shop</a>
+                  <a class="dropdown-item" href="{{url('res/cart')}}">Cart</a>
 
-                  <a class="dropdown-item" href="{{ route('res.productdetails') }}">Product Detail</a>
-                  <a class="dropdown-item" href="{{ route('res.checkout') }}">Checkout</a>
+                  <a class="dropdown-item" href="{{url('res/productdetails')}}">Product Detail</a>
+                  <a class="dropdown-item" href="{{url('res/checkout')}}">Checkout</a>
                   <a class="dropdown-item" href="404.html">404</a>
                   <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
                   <a class="dropdown-item" href="testimonial.html">Testimonial</a>
@@ -61,7 +61,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link p-0" href="/res/contact">Contact</a>
+                <a class="nav-link p-0" href="{{url('res/contact')}}">Contact</a>
               </li>
             </ul>
             <!-- navbar collapse -->
@@ -71,7 +71,14 @@
               <li class="d-inline-block icon-listing"><a class="icon position-relative d-inline-block" href="#search">
                   <figure class=""><img src="{{asset('frontassets')}}/images/search-icon.png" alt=""></figure>
                 </a></li>
-              <li class="d-inline-block btn-listing"><a href="/res/shop" class="contact-btn d-inline-block">Order
+
+              <li class="d-inline-block icon-listing">
+                <a class="icon position-relative d-inline-block" href="{{url('res/cart')}}">
+                  <i class="fas fa-shopping-cart cartlength">0</i> <!-- Cart Icon -->
+                </a>
+              </li>
+
+              <li class="d-inline-block btn-listing"><a href="{{url('res/shop')}}" class="contact-btn d-inline-block">Order
                   Now</a></li>
               <!-- list unstyled -->
             </ul>
@@ -84,6 +91,3 @@
     </header>
 
     <!-- BANNER SECTION -->
-
-
-

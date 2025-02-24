@@ -15,6 +15,7 @@ use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PaymentStatuController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\SupplierController;
@@ -73,7 +74,7 @@ Route::resource('erp_products', ProductController::class);
 
 Route::prefix('res')->group(function () {
     Route::view('/', 'pages.frontend.index')->name('res.index');
-    Route::view('shop', 'pages.frontend.shop')->name('res.shop');
+    Route::get('/shop', [ShopController::class, 'index'])->name('shop');
     Route::view('cart', 'pages.frontend.cart')->name('res.cart');
     Route::view('menu', 'pages.frontend.menu')->name('res.menu');
     Route::view('about', 'pages.frontend.about')->name('res.about');

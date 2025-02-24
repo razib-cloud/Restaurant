@@ -61,12 +61,12 @@
             <input type="file" class="form-control" name="photo" id="photo" accept="image/*">
         </div>
     </div>
-    <div class="row mb-3">
+    {{-- <div class="row mb-3">
         <label for="stock_quantity" class="col-sm-2 col-form-label">Stock Quantity</label>
         <div class="col-sm-10">
             <input type="number" class="form-control" name="stock_quantity" id="stock_quantity" placeholder="Stock Quantity" min="0" required>
         </div>
-    </div>
+    </div> --}}
     <div class="row mb-3">
         <label for="reorder_level" class="col-sm-2 col-form-label">Reorder Level</label>
         <div class="col-sm-10">
