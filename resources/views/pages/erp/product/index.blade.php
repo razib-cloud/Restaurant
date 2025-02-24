@@ -76,9 +76,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Category</th>
+                                    <th>Menu Category</th>
                                     <th>Price</th>
-                                    <th>Description</th>
                                     <th>Photo</th>
                                     <th>Is Featured</th>
                                     <th>Stock Quantity</th>
@@ -93,9 +92,8 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
-                                        <td>{{ $product->category_id }}</td>
+                                        <td>{{ $product->item->name }}</td>
                                         <td>{{ $product->price }}</td>
-                                        <td>{{ $product->description }}</td>
                                         <td>
                                             @if ($product->photo)
                                                 <img width="50" height="50" src="{{ asset('products') }}/{{ $product->photo }}" alt="{{ $product->name }}" class="img-fluid rounded">

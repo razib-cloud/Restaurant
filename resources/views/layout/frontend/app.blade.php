@@ -4,7 +4,7 @@
 
 <!-- Mirrored from html.designingmedia.com/foodzey/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2025 06:14:55 GMT -->
 <head>
-    <title> Foodzey | Home </title>
+    <title> Foodzey || </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">

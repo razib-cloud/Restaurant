@@ -6,10 +6,16 @@
 * Date: 2/23/2025 10:15:46 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
-class Product extends Model{
 
+class Product extends Model
+{
 
+    public function item()
+    {
+        return $this->belongsTo(Menu::class, 'menus_id');
+    }
 }
-?>

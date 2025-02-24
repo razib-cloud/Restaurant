@@ -53,7 +53,7 @@ Route::resource('categories', CategoryController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('orderitems', OrderItemController::class);
 Route::resource('customers', CustomerController::class);
-Route::resource('menuitems', MenuItemController::class);
+Route::resource('menu_items', MenuItemController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('payments', PaymentController::class);
 Route::resource('paymentmethods', PaymentMethodController::class);

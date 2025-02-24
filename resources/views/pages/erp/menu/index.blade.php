@@ -20,7 +20,7 @@
 		<tr>
 			<th>Id</th>
 			<th>Name</th>
-			<th>Description</th>
+			{{-- <th>Description</th> --}}
 			<th>Is Active</th>
 			<th>Created At</th>
 			<th>Updated At</th>
@@ -33,7 +33,7 @@
 		<tr>
 			<td>{{$menu->id}}</td>
 			<td>{{$menu->name}}</td>
-			<td>{{$menu->description}}</td>
+			{{-- <td>{{$menu->description}}</td> --}}
 			<td>{{$menu->is_active}}</td>
 			<td>{{$menu->created_at}}</td>
 			<td>{{$menu->updated_at}}</td>

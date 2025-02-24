@@ -26,7 +26,7 @@ class MenuController extends Controller{
 		//Menu::create($request->all());
 		$menu = new Menu;
 		$menu->name=$request->name;
-		$menu->description=$request->description;
+		// $menu->description=$request->description;
 		$menu->is_active=$request->is_active;
 date_default_timezone_set("Asia/Dhaka");
 		$menu->created_at=date('Y-m-d H:i:s');

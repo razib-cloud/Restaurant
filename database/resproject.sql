@@ -34,23 +34,24 @@ INSERT INTO `categories` (`id`, `name`, `photo`, `created_at`, `updated_at`) VAL
 CREATE TABLE `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL,
+
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ;
-INSERT INTO `menus` (`name`, `description`) VALUES
-('Breakfast Menu', 'A variety of breakfast items to start your day.'),
-('Lunch Menu', 'Delicious lunch options for a midday meal.'),
-('Dinner Menu', 'Hearty dinner dishes to end your day.');
-
+INSERT INTO `menus` (`name`) VALUES
+('Breakfast Menu'),
+('Lunch Menu'),
+('Dinner Menu');
 
 CREATE TABLE `menu_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menus_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
+  `photo` VARCHAR(255) NULL,
   `price` decimal(8,2) NOT NULL,
+  `description` TEXT NULL,
   `is_available` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -58,11 +59,12 @@ CREATE TABLE `menu_items` (
 
 );
 
-INSERT INTO `menu_items` (`menus_id`, `product_id`, `price`) VALUES
-(1, 1, 12.99), -- Grilled Chicken in Breakfast Menu
-(1, 3, 7.99),  -- Caesar Salad in Breakfast Menu
-(2, 2, 8.99),  -- Veggie Burger in Lunch Menu
-(3, 1, 14.99); -- Grilled Chicken in Dinner Menu (different price)
+INSERT INTO `menu_items` (`menus_id`, `product_id`, `photo`, `price`, `description`, `is_available`) VALUES
+(1, 1, 'grilled_chicken.jpg', 12.99, 'Grilled chicken served with toast and eggs.', 1),
+(1, 3, 'caesar_salad.jpg', 7.99, 'Classic Caesar salad with croutons and Parmesan cheese.', 1),
+(2, 2, 'veggie_burger.jpg', 8.99, 'Delicious veggie burger with fresh lettuce and tomato.', 1),
+(3, 1, 'grilled_chicken_dinner.jpg', 14.99, 'Grilled chicken served with mashed potatoes and vegetables.', 1);
+
 --
 -- Table structure for table `customers`
 --
@@ -449,7 +451,7 @@ CREATE TABLE `products` (
   `name` varchar(255) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `price` decimal(8,2) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
+
   `photo` varchar(150) DEFAULT NULL,
   `is_featured` tinyint(1) NOT NULL DEFAULT 0,
   `stock_quantity` int(11) DEFAULT NULL,
@@ -462,10 +464,10 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `category_id`, `price`, `description`, `photo`, `is_featured`, `stock_quantity`, `reorder_level`, `created_at`, `updated_at`) VALUES
-(1, 'Grilled Chicken', 1, 12.99, 'Tender grilled chicken with herbs', 'grilled_chicken.jpg', 1, 50, 5, '2025-02-21 00:00:24', '2025-02-21 00:00:24'),
-(2, 'Veggie Burger', 2, 8.99, 'Delicious vegetarian patty with fresh veggies', 'veggie_burger.jpg', 0, 30, 3, '2025-02-21 00:00:24', '2025-02-21 00:00:24'),
-(3, 'Caesar Salad', 3, 7.99, 'Crispy romaine lettuce with Caesar dressing', 'caesar_salad.jpg', 1, 40, 4, '2025-02-21 00:00:24', '2025-02-21 00:00:24');
+INSERT INTO `products` (`id`, `name`, `category_id`, `price`, `photo`, `is_featured`, `stock_quantity`, `reorder_level`, `created_at`, `updated_at`) VALUES
+(1, 'Grilled Chicken', 1, 12.99, 'grilled_chicken.jpg', 1, 50, 5, '2025-02-21 00:00:24', '2025-02-21 00:00:24'),
+(2, 'Veggie Burger', 2, 8.99,  'veggie_burger.jpg', 0, 30, 3, '2025-02-21 00:00:24', '2025-02-21 00:00:24'),
+(3, 'Caesar Salad', 3, 7.99, 'caesar_salad.jpg', 1, 40, 4, '2025-02-21 00:00:24', '2025-02-21 00:00:24');
 
 -- --------------------------------------------------------
 

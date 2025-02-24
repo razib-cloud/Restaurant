@@ -4,20 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::paginate(8);
+        $products = Product::with('item')->paginate(8);
         return view("pages.erp.product.index", ["products" => $products]);
     }
 
     public function create()
     {
-        return view("pages.erp.product.create", ["categories" => Category::all()]);
+        // Fetch all menus from the database
+        $menus = Menu::all(); // Assuming you have a Menu model for the menu categories
+
+        return view('pages.erp.product.create', compact('menus')); // Pass the menus variable to the view
     }
+
 
     public function store(Request $request)
     {

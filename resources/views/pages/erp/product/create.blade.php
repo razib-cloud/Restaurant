@@ -34,13 +34,14 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="category_id" class="col-sm-2 col-form-label">Category</label>
+        <label for="category_id" class="col-sm-2 col-form-label">Menu Category</label>
         <div class="col-sm-10">
-            <select class="form-control" name="category_id" id="category_id" required>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+            <select class="form-control" name="menu_id" id="menu_id" required>
+                @foreach($menus as $menu)
+                    <option value="{{ $menu->id }}">{{ $menu->name }}</option>
                 @endforeach
             </select>
+
         </div>
     </div>
     <div class="row mb-3">
