@@ -1,6 +1,7 @@
-<div class="bg-outer-wrapper position-relative float-left w-100 background-f7f9ff">
+
     <!-- HEADER SECTION -->
-    <header class="w-100 float-left header-con main-box   ">
+
+    <header class="w-100 float-left header-con main-box sticky-header" id="header">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
           <a class="navbar-brand" href="index-2.html">
@@ -90,7 +91,7 @@
       <!-- header-con -->
     </header>
 
-    <!-- BANNER SECTION -->
+
 
 
 

@@ -79,6 +79,7 @@
                                     <th>Menu Category</th>
                                     <th>Price</th>
                                     <th>Photo</th>
+                                    <th>Description</th>
                                     <th>Is Featured</th>
                                     <th>Stock Quantity</th>
                                     <th>Reorder Level</th>
@@ -101,6 +102,7 @@
                                                 No Photo
                                             @endif
                                         </td>
+                                        <td>{{ $product->description }}</td>
                                         <td>{{ $product->is_featured ? 'Yes' : 'No' }}</td>
                                         <td>{{ $product->stock_quantity }}</td>
                                         <td>{{ $product->reorder_level }}</td>

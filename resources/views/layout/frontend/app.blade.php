@@ -37,21 +37,32 @@
     <link rel="stylesheet" href="{{asset('frontassets')}}/css/shop.css" type="text/css">
     <link rel="stylesheet" href="{{asset('frontassets')}}/css/responsive.css" type="text/css">
     <link rel="stylesheet" href="{{asset('frontassets')}}/cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
+    <style>
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        padding: 10px;
+        z-index: 1000;
+        background-color: transparent; /* Initially Transparent */
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .scrolled {
+        background-color: white; /* Change to white on scroll */
+        position:fixed;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+    }
+
+    </style>
 
     @yield('css')
 
 </head>
 
 <body>
+<div class="bg-outer-wrapper position-relative float-left w-100 background-f7f9ff">
    @include('layout.frontend.header')
-
-
-   @yield('banner')
-
-    <!-- bg outer wrapper -->
-</div>
-
- <!-- SEARCH BAR -->
+    <!-- SEARCH BAR -->
  <div id="search" class="">
     <span class="close">X</span>
     <form role="search" id="searchform" method="get">
@@ -59,12 +70,21 @@
     </form>
   </div>
 
+  <!-- BANNER SECTION -->
+  @yield('banner')
+</div>
+
+    <!-- bg outer wrapper -->
+
+
+
     <!-- SHOP SECTION -->
    @yield('page')
 
 
     <!-- FOOTER SECTION -->
     @include('layout.frontend.footer')
+</div>
     <!-- Latest compiled JavaScript -->
     <!-- BACK TO TOP BUTTON -->
     <button id="back-to-top-btn" title="Back to Top"></button>
@@ -85,6 +105,17 @@
     <script src="{{asset('frontassets')}}/js/remove-product.js"></script>
     <script src="{{asset('frontassets')}}/js/quantity.js"></script>
 
+
+    <script>
+        window.addEventListener("scroll", function() {
+            let header = document.getElementById("header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+    </script>
 
     @yield('script')
 </body>
