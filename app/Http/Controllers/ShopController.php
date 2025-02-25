@@ -14,5 +14,6 @@ class ShopController extends Controller
 
         // Pass products to the Blade view
         return view('pages.frontend.shop', compact('products'));
+        return view('pages.frontend.cart', compact('products'));
     }
 }

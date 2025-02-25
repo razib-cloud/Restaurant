@@ -6,7 +6,9 @@
 * Date: 2/21/2025 1:14:56 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 
@@ -14,54 +16,76 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
-class MenuController extends Controller{
-	public function index(){
-		$menus = Menu::paginate(10);
-		return view("pages.erp.menu.index",["menus"=>$menus]);
-	}
-	public function create(){
-		return view("pages.erp.menu.create",[]);
-	}
-	public function store(Request $request){
-		//Menu::create($request->all());
-		$menu = new Menu;
-		$menu->name=$request->name;
-		// $menu->description=$request->description;
-		$menu->is_active=$request->is_active;
-date_default_timezone_set("Asia/Dhaka");
-		$menu->created_at=date('Y-m-d H:i:s');
-date_default_timezone_set("Asia/Dhaka");
-		$menu->updated_at=date('Y-m-d H:i:s');
 
-		$menu->save();
+class MenuController extends Controller
+{
+    public function index(Request $request)
+    {
+        $perPage = $request->get('perPage', 10); // Default to 10
+        $menus = Menu::orderBy('created_at', 'desc')->paginate($perPage);
+        return view('pages.erp.menu.index', compact('menus'));
+    }
 
-		return back()->with('success', 'Created Successfully.');
-	}
-	public function show($id){
-		$menu = Menu::find($id);
-		return view("pages.erp.menu.show",["menu"=>$menu]);
-	}
-	public function edit(Menu $menu){
-		return view("pages.erp.menu.edit",["menu"=>$menu,]);
-	}
-	public function update(Request $request,Menu $menu){
-		//Menu::update($request->all());
-		$menu = Menu::find($menu->id);
-		$menu->name=$request->name;
-		$menu->description=$request->description;
-		$menu->is_active=$request->is_active;
-date_default_timezone_set("Asia/Dhaka");
-		$menu->created_at=date('Y-m-d H:i:s');
-date_default_timezone_set("Asia/Dhaka");
-		$menu->updated_at=date('Y-m-d H:i:s');
+    public function create()
+    {
+        return view("pages.erp.menu.create");
+    }
 
-		$menu->save();
+    public function store(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'is_active' => 'required|boolean',
+        ]);
 
-		return redirect()->route("menus.index")->with('success','Updated Successfully.');
-	}
-	public function destroy(Menu $menu){
-		$menu->delete();
-		return redirect()->route("menus.index")->with('success', 'Deleted Successfully.');
-	}
+        // Create a new Menu instance
+        $menu = new Menu;
+        $menu->name = $request->name;
+        $menu->is_active = $request->is_active;
+
+        // Save the menu, timestamps are automatically handled by Laravel
+        $menu->save();
+
+        // Redirect back with a success message
+        return redirect()->route('menus.index')->with('success', 'Menu created successfully.');
+
+    }
+
+    public function show($id)
+    {
+        $menu = Menu::find($id);
+        return view("pages.erp.menu.show", ["menu" => $menu]);
+    }
+    public function edit(Menu $menu)
+    {
+        return view("pages.erp.menu.edit", ["menu" => $menu,]);
+    }
+    public function update(Request $request, Menu $menu)
+    {
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'is_active' => 'required|boolean',
+        ]);
+
+        // Update the menu details
+        $menu->name = $request->name;
+
+        // Ensure `is_active` is not null
+        $menu->is_active = $request->is_active ?? 0; // Default to 0 if no value is provided
+
+        // Save the updated menu
+        $menu->save();
+
+        // Redirect back to the menus index with a success message
+        return redirect()->route("menus.index")->with('success', 'Menu updated successfully.');
+    }
+
+
+    public function destroy(Menu $menu)
+    {
+        $menu->delete();
+        return redirect()->route("menus.index")->with('success', 'Deleted Successfully.');
+    }
 }
-?>

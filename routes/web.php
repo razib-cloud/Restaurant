@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerReviewController;
@@ -81,6 +82,14 @@ Route::prefix('res')->group(function () {
     Route::view('contact', 'pages.frontend.contact')->name('res.contact');
     Route::view('checkout', 'pages.frontend.checkout')->name('res.checkout');
     Route::view('productdetails', 'pages.frontend.productdetails')->name('res.productdetails');
+
+
+
+    // Cart functionality routes
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 });
 
 

@@ -33,10 +33,11 @@
                     <span class="nav-text">Menu</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('menu_items.index') }}">All Menu Items</a></li>
-                    <li><a href="{{ route('menu_items.create') }}">Add New Item</a></li>
+                    {{-- <li><a href="{{ route('menu_items.index') }}">All Menu Items</a></li> --}}
+                    {{-- <li><a href="{{ route('menu_items.create') }}">Add New Item</a></li> --}}
                     <li><a href="{{ route('menus.index') }}">Menu Category</a></li>
-                    <li><a href="{{ route('erp_products.index') }}">Products</a></li>
+                    <li><a href="{{ route('erp_products.index') }}">All Products</a></li>
+                    <li><a href="{{ route('erp_products.create') }}">Add New Products</a></li>
                 </ul>
             </li>
 

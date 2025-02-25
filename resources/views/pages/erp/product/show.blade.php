@@ -19,7 +19,7 @@
 <tbody>
 		<tr><th>Id</th><td>{{$product->id}}</td></tr>
 		<tr><th>Name</th><td>{{$product->name}}</td></tr>
-		<tr><th>Category Id</th><td>{{$product->category_id}}</td></tr>
+		<tr><th>Menu Id</th><td>{{$product->item->name}}</td></tr>
 		<tr><th>Price</th><td>{{$product->price}}</td></tr>
 		<tr><th>Description</th><td>{{$product->description}}</td></tr>
 		<tr><th>Photo</th><td>
