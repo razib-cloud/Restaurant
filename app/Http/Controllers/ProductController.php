@@ -11,7 +11,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('item')->paginate(8);
+        $products = Product::with('menu')->paginate(8);
+        $menu = Menu::find($products[0]['menus_id']);
+        // echo '<pre>';
+        // print_r($products);
+        // print_r($menu->name);
+
         return view("pages.erp.product.index", ["products" => $products]);
     }
 
@@ -28,22 +33,22 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:100',
-            'category_id' => 'required|integer|exists:categories,id',
+            // 'category_id' => 'required|integer|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_featured' => 'required|boolean',
-            // 'stock_quantity' => 'required|integer|min:0',
+            'stock_quantity' => 'required|integer|min:0',
             'reorder_level' => 'required|integer|min:0',
         ]);
 
         $product = new Product();
         $product->name = $request->name;
-        $product->category_id = $request->category_id;
+        $product->menus_id = $request->menus_id;
         $product->price = $request->price;
         $product->description = $request->description;
         $product->is_featured = $request->is_featured;
-        // $product->stock_quantity = $request->stock_quantity;
+        $product->stock_quantity = $request->stock_quantity;
         $product->reorder_level = $request->reorder_level;
 
         // Handle photo upload

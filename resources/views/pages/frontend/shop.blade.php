@@ -120,11 +120,7 @@
 
         $(document).on('click', '.add_cart_btn', function() {
             let product = JSON.parse($(this).attr('data-product'));
-
             console.log(product);
-
-
-
             let item = {
                     "name": product.name,
                     "item_id": product.id,
@@ -133,14 +129,11 @@
                     "discount":0,
                     'total_discount': 0,
                     "subtotal":  product.price,
+                    "photo":  product.photo,
                 };
 
                   cart.save(item);
                   cart_length();
-
-
-
-
         });
 
 

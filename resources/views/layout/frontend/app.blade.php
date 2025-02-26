@@ -104,7 +104,7 @@
     <script src="{{asset('frontassets')}}/js/shop.js"></script>
     <script src="{{asset('frontassets')}}/js/remove-product.js"></script>
     <script src="{{asset('frontassets')}}/js/quantity.js"></script>
-
+    <script src="{{ asset('assets/js/cart_.js') }}"></script>
 
     <script>
         window.addEventListener("scroll", function() {
@@ -115,7 +115,21 @@
                 header.classList.remove("scrolled");
             }
         });
+
+
+        function cart_length() {
+            const cartLen = new Cart('restaurant');
+                let items=  cartLen.getCart()?.length ?? 0;
+                $('.cartlength').text(items);
+
+        }
+        cart_length()
+
+
+
     </script>
+
+
 
     @yield('script')
 </body>

@@ -1,3 +1,7 @@
+@php
+    use App\Models\Menu;
+@endphp
+
 @extends('layout.erp.app')
 
 @section('title', 'Manage Product')
@@ -90,10 +94,14 @@
                             </thead>
                             <tbody>
                                 @forelse ($products as $product)
+                                @php
+                                    $menu = Menu::find($product->menus_id);  // Find the menu
+                                    $menuName = $menu ? $menu->name : 'No Menu';
+                                @endphp
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
-                                        <td>{{ $product->item->name }}</td>
+                                        <td>{{$menuName }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td>
                                             @if ($product->photo)

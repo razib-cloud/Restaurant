@@ -14,8 +14,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 
-    public function item()
+    protected $fillables=[
+        'menu_id',
+    ];
+
+    public function menu()
     {
-        return $this->belongsTo(Menu::class, 'menus_id');
+        return $this->belongsTo(Menu::class);
     }
 }

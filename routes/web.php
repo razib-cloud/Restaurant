@@ -76,7 +76,7 @@ Route::resource('erp_products', ProductController::class);
 Route::prefix('res')->group(function () {
     Route::view('/', 'pages.frontend.index')->name('res.index');
     Route::get('/shop', [ShopController::class, 'index'])->name('shop');
-    Route::view('cart', 'pages.frontend.cart')->name('res.cart');
+    Route::view('cart', 'pages.frontend.cart')->name('res.cart',);
     Route::view('menu', 'pages.frontend.menu')->name('res.menu');
     Route::view('about', 'pages.frontend.about')->name('res.about');
     Route::view('contact', 'pages.frontend.contact')->name('res.contact');
@@ -85,11 +85,9 @@ Route::prefix('res')->group(function () {
 
 
 
-    // Cart functionality routes
-    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-    Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+
+
+
 });
 
 

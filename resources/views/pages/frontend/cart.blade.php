@@ -1,10 +1,8 @@
 @extends('layout.frontend.app')
 
 @section('banner')
-
-
-   <!-- BANNER SECTION -->
-   <section class="float-left w-100 sub-banner-con postion-relative main-box">
+    <!-- BANNER SECTION -->
+    {{-- <section class="float-left w-100 sub-banner-con postion-relative main-box">
     <figure><img src="{{asset('frontassets')}}/images/sub-banner-vector.png" alt="icon" class="position-absolute sub-vector">
     </figure>
     <div class="container">
@@ -39,15 +37,18 @@
         <!-- container -->
     </div>
     <!-- banner con -->
-</section>
+</section> --}}
 @endsection
 
 @section('page')
+    <!-- CART SECTION -->
     <div class="w-100 padding-top padding-bottom checkout-section cart-section float-left gradient" id="cart_section">
         <div class="container">
+            <!-- Cart Box -->
             <div class="cart-box wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
                 <div class="preview-box product-detail-box">
                     <div class="shopping-cart">
+                        <!-- Column Labels -->
                         <div class="column-labels">
                             <label class="product-removal"></label>
                             <label class="product-image">Image</label>
@@ -57,87 +58,185 @@
                             <label class="product-line-price">Total</label>
                         </div>
 
-                        <div class="shopping-cart-info">
-                            @foreach ($cartItems  as $item)
-                                <div class="product d-sm-flex d-block align-items-center" data-id="{{ $item['id'] }}">
-                                    <div class="product-removal">
-                                        <button class="remove-product" onclick="removeFromCart({{ $item['id'] }})">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="{{ asset('images/products/'.$item['image']) }}" alt="product-image" class="img-fluid hover-effect">
-                                    </div>
-                                    <div class="product-details">
-                                        <div class="product-title">{{ $item['name'] }}</div>
-                                    </div>
-                                    <div class="product-price">${{ number_format($item['price'], 2) }}</div>
-                                    <div class="product-quantity d-flex">
-                                        <div class="product-qty-details">
-                                            <button class="value-button decrease-button" onclick="updateQuantity({{ $item['id'] }}, 'decrease')">-</button>
-                                            <div class="number">{{ $item['quantity'] }}</div>
-                                            <button class="value-button increase-button" onclick="updateQuantity({{ $item['id'] }}, 'increase')">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-line-price">${{ number_format($item['quantity'] * $item['price'], 2) }}</div>
+                        <!-- Shopping Cart Items -->
+                        <div class="shopping-cart-info append">
+                            <!-- Individual Product 1 -->
+
+
+                            {{-- <!-- Individual Product 2 -->
+                        <div class="product d-sm-flex d-block align-items-center">
+                            <div class="product-removal">
+                                <button class="remove-product"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="product-image">
+                                <img src="assets/images/blog-image2.jpg" alt="blog-image" class="img-fluid hover-effect">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-title">Lorem ipsum dolor sit amet. Ut quaerat suscipit.</div>
+                            </div>
+                            <div class="product-price">12.99 $</div>
+                            <div class="product-quantity d-flex">
+                                <div class="product-qty-details">
+                                    <button class="value-button decrease-button" onclick="decreaseValue(this)" title="">-</button>
+                                    <div class="number">0</div>
+                                    <button class="value-button increase-button" onclick="increaseValue(this)" title="">+</button>
                                 </div>
-                            @endforeach
+                            </div>
+                            <div class="product-line-price">25.98</div>
+                        </div>
+
+                        <!-- Individual Product 3 -->
+                        <div class="product d-sm-flex d-block align-items-center mb-0">
+                            <div class="product-removal">
+                                <button class="remove-product"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="product-image">
+                                <img src="assets/images/blog-image3.jpg" alt="blog-image" class="img-fluid hover-effect">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-title">Lorem ipsum dolor sit amet. Ut quaerat suscipit.</div>
+                            </div>
+                            <div class="product-price">12.99 $</div>
+                            <div class="product-quantity d-flex">
+                                <div class="product-qty-details">
+                                    <button class="value-button decrease-button" onclick="decreaseValue(this)" title="">-</button>
+                                    <div class="number">0</div>
+                                    <button class="value-button increase-button" onclick="increaseValue(this)" title="">+</button>
+                                </div>
+                            </div>
+                            <div class="product-line-price">25.98</div>
+                        </div> --}}
                         </div>
                     </div>
                 </div>
 
+                <!-- Cart Totals Section -->
                 <div class="cart-total-outer">
                     <div class="cart-total-box">
                         <h4>Cart Totals</h4>
                         <ul class="list-unstyled">
-                            <li><span>Subtotal</span> <span>${{ number_format($cartTotal['subtotal'], 2) }}</span></li>
-                            <li><span>Total</span> <span class="total-price">${{ number_format($cartTotal['total'], 2) }}</span></li>
+                            <li><span>Subtotal</span> <span class="subtotal">$604.89</span></li>
+                            <li><span>Total</span> <span class="total-price">$604.89</span></li>
                         </ul>
+                        <!-- Checkout Button -->
                         <div class="secondary-button d-inline-block w-100">
-                            <a href="{{ route('checkout.index') }}" class="d-inline-block">Proceed To Checkout</a>
+                            <a href="checkout.html" class="d-inline-block">Proceed To Checkout</a>
                         </div>
                     </div>
+                    <!-- cart-total-box -->
                 </div>
+                <!-- cart-box -->
             </div>
         </div>
     </div>
+@endsection
 
+@section('script')
     <script>
-        function updateQuantity(id, action) {
-            $.ajax({
-                url: '/cart/update',
-                method: 'POST',
-                data: {
-                    id: id,
-                    action: action,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    location.reload(); // Reload the page to reflect the updated cart
-                },
-                error: function(xhr, status, error) {
-                    alert('An error occurred. Please try again.');
-                    console.error(error);
-                }
-            });
-        }
+        $(function() {
+            const cartitems = new Cart('restaurant');
+            printCart()
 
-        function removeFromCart(id) {
-            $.ajax({
-                url: '/cart/remove',
-                method: 'POST',
-                data: {
-                    id: id,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    location.reload(); // Reload the page to reflect the updated cart
-                },
-                error: function(xhr, status, error) {
-                    alert('An error occurred. Please try again.');
-                    console.error(error);
+
+            function printCart() {
+                let items = cartitems.getCart()
+
+
+                if (items) {
+
+                    let html = "";
+                    let subtotal = 0;
+
+                    items.forEach(element => {
+                        subtotal += parseInt(element.subtotal);
+                        html += `
+                  <div class="product d-sm-flex d-block align-items-center">
+                            <!-- Remove Product Button -->
+                            <div class="product-removal">
+                                <button data-id=${element.item_id}  class="remove-product remove"><i class="fas fa-times"></i></button>
+                            </div>
+                            <!-- Product Image -->
+                            <div class="product-image">
+                                <img src="{{ asset('products') }}/${element.photo}" alt="blog-image" class="img-fluid hover-effect">
+                            </div>
+                            <!-- Product Details -->
+                            <div class="product-details">
+                                <div class="product-title">${element.name}</div>
+                            </div>
+                            <!-- Product Price -->
+                            <div class="product-price">${element.price}$</div>
+                            <!-- Quantity Selector -->
+                            <div class="product-quantity d-flex">
+                                <div class="product-qty-details">
+                                    <button data-id=${ JSON.stringify(element)}  class="value-button decrease-button decrease "  title="">-</button>
+                                    <div class="number">${element.qty}</div>
+                                    <button data-id=${JSON.stringify(element)} class="value-button increase-button increase "  title="">+</button>
+                                </div>
+                            </div>
+                            <!-- Total Price for the Item -->
+                            <div class="product-line-price">${element.subtotal} </div>
+                        </div>
+
+            `;
+                    });
+                    $(".append").html(html);
+                    $(".subtotal").text(subtotal);
+                    $(".total-price").text(subtotal);
+
+
                 }
-            });
-        }
+            }
+
+            $(document).on('click', '.remove', function() {
+                let id = $(this).attr('data-id');
+                cartitems.delItem(id);
+                printCart()
+                cart_length()
+            })
+
+
+            $(document).on('click', '.increase', function() {
+                let product = JSON.parse($(this).attr('data-id'));
+                let item = {
+                    "name": product.name,
+                    "item_id": product.item_id,
+                    "price": product.price,
+                    "qty": 1,
+                    "discount": 0,
+                    'total_discount': 0,
+                    "subtotal": product.price,
+                    "photo": product.photo,
+                };
+                cartitems.save(item);
+                printCart()
+
+
+            })
+            $(document).on('click', '.decrease', function() {
+                let product = JSON.parse($(this).attr('data-id'));
+                let item = {
+                    "name": product.name,
+                    "item_id": product.item_id,
+                    "price": product.price,
+                    "qty": 1 * (-1),
+                    "discount": 0,
+                    'total_discount': 0,
+                    "subtotal": product.price,
+                    "photo": product.photo,
+                };
+                cartitems.save(item);
+                printCart()
+            })
+
+
+
+
+
+
+
+
+
+
+        })
     </script>
 @endsection
