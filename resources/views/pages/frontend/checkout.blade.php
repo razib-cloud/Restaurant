@@ -2,7 +2,7 @@
 
 @section('banner')
  <!-- BANNER SECTION -->
- <section class="float-left w-100 sub-banner-con postion-relative main-box">
+ {{-- <section class="float-left w-100 sub-banner-con postion-relative main-box">
     <figure><img src="{{asset('frontassets')}}/images/sub-banner-vector.png" alt="icon" class="position-absolute sub-vector">
     </figure>
     <div class="container">
@@ -37,7 +37,7 @@
         <!-- container -->
     </div>
     <!-- banner con -->
-</section>
+</section> --}}
 
 @endsection
 
@@ -47,6 +47,8 @@
 
  <!-- CHECKOUT SECTION -->
  <section class="w-100 checkout-section float-left padding-top padding-bottom gradient" id="checkout_section">
+
+
     <form>
         <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
             <div class="row">
@@ -68,6 +70,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="checkout-form-box mb-lg-0">
                         <h4>Delivery Information</h4>
                         <div class="create-nft-box float-left w-100 position-relative check-out-form">
@@ -93,8 +97,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
+
+
                 <div class="col-lg-4 col-md-12 col-12">
                     <div class="order-summary-box">
                         <h4>Order Summary</h4>
@@ -122,6 +128,10 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                    
                     <div class="payment-info">
                         <h4>Payment Information</h4>
                         <p>Explore our convenient payment option & proceed with confidence</p>

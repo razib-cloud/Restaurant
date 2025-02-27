@@ -1,3 +1,27 @@
+CREATE TABLE `reservations` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` INT(11) NOT NULL,
+  `booking_name` VARCHAR(150) NOT NULL,
+  `phone` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(100) DEFAULT NULL,
+  `table_number` INT(11) NOT NULL,
+  `guests_count` INT(11) NOT NULL,
+  `reservation_date` DATETIME NOT NULL,
+  `status` VARCHAR(50) NOT NULL, -- Instead of ENUM, using VARCHAR to store status values
+  `special_requests` TEXT DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+
+);
+
+INSERT INTO `reservations` (`customer_id`, `booking_name`, `phone`, `email`, `table_number`, `guests_count`, `reservation_date`, `status`, `special_requests`)
+VALUES
+(1, 'John Doe', '1234567890', 'john.doe@example.com', 5, 4, '2025-03-01 19:00:00', 'confirmed', 'Vegetarian meal preferred'),
+(2, 'Alice Smith', '9876543210', 'alice.smith@example.com', 8, 2, '2025-03-02 20:00:00', 'pending', NULL),
+(3, 'Michael Brown', '5558887777', 'michael.brown@example.com', 3, 6, '2025-03-05 18:30:00', 'canceled', 'Need extra space for baby stroller'),
+(4, 'Emily Johnson', '4445556666', 'emily.johnson@example.com', 10, 3, '2025-03-07 19:45:00', 'confirmed', 'Allergic to nuts'),
+(5, 'David Wilson', '1112223333', 'david.wilson@example.com', 2, 5, '2025-03-10 21:00:00', 'completed', 'Celebrating a birthday');
 
 
 

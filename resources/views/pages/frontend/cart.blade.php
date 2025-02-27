@@ -2,7 +2,7 @@
 
 @section('banner')
     <!-- BANNER SECTION -->
-    {{-- <section class="float-left w-100 sub-banner-con postion-relative main-box">
+    <section class="float-left w-100 sub-banner-con postion-relative main-box">
     <figure><img src="{{asset('frontassets')}}/images/sub-banner-vector.png" alt="icon" class="position-absolute sub-vector">
     </figure>
     <div class="container">
@@ -37,7 +37,7 @@
         <!-- container -->
     </div>
     <!-- banner con -->
-</section> --}}
+</section>
 @endsection
 
 @section('page')
@@ -63,49 +63,9 @@
                             <!-- Individual Product 1 -->
 
 
-                            {{-- <!-- Individual Product 2 -->
-                        <div class="product d-sm-flex d-block align-items-center">
-                            <div class="product-removal">
-                                <button class="remove-product"><i class="fas fa-times"></i></button>
-                            </div>
-                            <div class="product-image">
-                                <img src="assets/images/blog-image2.jpg" alt="blog-image" class="img-fluid hover-effect">
-                            </div>
-                            <div class="product-details">
-                                <div class="product-title">Lorem ipsum dolor sit amet. Ut quaerat suscipit.</div>
-                            </div>
-                            <div class="product-price">12.99 $</div>
-                            <div class="product-quantity d-flex">
-                                <div class="product-qty-details">
-                                    <button class="value-button decrease-button" onclick="decreaseValue(this)" title="">-</button>
-                                    <div class="number">0</div>
-                                    <button class="value-button increase-button" onclick="increaseValue(this)" title="">+</button>
-                                </div>
-                            </div>
-                            <div class="product-line-price">25.98</div>
-                        </div>
 
-                        <!-- Individual Product 3 -->
-                        <div class="product d-sm-flex d-block align-items-center mb-0">
-                            <div class="product-removal">
-                                <button class="remove-product"><i class="fas fa-times"></i></button>
-                            </div>
-                            <div class="product-image">
-                                <img src="assets/images/blog-image3.jpg" alt="blog-image" class="img-fluid hover-effect">
-                            </div>
-                            <div class="product-details">
-                                <div class="product-title">Lorem ipsum dolor sit amet. Ut quaerat suscipit.</div>
-                            </div>
-                            <div class="product-price">12.99 $</div>
-                            <div class="product-quantity d-flex">
-                                <div class="product-qty-details">
-                                    <button class="value-button decrease-button" onclick="decreaseValue(this)" title="">-</button>
-                                    <div class="number">0</div>
-                                    <button class="value-button increase-button" onclick="increaseValue(this)" title="">+</button>
-                                </div>
-                            </div>
-                            <div class="product-line-price">25.98</div>
-                        </div> --}}
+
+
                         </div>
                     </div>
                 </div>
@@ -120,7 +80,7 @@
                         </ul>
                         <!-- Checkout Button -->
                         <div class="secondary-button d-inline-block w-100">
-                            <a href="checkout.html" class="d-inline-block">Proceed To Checkout</a>
+                            <a href="{{url('res/checkout')}}" class="d-inline-block">Proceed To Checkout</a>
                         </div>
                     </div>
                     <!-- cart-total-box -->
