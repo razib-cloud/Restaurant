@@ -70,19 +70,21 @@
                     placeholder="Stock Quantity" min="0" required>
             </div>
         </div>
-        <div class="row mb-3">
+
+        {{-- <div class="row mb-3">
             <label for="reorder_level" class="col-sm-2 col-form-label">Reorder Level</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name="reorder_level" id="reorder_level"
                     placeholder="Reorder Level" min="0" required>
             </div>
-        </div>
-        <div class="row mb-3">
+
+        </div> --}}
+        {{-- <div class="row mb-3">
             <label for="is_featured" class="col-sm-2 col-form-label">Featured</label>
             <div class="col-sm-10">
                 <input type="checkbox" name="is_featured" id="is_featured" value="1">
             </div>
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 @endsection

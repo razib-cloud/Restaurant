@@ -70,8 +70,14 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        return view("pages.erp.product.show", ["product" => $product]);
+
+        // Access the menus_id directly as an object property
+        $menu = Menu::find($product->menus_id);
+
+        // Pass product and menu to the view
+        return view("pages.erp.product.show", ["product" => $product, "menu" => $menu]);
     }
+
 
     public function edit($id)
     {

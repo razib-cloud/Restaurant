@@ -24,7 +24,7 @@ class PaymentController extends Controller{
 		return view("pages.erp.payment.index",["payments"=>$payments]);
 	}
 	public function create(){
-		return view("pages.erp.payment.create",["orders"=>Order::all(),"customers"=>Customer::all(),"payment_methods"=>Payment_Method::all(),"payment_statuss"=>Payment_Status::all()]);
+		return view("pages.erp.payment.create",["orders"=>Order::all(),"customers"=>Customer::all(),"payment_methods"=>payment_method::all(),"payment_statuss"=>Payment_Status::all()]);
 	}
 	public function store(Request $request){
 		//Payment::create($request->all());

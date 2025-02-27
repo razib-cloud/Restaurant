@@ -6,13 +6,15 @@
 * Date: 2/21/2025 1:14:58 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
-class Menu extends Model{
-    public function menu(){
+
+class Menu extends Model
+{
+    public function menu()
+    {
         return $this->hasMany(Product::class);
     }
-
-
 }
-?>

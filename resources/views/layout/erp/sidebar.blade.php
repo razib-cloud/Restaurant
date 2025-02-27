@@ -13,14 +13,14 @@
                 </ul>
             </li>
 
-              <!-- Dashboard -->
-              <li>
+            <!-- Dashboard -->
+            <li>
                 <a class="has-arrow ai-icon" href="#" aria-expanded="false">
                     <i class="flaticon-025-dashboard" aria-hidden="true"></i>
                     <span class="nav-text">Frontend</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{url('/res')}}">Web</a></li>
+                    <li><a href="{{ url('/res') }}">Web</a></li>
 
 
                 </ul>
@@ -76,7 +76,7 @@
                     <span class="nav-text">Payments</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="#">All Payments</a></li>
+                    <li><a href="{{ url('payments/index') }}">All Payments</a></li>
                     <li><a href="pending-payments.html">Pending Payments</a></li>
                     <li><a href="completed-payments.html">Completed Payments</a></li>
 
