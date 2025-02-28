@@ -21,6 +21,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('menu', MenuController::class);
 
 Route::resource('roles', RoleController::class);
+Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);
 // Route::resource('categories', CategoryController::class)->middleware("Manager");
 Route::resource('orders', OrderController::class);

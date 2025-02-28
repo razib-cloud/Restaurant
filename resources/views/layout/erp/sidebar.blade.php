@@ -27,7 +27,7 @@
             </li>
 
             <!-- Reservation Management -->
-{{-- <li>
+            {{-- <li>
     <a class="has-arrow ai-icon" href="#" aria-expanded="false">
         <i class="flaticon-381-calendar" aria-hidden="true"></i>
         <span class="nav-text">Reservations</span>
@@ -77,9 +77,33 @@
                     <span class="nav-text">Customers</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('customers.index') }}">All Customers</a></li>
-                    <li><a href="{{ route('customers.create') }}">Add New Customer</a></li>
-                    <li><a href="#">Customer Feedback</a></li>
+                    <!-- All Customers -->
+                    <li>
+                        <a href="{{ route('customers.index') }}">
+                            <i class=""></i> All Customers
+                        </a>
+                    </li>
+
+                    <!-- Delivery Status -->
+                    <li>
+                        <a href="#">
+                            <i class=""></i> Delivery Status
+                        </a>
+                    </li>
+
+                    <!-- Reservations -->
+                    <li>
+                        <a href="{{ route('reservations.index') }}">
+                            <i class=""></i> Reservations
+                        </a>
+                    </li>
+
+                    <!-- Customer Feedback -->
+                    <li>
+                        <a href="#">
+                            <i class=""></i> Customer Feedback
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -131,14 +155,14 @@
                     <span class="nav-text">Employees</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="employees.html">All Employees</a></li>
+                    <li><a href="{{ route('staffs.index') }}">All Employees</a></li>
                     <li><a href="attendance.html">Attendance</a></li>
                     <li><a href="payroll.html">Payroll</a></li>
                 </ul>
             </li>
 
             <!-- Online Orders -->
-            <li>
+            {{-- <li>
                 <a class="has-arrow ai-icon" href="#" aria-expanded="false">
                     <i class="flaticon-043-menu" aria-hidden="true"></i>
                     <span class="nav-text">Online Orders</span>
@@ -148,7 +172,7 @@
                     <li><a href="delivery-status.html">Delivery Status</a></li>
                     <li><a href="customer-reviews.html">Customer Reviews</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
             <!-- User Management -->
             <li>
@@ -157,8 +181,8 @@
                     <span class="nav-text">User Management</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="users.html">All Users</a></li>
-                    <li><a href="roles.html">Roles & Permissions</a></li>
+                    <li><a href="{{ route('users.index') }}">All Users</a></li>
+                    <li><a href="{{ route('roles.index') }}">Roles & Permissions</a></li>
                     <li><a href="{{ url('login') }}">Login</a></li>
                     <li><a href="{{ url('register') }}">Register</a></li>
                 </ul>

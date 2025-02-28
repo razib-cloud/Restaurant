@@ -23,11 +23,9 @@ class InventoryController extends Controller
 {
     public function index()
     {
-
-        $inventorys = Inventory::get();
-
-
-        return view("pages.erp.inventory.index", ["inventorys" => $inventorys]);
+        // Use paginate instead of get() or all()
+        $inventorys = Inventory::paginate(request('perPage', 10)); // Default to 10 items per page
+        return view('pages.erp.inventory.index', compact('inventorys'));
     }
     public function create()
     {

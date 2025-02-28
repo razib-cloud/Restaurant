@@ -1,6 +1,6 @@
 @extends('layout.erp.app')
 
-@section('title', 'Manage Customer')
+@section('title', 'Manage User')
 
 @section('style')
     <style>
@@ -73,9 +73,9 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                    <h3 class="card-title mb-0">Customer List</h3>
-                    <a href="{{ route('customers.create') }}" class="btn btn-light btn-sm">
-                        <i class="fas fa-plus"></i> New Customer
+                    <h3 class="card-title mb-0">User List</h3>
+                    <a href="{{ route('users.create') }}" class="btn btn-light btn-sm">
+                        <i class="fas fa-plus"></i> New User
                     </a>
                 </div>
                 <div class="card-body p-0">
@@ -91,36 +91,39 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Name</th>
-                                        <th>Phone</th>
                                         <th>Email</th>
-                                        <th>Address</th>
+                                        <th>Role Id</th>
+                                        <th>Email Verified At</th>
+                                        <th>Password</th>
+                                        <th>Remember Token</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($customers as $customer)
+                                    @forelse ($users as $user)
                                         <tr>
-                                            <td>{{ $customer->id }}</td>
-                                            <td>{{ $customer->name }}</td>
-                                            <td>{{ $customer->phone }}</td>
-                                            <td>{{ $customer->email }}</td>
-                                            <td>{{ $customer->address }}</td>
-                                            <td>{{ $customer->created_at }}</td>
-                                            <td>{{ $customer->updated_at }}</td>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->role_id }}</td>
+                                            <td>{{ $user->email_verified_at }}</td>
+                                            <td>{{ $user->password }}</td>
+                                            <td>{{ $user->remember_token }}</td>
+                                            <td>{{ $user->created_at }}</td>
+                                            <td>{{ $user->updated_at }}</td>
                                             <td>
                                                 <div class="d-flex gap-2">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="{{ route('customers.show', $customer->id) }}">
+                                                        href="{{ route('users.show', $user->id) }}">
                                                         <i class="fas fa-eye"></i> View
                                                     </a>
                                                     <a class="btn btn-sm btn-outline-success"
-                                                        href="{{ route('customers.edit', $customer->id) }}">
+                                                        href="{{ route('users.edit', $user->id) }}">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>
-                                                    <form method="POST"
-                                                        action="{{ route('customers.destroy', $customer->id) }}"
+                                                    <form method="POST" action="{{ route('users.destroy', $user->id) }}"
                                                         style="display: inline-block;">
                                                         @csrf
                                                         @method('DELETE')
@@ -134,9 +137,9 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="8" class="text-center py-4">
+                                            <td colspan="10" class="text-center py-4">
                                                 <i class="fas fa-users fa-3x text-muted mb-3"></i>
-                                                <p class="text-muted">No customers found.</p>
+                                                <p class="text-muted">No users found.</p>
                                             </td>
                                         </tr>
                                     @endforelse
@@ -148,7 +151,7 @@
                     <!-- Pagination with Page Size Selector -->
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <div>
-                            <form method="GET" action="{{ route('customers.index') }}">
+                            <form method="GET" action="{{ route('users.index') }}">
                                 <label for="perPage">Show</label>
                                 <select name="perPage" id="perPage" onchange="this.form.submit()">
                                     <option value="5" {{ request('perPage') == 5 ? 'selected' : '' }}>5</option>
@@ -160,7 +163,11 @@
                             </form>
                         </div>
                         <div>
-                            {{ $customers->appends(['perPage' => request('perPage')])->links('vendor.pagination.bootstrap-5') }}
+                            @if ($users instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                                {{ $users->appends(['perPage' => request('perPage')])->links('vendor.pagination.bootstrap-5') }}
+                            @else
+                                <p class="text-muted">Pagination is not available for this data.</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -195,7 +202,7 @@
 
             Swal.fire({
                 title: 'Are you sure?',
-                text: 'You will not be able to recover this customer!',
+                text: 'You will not be able to recover this user!',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
