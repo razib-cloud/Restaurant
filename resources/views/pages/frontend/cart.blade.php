@@ -3,7 +3,6 @@
 @section('banner')
     <!-- BANNER SECTION -->
     <section class="float-left w-100 sub-banner-con postion-relative main-box">
-<<<<<<< HEAD
         <figure><img src="{{ asset('frontassets') }}/images/sub-banner-vector.png" alt="icon"
                 class="position-absolute sub-vector">
         </figure>
@@ -13,27 +12,6 @@
                     <div class="sub-banner-img-con">
                         <figure><img src="{{ asset('frontassets') }}/images/sub-banner-image.jpg" alt="image"></figure>
                         <!-- sub banner img con -->
-=======
-    <figure><img src="{{asset('frontassets')}}/images/sub-banner-vector.png" alt="icon" class="position-absolute sub-vector">
-    </figure>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-6">
-                <div class="sub-banner-img-con">
-                    <figure><img src="{{asset('frontassets')}}/images/sub-banner-image.jpg" alt="image"></figure>
-                    <!-- sub banner img con -->
-                </div>
-                <!-- col -->
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="sub-banner-content-wrap">
-                    <div class="breadcrumb-con d-inline-block">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Cart</li>
-                        </ol>
-                        <!-- breadcrumb -->
->>>>>>> 8e3f880b10949dedab44a88b6040665f4838fcdb
                     </div>
                     <!-- col -->
                 </div>
@@ -59,15 +37,8 @@
             </div>
             <!-- container -->
         </div>
-<<<<<<< HEAD
         <!-- banner con -->
     </section>
-=======
-        <!-- container -->
-    </div>
-    <!-- banner con -->
-</section>
->>>>>>> 8e3f880b10949dedab44a88b6040665f4838fcdb
 @endsection
 
 @section('page')
@@ -110,11 +81,7 @@
                         </ul>
                         <!-- Checkout Button -->
                         <div class="secondary-button d-inline-block w-100">
-<<<<<<< HEAD
                             <a href="{{ url('res/checkout') }}" class="d-inline-block">Proceed To Checkout</a>
-=======
-                            <a href="{{url('res/checkout')}}" class="d-inline-block">Proceed To Checkout</a>
->>>>>>> 8e3f880b10949dedab44a88b6040665f4838fcdb
                         </div>
                     </div>
                     <!-- cart-total-box -->
