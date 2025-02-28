@@ -15,6 +15,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PaymentStatuController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StaffController;
@@ -65,6 +66,7 @@ Route::resource('menus', MenuController::class);
 Route::resource('staffs', StaffController::class);
 
 Route::resource('erp_products', ProductController::class);
+Route::resource('reservations', ReservationController::class);
 
 
 
