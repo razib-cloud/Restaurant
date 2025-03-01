@@ -1,3 +1,4 @@
+
 @extends('layout.frontend.app')
 
 @section('banner')
@@ -82,14 +83,49 @@
                         </div>
                     </div>
 
+
+
+
                     <div class="col-lg-4 col-md-12 col-12">
+                        <!-- Order summary container -->
                         <div class="order-summary-box">
                             <h4>Order Summary</h4>
-                            <div class="preview-box" id="order-summary">
-                                <!-- Cart items will be inserted here -->
+
+                            <!-- Preview box containing product details -->
+                            <div class="preview-box">
+                                <!-- Header row for product and subtotal -->
+                                <div class="product-outer">
+                                    <span>Product</span>
+                                    <span class="float-right total">Subtotal</span>
+                                </div>
+
+
+
+                                <!-- Individual product details -->
+                                <div class="product-outer append">
+
+
+                                </div>
+
+
+
+                                <!-- Subtotal section -->
+                                <div class="product-outer">
+                                    <span>Subtotal</span>
+                                    <span class="float-right subtotal">17.99 $</span>
+                                </div>
+
+                                <!-- Total price including shipping or other charges -->
+                                <div class="shipping-outer">
+                                    <span class="shipping">Total</span>
+                                    <span class="total-price">9.00 $</span>
+                                </div>
                             </div>
                         </div>
 
+
+
+                        <!-- Payment Information moved below Order Summary -->
                         <div class="payment-info">
                             <h4>Payment Information</h4>
                             <p>Explore our convenient payment option & proceed with confidence</p>
@@ -114,85 +150,53 @@
     </section>
 @endsection
 
+
+
 @section('script')
     <script>
-        $(document).ready(function() {
+
+        $(function() {
+            const checkout = new Cart('res');
+            printCart()
+
+            function printCart() {
+                let orders = new orderitems.getCart()
 
 
-            // Handle form submission
-            $("#checkout-form").submit(function(e) {
-                e.preventDefault();
+                if (orders) {
 
-                // Get form data
-                let formData = {
-                    first_name: $("input[name='first_name']").val(),
-                    last_name: $("input[name='last_name']").val(),
-                    email: $("input[name='email']").val(),
-                    street_address: $("input[name='street_address']").val(),
-                    city: $("input[name='city']").val(),
-                    country: $("input[name='country']").val(),
-                    postcode: $("input[name='postcode']").val(),
-                    payment_method: $("input[name='payment_method']:checked").val()
-                };
+                    let html = "";
+                    let subtotal = 0;
 
-                // Simple validation
-                if (!formData.first_name || !formData.last_name || !formData.email || !formData
-                    .street_address || !formData.city || !formData.country || !formData.postcode || !
-                    formData.payment_method) {
-                    alert("Please fill all the fields correctly.");
-                    return;
+                    orders.forEach(element => {
+                        subtotal += ParseInt(element.subtotal);
+                        html += `
+
+
+
+                                    <div class="product-outer-details">
+                                        <figure class="mb-0">
+                                            <!-- Product image -->
+                                            <img src="{{ asset('products') }}/${element.photo}" alt="product-img">
+                                        </figure>
+                                        <!-- Product description -->
+                                        Lorem ipsum dolor sit amet. Ut quaerat suscipit.
+                                    </div>
+                                    <!-- Product price -->
+                                    <span class="float-right total">${element.price} $</span>
+
+
+
+                        `;
+
+                         });
+                         $(".append").html(html);
+                         $(".subtotal").text(subtotal);
+                         $(".total-price").text(subtotal);
+
+
                 }
-
-                // Save data to localStorage
-                localStorage.setItem('checkoutData', JSON.stringify(formData));
-
-                // Confirmation message
-                alert("Your checkout information has been saved!");
-            });
-
-            // Load cart items from localStorage and display in order summary
-            function loadCartItems() {
-                let cart = JSON.parse(localStorage.getItem('restaurant')) || [];
-
-                if (cart.length === 0) {
-                    $('#order-summary').html('<p>Your cart is empty!</p>');
-                    return;
-                }
-
-                let orderSummaryHtml = '';
-                let subtotal = 0;
-
-                cart.forEach(item => {
-                    orderSummaryHtml += `
-                    <div class="product-outer">
-                        <div class="product-outer-details">
-                            <figure class="mb-0">
-                                <img src="${item.photo}" alt="product-img">
-                            </figure>
-                            ${item.name}
-                        </div>
-                        <span class="float-right total">${item.price} $</span>
-                    </div>
-                    `;
-                    subtotal += parseFloat(item.price); // Calculate subtotal
-                });
-
-                orderSummaryHtml += `
-                    <div class="product-outer">
-                        <span>Subtotal</span>
-                        <span class="float-right total">${subtotal.toFixed(2)} $</span>
-                    </div>
-                    <div class="shipping-outer">
-                        <span class="shipping">Total</span>
-                        <span class="price">${(subtotal + 9).toFixed(2)} $</span> <!-- Assuming a fixed shipping cost -->
-                    </div>
-                `;
-
-                $('#order-summary').html(orderSummaryHtml);
             }
-
-            // Load cart items on page load
-            loadCartItems();
-        });
+        })
     </script>
 @endsection

@@ -135,6 +135,92 @@ $(document).ready(function() {
                 <span class="float-right total">Subtotal</span>
             </div>
 
-            
+
         </div>
     </div>
+
+    <script>
+
+    $(document).ready(function() {
+
+
+        // Handle form submission
+        $("#checkout-form").submit(function(e) {
+            e.preventDefault();
+
+            // Get form data
+            let formData = {
+                first_name: $("input[name='first_name']").val(),
+                last_name: $("input[name='last_name']").val(),
+                email: $("input[name='email']").val(),
+                street_address: $("input[name='street_address']").val(),
+                city: $("input[name='city']").val(),
+                country: $("input[name='country']").val(),
+                postcode: $("input[name='postcode']").val(),
+                payment_method: $("input[name='payment_method']:checked").val()
+            };
+
+            // Simple validation
+            if (!formData.first_name || !formData.last_name || !formData.email || !formData
+                .street_address || !formData.city || !formData.country || !formData.postcode || !
+                formData.payment_method) {
+                alert("Please fill all the fields correctly.");
+                return;
+            }
+
+            // Save data to localStorage
+            localStorage.setItem('checkoutData', JSON.stringify(formData));
+
+            // Confirmation message
+            alert("Your checkout information has been saved!");
+        });
+
+        // Load cart items from localStorage and display in order summary
+        function loadCartItems() {
+            let cart = JSON.parse(localStorage.getItem('restaurant')) || [];
+
+            if (cart.length === 0) {
+                $('#order-summary').html('<p>Your cart is empty!</p>');
+                return;
+            }
+
+            let orderSummaryHtml = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                orderSummaryHtml += `
+                <div class="product-outer">
+                    <div class="product-outer-details">
+                        <figure class="mb-0">
+                            <img src="${item.photo}" alt="product-img">
+                        </figure>
+                        ${item.name}
+                    </div>
+                    <span class="float-right total">${item.price} $</span>
+                </div>
+                `;
+                subtotal += parseFloat(item.price); // Calculate subtotal
+            });
+
+            orderSummaryHtml += `
+                <div class="product-outer">
+                    <span>Subtotal</span>
+                    <span class="float-right total">${subtotal.toFixed(2)} $</span>
+                </div>
+                <div class="shipping-outer">
+                    <span class="shipping">Total</span>
+                    <span class="price">${(subtotal + 9).toFixed(2)} $</span> <!-- Assuming a fixed shipping cost -->
+                </div>
+            `;
+
+            $('#order-summary').html(orderSummaryHtml);
+        }
+
+        // Load cart items on page load
+        loadCartItems();
+    });
+
+
+
+
+
