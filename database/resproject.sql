@@ -376,51 +376,26 @@ CREATE TABLE `password_resets` (
 --
 -- Table structure for table `payments`
 --
-
 CREATE TABLE `payments` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `payment_method_id` int(11) NOT NULL,
+  `payment_method` varchar(50) NOT NULL, -- আলাদা টেবিল বাদ, এখানে পেমেন্ট মেথড স্টোর হবে
   `payment_status_id` int(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `transaction_id` varchar(100) DEFAULT NULL,
   `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `payments`
---
 
-INSERT INTO `payments` (`id`, `order_id`, `customer_id`, `payment_method_id`, `payment_status_id`, `amount`, `transaction_id`, `payment_date`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1, 30.50, 'TXN001', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29'),
-(2, 2, 2, 2, 2, 25.00, 'TXN002', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29'),
-(3, 3, 3, 3, 3, 42.75, 'TXN003', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29');
+INSERT INTO `payments` (`id`, `order_id`, `customer_id`, `payment_method`, `payment_status_id`, `amount`, `transaction_id`, `payment_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Credit Card', 1, 30.50, 'TXN001', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29'),
+(2, 2, 2, 'PayPal', 2, 25.00, 'TXN002', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29'),
+(3, 3, 3, 'Cash', 3, 42.75, 'TXN003', '2025-02-20 18:01:29', '2025-02-21 00:01:29', '2025-02-21 00:01:29');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `payment_methods`
---
-
-CREATE TABLE `payment_methods` (
-  `id` int(11) NOT NULL,
-  `method_name` varchar(50) NOT NULL,
-  `details` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `payment_methods`
---
-
-INSERT INTO `payment_methods` (`id`, `method_name`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'Credit Card', 'Visa, MasterCard, etc.', '2025-02-20 18:02:01', '2025-02-20 18:02:01'),
-(2, 'PayPal', 'Online payment platform', '2025-02-20 18:02:01', '2025-02-20 18:02:01'),
-(3, 'Cash', 'Cash payment at delivery', '2025-02-20 18:02:01', '2025-02-20 18:02:01');
 
 -- --------------------------------------------------------
 

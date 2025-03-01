@@ -92,7 +92,7 @@
                                         <th>Id</th>
                                         <th>Order Id</th>
                                         <th>Customer Id</th>
-                                        <th>Payment Method Id</th>
+                                        <th>Payment Method</th>
                                         <th>Payment Status Id</th>
                                         <th>Amount</th>
                                         <th>Transaction Id</th>
@@ -107,9 +107,9 @@
                                         <tr>
                                             <td>{{ $payment->id }}</td>
                                             <td>{{ $payment->order_id }}</td>
-                                            <td>{{ $payment->customer_id }}</td>
-                                            <td>{{ $payment->payment_method_id }}</td>
-                                            <td>{{ $payment->payment_status_id }}</td>
+                                            <td>{{ $payment->customer->name }}</td>
+                                            <td>{{ $payment->payment_method }}</td>
+                                            <td>{{ $payment->status->name }}</td>
                                             <td>{{ $payment->amount }}</td>
                                             <td>{{ $payment->transaction_id }}</td>
                                             <td>{{ $payment->payment_date }}</td>

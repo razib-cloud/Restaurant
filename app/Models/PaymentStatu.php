@@ -6,10 +6,12 @@
 * Date: 2/21/2025 12:59:19 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
-class PaymentStatu extends Model{
 
-
+class PaymentStatu extends Model
+{
+    
 }
-?>

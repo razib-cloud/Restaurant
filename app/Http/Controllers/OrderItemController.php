@@ -6,7 +6,9 @@
 * Date: 2/21/2025 12:56:58 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\Models\OrderItem;
 use App\Models\Order;
@@ -16,56 +18,66 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
-class OrderItemController extends Controller{
-	public function index(){
-		$orderitems = OrderItem::paginate(10);
-		return view("pages.erp.orderitem.index",["orderitems"=>$orderitems]);
-	}
-	public function create(){
-		return view("pages.erp.orderitem.create",["orders"=>Order::all(),"products"=>Product::all()]);
-	}
-	public function store(Request $request){
-		//OrderItem::create($request->all());
-		$orderitem = new OrderItem;
-		$orderitem->order_id=$request->order_id;
-		$orderitem->product_id=$request->product_id;
-		$orderitem->quantity=$request->quantity;
-		$orderitem->price=$request->price;
-date_default_timezone_set("Asia/Dhaka");
-		$orderitem->created_at=date('Y-m-d H:i:s');
-date_default_timezone_set("Asia/Dhaka");
-		$orderitem->updated_at=date('Y-m-d H:i:s');
 
-		$orderitem->save();
+class OrderItemController extends Controller
+{
+    public function index()
+    {
+        $orderitems = OrderItem::with('product')->paginate(10);
+        // dd($orderitems);
 
-		return back()->with('success', 'Created Successfully.');
-	}
-	public function show($id){
-		$orderitem = OrderItem::find($id);
-		return view("pages.erp.orderitem.show",["orderitem"=>$orderitem]);
-	}
-	public function edit(OrderItem $orderitem){
-		return view("pages.erp.orderitem.edit",["orderitem"=>$orderitem,"orders"=>Order::all(),"products"=>Product::all()]);
-	}
-	public function update(Request $request,OrderItem $orderitem){
-		//OrderItem::update($request->all());
-		$orderitem = OrderItem::find($orderitem->id);
-		$orderitem->order_id=$request->order_id;
-		$orderitem->product_id=$request->product_id;
-		$orderitem->quantity=$request->quantity;
-		$orderitem->price=$request->price;
-date_default_timezone_set("Asia/Dhaka");
-		$orderitem->created_at=date('Y-m-d H:i:s');
-date_default_timezone_set("Asia/Dhaka");
-		$orderitem->updated_at=date('Y-m-d H:i:s');
+        return view("pages.erp.orderitem.index", ["orderitems" => $orderitems]);
+    }
+    public function create()
+    {
+        return view("pages.erp.orderitem.create", ["orders" => Order::all(), "products" => Product::all()]);
+    }
+    public function store(Request $request)
+    {
+        //OrderItem::create($request->all());
+        $orderitem = new OrderItem;
+        $orderitem->order_id = $request->order_id;
+        $orderitem->product_id = $request->product_id;
+        $orderitem->quantity = $request->quantity;
+        $orderitem->price = $request->price;
+        date_default_timezone_set("Asia/Dhaka");
+        $orderitem->created_at = date('Y-m-d H:i:s');
+        date_default_timezone_set("Asia/Dhaka");
+        $orderitem->updated_at = date('Y-m-d H:i:s');
 
-		$orderitem->save();
+        $orderitem->save();
 
-		return redirect()->route("orderitems.index")->with('success','Updated Successfully.');
-	}
-	public function destroy(OrderItem $orderitem){
-		$orderitem->delete();
-		return redirect()->route("orderitems.index")->with('success', 'Deleted Successfully.');
-	}
+        return back()->with('success', 'Created Successfully.');
+    }
+    public function show($id)
+    {
+        $orderitem = OrderItem::find($id);
+        return view("pages.erp.orderitem.show", ["orderitem" => $orderitem]);
+    }
+    public function edit(OrderItem $orderitem)
+    {
+        return view("pages.erp.orderitem.edit", ["orderitem" => $orderitem, "orders" => Order::all(), "products" => Product::all()]);
+    }
+    public function update(Request $request, OrderItem $orderitem)
+    {
+        //OrderItem::update($request->all());
+        $orderitem = OrderItem::find($orderitem->id);
+        $orderitem->order_id = $request->order_id;
+        $orderitem->product_id = $request->product_id;
+        $orderitem->quantity = $request->quantity;
+        $orderitem->price = $request->price;
+        date_default_timezone_set("Asia/Dhaka");
+        $orderitem->created_at = date('Y-m-d H:i:s');
+        date_default_timezone_set("Asia/Dhaka");
+        $orderitem->updated_at = date('Y-m-d H:i:s');
+
+        $orderitem->save();
+
+        return redirect()->route("orderitems.index")->with('success', 'Updated Successfully.');
+    }
+    public function destroy(OrderItem $orderitem)
+    {
+        $orderitem->delete();
+        return redirect()->route("orderitems.index")->with('success', 'Deleted Successfully.');
+    }
 }
-?>

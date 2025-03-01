@@ -117,23 +117,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            // Load stored data from localStorage (if any)
-            function loadCheckoutData() {
-                let storedData = localStorage.getItem('checkoutData');
-                if (storedData) {
-                    let data = JSON.parse(storedData);
-                    $("input[name='first_name']").val(data.first_name);
-                    $("input[name='last_name']").val(data.last_name);
-                    $("input[name='email']").val(data.email);
-                    $("input[name='street_address']").val(data.street_address);
-                    $("input[name='city']").val(data.city);
-                    $("input[name='country']").val(data.country);
-                    $("input[name='postcode']").val(data.postcode);
-                    $("input[name='payment_method'][value='" + data.payment_method + "']").prop('checked', true);
-                }
-            }
 
-            loadCheckoutData();
 
             // Handle form submission
             $("#checkout-form").submit(function(e) {
@@ -153,7 +137,8 @@
 
                 // Simple validation
                 if (!formData.first_name || !formData.last_name || !formData.email || !formData
-                    .street_address || !formData.city || !formData.country || !formData.postcode || !formData.payment_method) {
+                    .street_address || !formData.city || !formData.country || !formData.postcode || !
+                    formData.payment_method) {
                     alert("Please fill all the fields correctly.");
                     return;
                 }
@@ -167,7 +152,7 @@
 
             // Load cart items from localStorage and display in order summary
             function loadCartItems() {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let cart = JSON.parse(localStorage.getItem('restaurant')) || [];
 
                 if (cart.length === 0) {
                     $('#order-summary').html('<p>Your cart is empty!</p>');

@@ -6,10 +6,24 @@
 * Date: 2/21/2025 12:56:35 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
-class Order extends Model{
+
+class Order extends Model
+{
+
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
 
 
 }
-?>

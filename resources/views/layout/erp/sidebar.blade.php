@@ -66,6 +66,7 @@
                     <li><a href="#">Pending Orders</a></li>
                     <li><a href="#">Completed Orders</a></li>
                     <li><a href="#">Cancelled Orders</a></li>
+                    <li><a href="{{ route('orderitems.index') }}">All Order Items</a></li>
                     <li><a href="#">Kitchen Dashboard</a></li>
                 </ul>
             </li>
@@ -114,7 +115,7 @@
                     <span class="nav-text">Payments</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ url('payments/index') }}">All Payments</a></li>
+                    <li><a href="{{ route('payments.index') }}">All Payments</a></li>
                     <li><a href="pending-payments.html">Pending Payments</a></li>
                     <li><a href="completed-payments.html">Completed Payments</a></li>
 

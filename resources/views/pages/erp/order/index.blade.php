@@ -106,11 +106,11 @@
                                     @forelse ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            <td>{{ $order->customer_id }}</td>
+                                            <td>{{ $order->customer->name }}</td>
                                             <td>{{ $order->user_id }}</td>
                                             <td>{{ $order->total_amount }}</td>
                                             <td>{{ $order->discount }}</td>
-                                            <td>{{ $order->status_id }}</td>
+                                            <td>{{ $order->status->name }}</td>
                                             <td>{{ $order->order_date }}</td>
                                             <td>{{ $order->delivery_date }}</td>
                                             <td>{{ $order->created_at }}</td>
