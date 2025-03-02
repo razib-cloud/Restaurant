@@ -68,7 +68,7 @@ Route::resource('menus', MenuController::class);
 Route::resource('staffs', StaffController::class);
 
 Route::resource('erp_products', ProductController::class);
-Route::resource('reservations', ReservationController::class);
+
 
 
 
@@ -85,6 +85,8 @@ Route::prefix('res')->group(function () {
     Route::view('contact', 'pages.frontend.contact')->name('res.contact');
     Route::view('checkout', 'pages.frontend.checkout')->name('res.checkout');
     Route::view('productdetails', 'pages.frontend.productdetails')->name('res.productdetails');
+    Route::post('/reserve-table', [ReservationController::class, 'store'])->name('res.reserve.store');
+    Route::get('/reservations', [ReservationController::class, 'index'])->name('res.reservations');
 
 
 

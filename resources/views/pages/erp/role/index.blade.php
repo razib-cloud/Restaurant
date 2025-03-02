@@ -107,8 +107,7 @@
                                             <td>{{ $role->name }}</td>
                                             <td>
                                                 @if ($role->photo)
-                                                    <img src="{{ asset('img/' . $role->photo) }}" width="100"
-                                                        alt="{{ $role->name }}" class="img-fluid rounded">
+                                                <img width="50" height="" src="{{ asset('users') }}/{{ $role->photo }}" alt="{{ $role->name }}"srcset="">
                                                 @else
                                                     No Photo
                                                 @endif

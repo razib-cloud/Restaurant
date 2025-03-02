@@ -91,9 +91,9 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Product Id</th>
-                                    <th>Supplier Id</th>
+                                    {{-- <th>Supplier Id</th> --}}
                                     <th>Quantity</th>
-                                    <th>Unit Price</th>
+                                    {{-- <th>Unit Price</th> --}}
                                     <th>Expiry Date</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
@@ -105,9 +105,9 @@
                                     <tr>
                                         <td>{{ $inventory->id }}</td>
                                         <td>{{ $inventory->product_id }}</td>
-                                        <td>{{ $inventory->supplier_id }}</td>
+                                        {{-- <td>{{ $inventory->supplier_id }}</td> --}}
                                         <td>{{ $inventory->quantity }}</td>
-                                        <td>{{ $inventory->unit_price }}</td>
+                                        {{-- <td>{{ $inventory->unit_price }}</td> --}}
                                         <td>{{ $inventory->expiry_date }}</td>
                                         <td>{{ $inventory->created_at }}</td>
                                         <td>{{ $inventory->updated_at }}</td>

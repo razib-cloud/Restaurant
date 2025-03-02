@@ -24,7 +24,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('product')->paginate(10);
+        $orders = Order::paginate(10);
         return view("pages.erp.order.index", ["orders" => $orders]);
     }
 
