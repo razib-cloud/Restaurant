@@ -21,4 +21,4 @@ use Illuminate\Support\Facades\Route;
 
 
 
- Route::post('order', [OrderController::class, 'index']);
+Route::post('order', [OrderController::class, 'index']);
