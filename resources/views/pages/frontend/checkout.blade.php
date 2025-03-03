@@ -214,7 +214,7 @@
 
             $('.btn-submit').on('click', function() {
 
-              
+
 
                 let first_name = $("input[name='first_name']").val();
                 let phone = $("input[name='phone']").val();
@@ -279,3 +279,7 @@
         })
     </script>
 @endsection
+
+
+
+hello
