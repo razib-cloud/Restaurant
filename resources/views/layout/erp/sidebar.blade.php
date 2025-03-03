@@ -94,7 +94,7 @@
 
                     <!-- Reservations -->
                     <li>
-                        <a href="{{ route('reservations.index') }}">
+                        {{-- <a href="{{ route('reservations.index') }}"> --}}
                             <i class=""></i> Reservations
                         </a>
                     </li>

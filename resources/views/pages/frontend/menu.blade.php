@@ -902,6 +902,15 @@
                             <li>
                                 <input type="number" placeholder="Members" name="member" id="member" required>
                             </li>
+                            <li>
+                                <input type="number" placeholder="Table number" name="table_number" id="table_number"
+                                    required>
+                            </li>
+                            <li>
+                                <input type="text" placeholder="Special request" name="special_requests"
+                                    id="special_requests" required>
+                            </li>
+
                         </ul>
                         <div class="secondary-button d-inline-block">
                             <button type="submit" id="submit">Book Now</button>
