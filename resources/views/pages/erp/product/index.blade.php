@@ -99,7 +99,7 @@
                                     <th>Price</th>
                                     <th>Photo</th>
                                     <th>Description</th>
-                                    <th>Stock Quantity</th>
+                                    {{-- <th>Stock Quantity</th> --}}
                                     <th>Created At</th>
                                     <th>Updated At</th>
                                     <th>Actions</th>
@@ -126,7 +126,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $product->description }}</td>
-                                        <td>{{ $product->stock_quantity }}</td>
+                                        {{-- <td>{{ $product->stock_quantity }}</td> --}}
                                         <td>{{ $product->created_at->format('Y-m-d H:i:s') }}</td>
                                         <td>{{ $product->updated_at->format('Y-m-d H:i:s') }}</td>
                                         <td>

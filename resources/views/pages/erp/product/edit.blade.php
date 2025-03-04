@@ -64,12 +64,13 @@
     @enderror
 	</div>
 </div>
-<div class="row mb-3">
+
+{{-- <div class="row mb-3">
 	<label for="stock_quantity" class="col-sm-2 col-form-label">Stock Quantity</label>
 	<div class="col-sm-10">
 		<input type = "text" class="form-control" name="stock_quantity" value="{{$product->stock_quantity}}" id="stock_quantity" placeholder="Stock Quantity">
 	</div>
-</div>
+</div> --}}
 {{-- <div class="row mb-3">
 	<label for="reorder_level" class="col-sm-2 col-form-label">Reorder Level</label>
 	<div class="col-sm-10">

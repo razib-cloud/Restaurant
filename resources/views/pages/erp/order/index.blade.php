@@ -106,7 +106,7 @@
                                     @forelse ($orders as $order)
                                         <tr>
                                             <td>{{ $order->id }}</td>
-                                            <td>{{ $order->customer->name }}</td>
+                                            <td>{{ $order->customer ? $order->customer->name : 'No customer' }}</td>
                                             <td>{{ $order->user_id }}</td>
                                             <td>{{ $order->total_amount }}</td>
                                             <td>{{ $order->discount }}</td>

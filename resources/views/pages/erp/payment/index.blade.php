@@ -107,7 +107,7 @@
                                         <tr>
                                             <td>{{ $payment->id }}</td>
                                             <td>{{ $payment->order_id }}</td>
-                                            <td>{{ $payment->customer->name }}</td>
+                                            <td>{{ $payment->customer ? $payment->customer->name : 'No customer' }}</td>
                                             <td>{{ $payment->payment_method }}</td>
                                             <td>{{ $payment->status->name }}</td>
                                             <td>{{ $payment->amount }}</td>

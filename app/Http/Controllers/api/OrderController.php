@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -55,6 +56,13 @@ class OrderController extends Controller
             $orderItem->quantity = $product['qty'];
             $orderItem->price = $product['price'];
             $orderItem->save();
+        }
+
+
+        $inventory = Inventory::where('product_id', $product['item_id'])->first();
+        if ($inventory) {
+            $inventory->quantity -= $product['qty'];
+            $inventory->save(); 
         }
 
         return response()->json([

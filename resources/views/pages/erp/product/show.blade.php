@@ -56,17 +56,17 @@ use App\Models\Menu;
                     <th>Is Featured</th>
                     <td>{{ $product->is_featured ? 'Yes' : 'No' }}</td>
                 </tr> --}}
-
+{{-- 
                 <tr>
                     <th>Stock Quantity</th>
                     <td>{{ $product->stock_quantity }}</td>
-                </tr>
+                </tr> --}}
 
                 {{-- <tr>
                     <th>Reorder Level</th>
                     <td>{{ $product->reorder_level }}</td>
                 </tr> --}}
-                
+
                 <tr>
                     <th>Created At</th>
                     <td>{{ $product->created_at }}</td>

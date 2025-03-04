@@ -14,11 +14,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+
 class CustomerController extends Controller{
+
 	public function index(){
 		$customers = Customer::paginate(10);
 		return view("pages.erp.customer.index",["customers"=>$customers]);
 	}
+    
 	public function create(){
 		return view("pages.erp.customer.create",[]);
 	}

@@ -246,13 +246,11 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `supplier_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `unit_price` decimal(8,2) NOT NULL,
-  `expiry_date` date DEFAULT NULL,
+    `quantity` int(11) NOT NULL,
+    `expiry_date` date DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ;
 
 --
 -- Dumping data for table `inventory`

@@ -37,9 +37,9 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'is_featured' => 'required|boolean',
-            'stock_quantity' => 'required|integer|min:0',
-            'reorder_level' => 'required|integer|min:0',
+            // 'is_featured' => 'required|boolean',
+            // 'stock_quantity' => 'required|integer|min:0',
+            // 'reorder_level' => 'required|integer|min:0',
         ]);
 
         $product = new Product();
@@ -47,9 +47,9 @@ class ProductController extends Controller
         $product->menus_id = $request->menus_id;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->is_featured = $request->is_featured;
-        $product->stock_quantity = $request->stock_quantity;
-        $product->reorder_level = $request->reorder_level;
+        // $product->is_featured = $request->is_featured;
+        // $product->stock_quantity = $request->stock_quantity;
+        // $product->reorder_level = $request->reorder_level;
 
         // Handle photo upload
         if ($request->hasFile('photo')) {

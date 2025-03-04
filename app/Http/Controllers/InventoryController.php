@@ -24,13 +24,17 @@ class InventoryController extends Controller
     public function index()
     {
         // Use paginate instead of get() or all()
-        $inventorys = Inventory::paginate(request('perPage', 10)); // Default to 10 items per page
+        $inventorys = Inventory::with('product')->paginate(request('perPage', 10));
         return view('pages.erp.inventory.index', compact('inventorys'));
     }
+
+
     public function create()
     {
-        return view("pages.erp.inventory.create", ["products" => Product::all(), "suppliers" => Supplier::all()]);
+        return view("pages.erp.inventory.create", ["products" => Product::all()]);
     }
+
+
     public function store(Request $request)
     {
         //Inventory::create($request->all());
@@ -47,8 +51,10 @@ class InventoryController extends Controller
 
         $inventory->save();
 
-        return back()->with('success', 'Created Successfully.');
+        return redirect()->route('inventorys.index')->with('success', 'Created Successfully.');
     }
+
+
     public function show($id)
     {
         $inventory = Inventory::find($id);

@@ -19,9 +19,9 @@
 <tbody>
 		<tr><th>Id</th><td>{{$inventory->id}}</td></tr>
 		<tr><th>Product Id</th><td>{{$inventory->product_id}}</td></tr>
-		<tr><th>Supplier Id</th><td>{{$inventory->supplier_id}}</td></tr>
+		{{-- <tr><th>Supplier Id</th><td>{{$inventory->supplier_id}}</td></tr> --}}
 		<tr><th>Quantity</th><td>{{$inventory->quantity}}</td></tr>
-		<tr><th>Unit Price</th><td>{{$inventory->unit_price}}</td></tr>
+		{{-- <tr><th>Unit Price</th><td>{{$inventory->unit_price}}</td></tr> --}}
 		<tr><th>Expiry Date</th><td>{{$inventory->expiry_date}}</td></tr>
 		<tr><th>Created At</th><td>{{$inventory->created_at}}</td></tr>
 		<tr><th>Updated At</th><td>{{$inventory->updated_at}}</td></tr>

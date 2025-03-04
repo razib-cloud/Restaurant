@@ -24,7 +24,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::paginate(10);
+        $orders = Order::with('customer')->paginate(10);
         return view("pages.erp.order.index", ["orders" => $orders]);
     }
 
@@ -52,6 +52,7 @@ class OrderController extends Controller
 
         return back()->with('success', 'Created Successfully.');
     }
+
     public function show($id)
     {
         $order = Order::find($id);
