@@ -1,3 +1,32 @@
+-- Table structure for table `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  `contact_person` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `name`, `contact_person`, `phone`, `email`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'Fresh Farms Ltd.', 'John Doe', '+1234567890', 'john@freshfarms.com', '123 Green Street, Cityville', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
+(2, 'Ocean Seafood Co.', 'Alice Smith', '+1987654321', 'alice@oceanseafood.com', '456 Blue Avenue, Seaside', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
+(3, 'Organic Harvest', 'Robert Johnson', '+1122334455', 'robert@organicharvest.com', '789 Natural Road, Greentown', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
+(4, 'Dairy Delight', 'Emma Brown', '+1223344556', 'emma@dairydelight.com', '101 Milk Lane, Farmville', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
+(5, 'Spice World', 'David White', '+1445566778', 'david@spiceworld.com', '202 Flavor Street, Spicetown', '2025-02-16 18:33:11', '2025-02-16 18:33:11');
+
+
+
+
+
 CREATE TABLE `reservations` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `customer_id` INT(11) NOT NULL,
@@ -550,30 +579,6 @@ INSERT INTO `status` (`id`, `name`, `description`, `created_at`, `updated_at`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `suppliers`
---
-
-CREATE TABLE `suppliers` (
-  `id` int(11) NOT NULL,
-  `name` varchar(150) DEFAULT NULL,
-  `contact_person` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `suppliers`
---
-
-INSERT INTO `suppliers` (`id`, `name`, `contact_person`, `phone`, `email`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Fresh Farms Ltd.', 'John Doe', '+1234567890', 'john@freshfarms.com', '123 Green Street, Cityville', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
-(2, 'Ocean Seafood Co.', 'Alice Smith', '+1987654321', 'alice@oceanseafood.com', '456 Blue Avenue, Seaside', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
-(3, 'Organic Harvest', 'Robert Johnson', '+1122334455', 'robert@organicharvest.com', '789 Natural Road, Greentown', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
-(4, 'Dairy Delight', 'Emma Brown', '+1223344556', 'emma@dairydelight.com', '101 Milk Lane, Farmville', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
-(5, 'Spice World', 'David White', '+1445566778', 'david@spiceworld.com', '202 Flavor Street, Spicetown', '2025-02-16 18:33:11', '2025-02-16 18:33:11');
 
 -- --------------------------------------------------------
 

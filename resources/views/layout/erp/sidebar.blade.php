@@ -93,11 +93,11 @@
                     </li>
 
                     <!-- Reservations -->
-                    <li>
-                        {{-- <a href="{{ route('reservations.index') }}"> --}}
+                    {{-- <li>
+                        <a href="{{ route('reservations.index') }}">
                             <i class=""></i> Reservations
                         </a>
-                    </li>
+                    </li> --}}
 
                     <!-- Customer Feedback -->
                     <li>
