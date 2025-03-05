@@ -62,7 +62,7 @@ class OrderController extends Controller
         $inventory = Inventory::where('product_id', $product['item_id'])->first();
         if ($inventory) {
             $inventory->quantity -= $product['qty'];
-            $inventory->save(); 
+            $inventory->save();
         }
 
         return response()->json([

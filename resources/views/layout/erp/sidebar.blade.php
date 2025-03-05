@@ -26,18 +26,7 @@
                 </ul>
             </li>
 
-            <!-- Reservation Management -->
-            {{-- <li>
-    <a class="has-arrow ai-icon" href="#" aria-expanded="false">
-        <i class="flaticon-381-calendar" aria-hidden="true"></i>
-        <span class="nav-text">Reservations</span>
-    </a>
-    <ul aria-expanded="false">
-        <li><a href="{{ route('reservations.index') }}">All Reservations</a></li>
-        <li><a href="{{ route('reservations.create') }}">Add New Reservation</a></li>
-        <li><a href="{{ route('reservations.calendar') }}">Reservation Calendar</a></li>
-    </ul>
-</li> --}}
+         
 
 
             <!-- Menu Management -->
@@ -87,17 +76,17 @@
 
                     <!-- Delivery Status -->
                     <li>
+                        <a href="{{ route('reservations.index') }}">
+                            <i class=""></i> Reservations
+                        </a>
+                    </li>
+                    <!-- Delivery Status -->
+                    <li>
                         <a href="#">
                             <i class=""></i> Delivery Status
                         </a>
                     </li>
 
-                    <!-- Reservations -->
-                    {{-- <li>
-                        <a href="{{ route('reservations.index') }}">
-                            <i class=""></i> Reservations
-                        </a>
-                    </li> --}}
 
                     <!-- Customer Feedback -->
                     <li>

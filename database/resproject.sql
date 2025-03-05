@@ -1,3 +1,46 @@
+CREATE TABLE res_tables (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    table_number INT NOT NULL,
+    capacity INT NOT NULL,
+    status TINYINT DEFAULT 0            -- 0 = Available, 1 = Reserved
+);
+
+-- Insert sample data into the res_tables table
+INSERT INTO res_tables (table_number, capacity, status) VALUES
+(1, 2, 0),
+(2, 4, 0),
+(3, 6, 0);
+
+
+
+
+CREATE TABLE reservations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    members INT NOT NULL,
+    special_requests TEXT,
+    table_id INT NOT NULL
+
+);
+
+-- Insert sample reservations into the reservations table
+INSERT INTO reservations (name, phone, email, date, time, members, special_requests, table_id) VALUES
+('John Doe', '555-1234', 'john.doe@example.com', '2025-03-10', '18:30:00', 4, 'Window seat preferred', 2),
+('Jane Smith', '555-5678', 'jane.smith@example.com', '2025-03-10', '19:00:00', 2, 'None', 1),
+('Alice Johnson', '555-8765', 'alice.johnson@example.com', '2025-03-11', '20:00:00', 6, 'Birthday celebration', 3),
+('Bob Brown', '555-4321', 'bob.brown@example.com', '2025-03-12', '21:00:00', 4, 'None', 5);    
+
+
+
+
+
+
+
+
 -- Table structure for table `suppliers`
 --
 
@@ -22,37 +65,6 @@ INSERT INTO `suppliers` (`id`, `name`, `contact_person`, `phone`, `email`, `addr
 (3, 'Organic Harvest', 'Robert Johnson', '+1122334455', 'robert@organicharvest.com', '789 Natural Road, Greentown', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
 (4, 'Dairy Delight', 'Emma Brown', '+1223344556', 'emma@dairydelight.com', '101 Milk Lane, Farmville', '2025-02-16 18:33:11', '2025-02-16 18:33:11'),
 (5, 'Spice World', 'David White', '+1445566778', 'david@spiceworld.com', '202 Flavor Street, Spicetown', '2025-02-16 18:33:11', '2025-02-16 18:33:11');
-
-
-
-
-
-CREATE TABLE `reservations` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `customer_id` INT(11) NOT NULL,
-  `booking_name` VARCHAR(150) NOT NULL,
-  `phone` VARCHAR(20) NOT NULL,
-  `email` VARCHAR(100) DEFAULT NULL,
-  `table_number` INT(11) NOT NULL,
-  `guests_count` INT(11) NOT NULL,
-  `reservation_date` DATETIME NOT NULL,
-  `status` VARCHAR(50) NOT NULL, -- Instead of ENUM, using VARCHAR to store status values
-  `special_requests` TEXT DEFAULT NULL,
-  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-
-);
-
-INSERT INTO `reservations` (`customer_id`, `booking_name`, `phone`, `email`, `table_number`, `guests_count`, `reservation_date`, `status`, `special_requests`)
-VALUES
-(1, 'John Doe', '1234567890', 'john.doe@example.com', 5, 4, '2025-03-01 19:00:00', 'confirmed', 'Vegetarian meal preferred'),
-(2, 'Alice Smith', '9876543210', 'alice.smith@example.com', 8, 2, '2025-03-02 20:00:00', 'pending', NULL),
-(3, 'Michael Brown', '5558887777', 'michael.brown@example.com', 3, 6, '2025-03-05 18:30:00', 'canceled', 'Need extra space for baby stroller'),
-(4, 'Emily Johnson', '4445556666', 'emily.johnson@example.com', 10, 3, '2025-03-07 19:45:00', 'confirmed', 'Allergic to nuts'),
-(5, 'David Wilson', '1112223333', 'david.wilson@example.com', 2, 5, '2025-03-10 21:00:00', 'completed', 'Celebrating a birthday');
-
-
 
 
 --
@@ -407,7 +419,7 @@ CREATE TABLE `payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `payment_method` varchar(50) NOT NULL, -- আলাদা টেবিল বাদ, এখানে পেমেন্ট মেথড স্টোর হবে
+  `payment_method` varchar(50) NOT NULL,
   `payment_status_id` int(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `transaction_id` varchar(100) DEFAULT NULL,
@@ -450,21 +462,6 @@ INSERT INTO `payment_status` (`id`, `status`, `description`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -479,9 +476,9 @@ CREATE TABLE `products` (
   `price` decimal(8,2) NOT NULL,
 
   `photo` varchar(150) DEFAULT NULL,
-  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
-  `stock_quantity` int(11) DEFAULT NULL,
-  `reorder_level` int(11) DEFAULT NULL,
+--   `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+--   `stock_quantity` int(11) DEFAULT NULL,
+--   `reorder_level` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -496,31 +493,6 @@ INSERT INTO `products` (`id`, `name`, `category_id`, `price`, `photo`, `is_featu
 (3, 'Caesar Salad', 3, 7.99, 'caesar_salad.jpg', 1, 40, 4, '2025-02-21 00:00:24', '2025-02-21 00:00:24');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
-
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL,
-  `position` varchar(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `position`, `name`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Razib Farhan', 'https://www.freepik.com/free-vector/smiling-young-man-illustration_336635642.htm#fromView=keyword&page=1&position=2&uuid=a7d3d90b-44d3-4df8-b187-10112ebfe2a6&query=Avatar', '2025-02-17 04:23:42', '2025-02-17 18:45:53'),
-(2, 'Manager', 'Salman Shah', 'https://www.freepik.com/free-vector/mysterious-mafia-man-wearing-hat_7074313.htm#fromView=keyword&page=1&position=4&uuid=a7d3d90b-44d3-4df8-b187-10112ebfe2a6&query=Avatar', '2025-02-17 04:23:42', '2025-02-17 18:46:19'),
-(3, 'Chef', 'Rana', '', '2025-02-17 04:23:42', '2025-02-19 18:21:39'),
-(4, 'Waiter', 'Abdul Kader', '', '2025-02-17 04:23:42', '2025-02-17 07:00:50'),
-(5, 'Cashier', 'Aslam Khan', '', '2025-02-17 04:23:42', '2025-02-17 07:01:07'),
-(6, 'Customer', 'Raqeebul Khan', '', '2025-02-17 04:23:42', '2025-02-17 07:01:43');
 
 -- --------------------------------------------------------
 
@@ -611,3 +583,49 @@ INSERT INTO `users` (`id`, `name`, `email`, `role_id`, `email_verified_at`, `pas
 (9, 'Akash', 'akash@gmail.com', 0, NULL, '$2y$10$hATMjK1wCmAewmcK2QAn2eN6kIdPsP0.7JkIfgJASiV0AwUftSiM2', NULL, '2025-02-15 08:19:12', '2025-02-15 08:19:12'),
 (10, 'Rasel', 'rasel@gmail.com', 0, NULL, '$2y$10$AUV.qi15j8c77yhY47inx.CT0yAYThhoMClgM3MeFVLoYI3VT852S', NULL, '2025-02-15 11:47:58', '2025-02-15 11:47:58');
 
+
+
+
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+
+
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `position` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `position`, `name`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'Razib Farhan', 'https://www.freepik.com/free-vector/smiling-young-man-illustration_336635642.htm#fromView=keyword&page=1&position=2&uuid=a7d3d90b-44d3-4df8-b187-10112ebfe2a6&query=Avatar', '2025-02-17 04:23:42', '2025-02-17 18:45:53'),
+(2, 'Manager', 'Salman Shah', 'https://www.freepik.com/free-vector/mysterious-mafia-man-wearing-hat_7074313.htm#fromView=keyword&page=1&position=4&uuid=a7d3d90b-44d3-4df8-b187-10112ebfe2a6&query=Avatar', '2025-02-17 04:23:42', '2025-02-17 18:46:19'),
+(3, 'Chef', 'Rana', '', '2025-02-17 04:23:42', '2025-02-19 18:21:39'),
+(4, 'Waiter', 'Abdul Kader', '', '2025-02-17 04:23:42', '2025-02-17 07:00:50'),
+(5, 'Cashier', 'Aslam Khan', '', '2025-02-17 04:23:42', '2025-02-17 07:01:07'),
+(6, 'Customer', 'Raqeebul Khan', '', '2025-02-17 04:23:42', '2025-02-17 07:01:43');

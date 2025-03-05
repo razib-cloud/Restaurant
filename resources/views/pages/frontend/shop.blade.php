@@ -88,15 +88,11 @@
                 <!-- shop-box -->
             </div>
 
-            <div class="pagination-con">
-                <ul class="pagination mb-0 justify-content-center">
-                    <li class="page-item"><a class="page-link" href="shop.html">Previous</a></li>
-                    <li class="page-item"><a class="page-link active" href="product-detail.html">1</a></li>
-                    <li class="page-item"><a class="page-link" href="cart.html">2</a></li>
-                    <li class="page-item"><a class="page-link" href="checkout.html">3</a></li>
-                    <li class="page-item"><a class="page-link" href="product-detail.html">Next</a></li>
-                </ul>
+
+            <div class="pagination-con d-flex justify-content-center align-items-center">
+                {{ $products->links('vendor.pagination.bootstrap-4') }}
             </div>
+
         </div>
     </section>
 @endsection

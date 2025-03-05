@@ -10,7 +10,7 @@ class ShopController extends Controller
     public function index()
     {
         // Fetch all products from the database
-        $products = Product::all();
+        $products = Product::paginate(8);
 
         // Pass products to the Blade view
         return view('pages.frontend.shop', compact('products'));

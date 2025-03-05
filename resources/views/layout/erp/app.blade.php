@@ -15,9 +15,11 @@
 	<meta property="og:description" content="Lezato : Restaurant Admin Template" />
 	<meta property="og:image" content="social-image.png" />
 	<meta name="format-detection" content="telephone=no">
+    
+
 
 	<!-- PAGE TITLE HERE -->
-	<title>Lezato : Restaurant Admin Template</title>
+	<title>Lezato : Restaurant</title>
 
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="{{ asset('assets') }}/images/favicon.png" />
