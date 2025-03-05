@@ -126,11 +126,25 @@
             });
 
 
-            function cart_length() {
-                let items = cart.getCart()?.length ?? 0;
-                $('.cartlength').text(items);
+            // function cart_length() {
+            //     let items = cart.getCart()?.length ?? 0;
+            //     $('.cartlength').text(items);
 
+            // }
+
+            function cart_length() {
+                let cart = new Cart('restaurant').getCart();
+                let totalQty = 0;
+
+                if (cart) {
+                    totalQty = cart.reduce((sum, item) => sum + item.qty, 0); // Add all qty values
+                }
+
+                console.log("Total Cart Items:", totalQty); // Debugging
+                $('.cartlength').text(totalQty);
             }
+
+
             cart_length()
 
 

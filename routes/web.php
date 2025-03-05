@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
@@ -70,12 +71,10 @@ Route::resource('inventorys', InventoryController::class);
 Route::resource('menus', MenuController::class);
 Route::resource('staffs', StaffController::class);
 Route::resource('erp_products', ProductController::class);
-
-
 Route::resource('reservations', ReservationController::class);
-
-
 Route::resource('restables', ResTableController::class);
+
+Route::resource('admin', AdminController::class);
 
 
 

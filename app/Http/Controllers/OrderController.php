@@ -12,8 +12,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Customer;
-use App\Models\User;
+
 use App\Models\Status;
+use App\Models\User;
+use App\Notifications\NewOrderNotification;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -32,9 +34,11 @@ class OrderController extends Controller
     {
         return view("pages.erp.order.create", ["customers" => Customer::all(), "users" => User::all(), "status" => Status::all()]);
     }
+
+
     public function store(Request $request)
     {
-        //Order::create($request->all());
+        // Create a new order instance
         $order = new Order;
         $order->customer_id = $request->customer_id;
         $order->user_id = $request->user_id;
@@ -43,15 +47,25 @@ class OrderController extends Controller
         $order->status_id = $request->status_id;
         $order->order_date = $request->order_date;
         $order->delivery_date = $request->delivery_date;
+
+        // Set the created and updated timestamps
         date_default_timezone_set("Asia/Dhaka");
         $order->created_at = date('Y-m-d H:i:s');
-        date_default_timezone_set("Asia/Dhaka");
         $order->updated_at = date('Y-m-d H:i:s');
 
+        // Save the order to the database
         $order->save();
 
+        // Send notification to admin after saving the order
+        $admin = User::where('role', 'admin')->first();  // Find admin user
+        $admin->notify(new NewOrderNotification());  // Send notification
+
+        // Return a success message after creating the order
         return back()->with('success', 'Created Successfully.');
     }
+
+
+
 
     public function show($id)
     {

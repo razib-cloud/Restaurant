@@ -15,6 +15,8 @@
                     <li class="nav-item recipe">
                         <a href="javascript:void(0);" class="btn btn-primary btn-rounded">Recipe Guide</a>
                     </li>
+
+
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link  ai-icon" href="javascript:void(0);" role="button"
                             data-bs-toggle="dropdown">
@@ -103,6 +105,8 @@
                                     class="ti-arrow-end"></i></a>
                         </div>
                     </li>
+
+
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link bell-link ai-icon" href="javascript:void(0);">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
@@ -120,6 +124,9 @@
                             <span class="badge light text-white bg-primary rounded-circle">5</span>
                         </a>
                     </li>
+
+
+
                     <li class="nav-item dropdown  header-profile">
                         <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
                             <img src="{{ asset('users') }}/{{ Auth::user()->photo }}" width="56" alt="" />

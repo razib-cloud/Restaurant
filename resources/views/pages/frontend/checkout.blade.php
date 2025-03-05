@@ -152,6 +152,9 @@
 
 
 @section('script')
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(function() {
             const checkout = new Cart('restaurant');
@@ -174,29 +177,27 @@
                     orders.forEach(element => {
                         subtotal += parseInt(element.subtotal);
                         html += `
-                    <div>
-                        <div class="product-outer product-outer-details">
-                            <figure class="mb-0">
-                                <!-- Product image -->
-                                <img src="{{ asset('products') }}/${element.photo}" alt="product-img">
-                            </figure>
-                            <!-- Product description -->
-                            <span class="float-right total"> ${element.name} $${element.price} </span>
-                        </div>
+                <div>
+                    <div class="product-outer product-outer-details">
+                        <figure class="mb-0">
+                            <img src="{{ asset('products') }}/${element.photo}" alt="product-img">
+                        </figure>
+                        <span class="float-right total"> ${element.name} $${element.price} </span>
                     </div>
-                    `;
+                </div>
+                `;
                     });
                 } else {
                     subtotal += 0;
                     html += `
-                <div class="product-outer-details">
-                    <figure class="mb-0">
-                        <img src="{{ asset('products') }}/${element.photo}" alt="product-img">
-                    </figure>
-                    No Food in the cart.
-                </div>
-                <span class="float-right total">$ 00</span>
-                `;
+            <div class="product-outer-details">
+                <figure class="mb-0">
+                    <img src="{{ asset('products') }}/${element.photo}" alt="product-img">
+                </figure>
+                No Food in the cart.
+            </div>
+            <span class="float-right total">$ 00</span>
+            `;
                 }
 
                 $(".append").html(html);
@@ -250,9 +251,30 @@
                     }),
                     success: function(res) {
                         console.log(res);
+
+                        // SweetAlert2 for successful order
+                        Swal.fire({
+                            title: "Order Placed Successfully!",
+                            text: "Thank you for your order. We will process it soon!",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                checkout.clearCart();
+                                window.location.href = "{{ url('/res/checkout') }}";
+                            }
+                        });
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
+
+                        // SweetAlert2 for failed order
+                        Swal.fire({
+                            title: "Order Failed!",
+                            text: "Something went wrong. Please try again later.",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
                     }
                 });
             });

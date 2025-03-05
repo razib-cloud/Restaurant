@@ -9,7 +9,9 @@ class Cart {
       let cart= localStorage.getItem(this.cartName);
       cart=JSON.parse(cart);
       return cart;
-     }//end getCart
+     }
+
+     //end getCart
 
     save(item){
       let cart= localStorage.getItem(this.cartName);
@@ -28,7 +30,11 @@ class Cart {
         cart.push(item);
         localStorage.setItem(this.cartName, JSON.stringify(cart));
       }
-    }//end save
+    }
+    //end save
+
+
+
 
 
     QtyUp(id,qty){
@@ -116,10 +122,13 @@ class Cart {
    } //end clearCart
 
 
+  }
 
 
 
-  }//end class
+
+
+
 
 
 
