@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -64,6 +65,20 @@ class OrderController extends Controller
             $inventory->quantity -= $product['qty'];
             $inventory->save();
         }
+
+        //payment
+        $payment = new Payment();
+        $payment->order_id = $order->id;
+        $payment->customer_id = $order->customer_id;
+        $payment->payment_method = $request->payment_method;
+        $payment->payment_status_id = 1;
+        $payment->amount = $request->total_payment;
+        $payment->transaction_id = "TXN" . time();
+        $payment->payment_date = now();
+        $payment->created_at = now();
+        $payment->updated_at = now();
+        $payment->save();
+
 
         return response()->json([
             'message' => 'Order placed successfully!',
