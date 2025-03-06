@@ -54,9 +54,16 @@ class User extends Authenticatable
 
     // app/Models/User.php
 
+// public function notifications()
+// {
+//     return $this->hasMany(Notification::class);
+// }
+
+
+
 public function notifications()
-{
-    return $this->hasMany(Notification::class);
-}
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
 
 }

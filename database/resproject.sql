@@ -1,3 +1,21 @@
+CREATE TABLE `notifications` (
+    `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `user_id` BIGINT UNSIGNED NOT NULL,
+    `data` TEXT NOT NULL,
+    `is_read` BOOLEAN DEFAULT 0,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+);
+INSERT INTO `notifications` (`user_id`, `data`, `is_read`, `created_at`, `updated_at`)
+VALUES
+(1, '{"message": "New order has been placed by customer #101", "type": "order"}', false, NOW(), NOW()),
+(2, '{"message": "Your order #202 has been shipped", "type": "order_shipment"}', false, NOW(), NOW()),
+(1, '{"message": "Your account has been updated successfully", "type": "account"}', true, NOW(), NOW());
+
+
+
+
 CREATE TABLE res_tables (
     id INT AUTO_INCREMENT PRIMARY KEY,
     table_number INT NOT NULL,
@@ -32,7 +50,7 @@ INSERT INTO reservations (name, phone, email, date, time, members, special_reque
 ('John Doe', '555-1234', 'john.doe@example.com', '2025-03-10', '18:30:00', 4, 'Window seat preferred', 2),
 ('Jane Smith', '555-5678', 'jane.smith@example.com', '2025-03-10', '19:00:00', 2, 'None', 1),
 ('Alice Johnson', '555-8765', 'alice.johnson@example.com', '2025-03-11', '20:00:00', 6, 'Birthday celebration', 3),
-('Bob Brown', '555-4321', 'bob.brown@example.com', '2025-03-12', '21:00:00', 4, 'None', 5);    
+('Bob Brown', '555-4321', 'bob.brown@example.com', '2025-03-12', '21:00:00', 4, 'None', 5);
 
 
 

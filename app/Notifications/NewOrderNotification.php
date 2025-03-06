@@ -2,22 +2,31 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
+use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\DatabaseMessage;
 
 class NewOrderNotification extends Notification
 {
-    // Determine the channels for the notification
-    public function via($notifiable)
+    use Queueable;
+    protected $order;
+
+    public function __construct($order)
     {
-        return ['database'];  // Use database channel for storing notifications
+        $this->order = $order;
     }
 
-    // Define the structure of the notification data to be stored in the database
+    public function via($notifiable)
+    {
+        return ['database']; // Database e store korbo
+    }
+
     public function toDatabase($notifiable)
     {
         return [
-            'message' => 'New order placed!'  // The message for the admin or user
+            'message' => 'New order received! Order ID: ' . $this->order->id,
+            'order_id' => $this->order->id
         ];
     }
 }

@@ -1,76 +1,46 @@
 <?php
-// app/Http/Controllers/AdminController.php
 
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Notifications\Notification;
+use App\Models\Notification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    // Show all notifications (index)
+    // Notification List Show
     public function index()
-{
-    // Get the admin user (assuming 'role' column identifies admin)
-    $admin = User::where('role', 'admin')->first();  // Find admin user
-    $notifications = $admin->notifications;  // Fetch all notifications for the admin
-
-    return view('admin.notifications', compact('notifications'));  // Pass notifications to the view
-}
-
-// app/Http/Controllers/AdminController.php
-
-public function markAsRead($id)
-{
-    $notification = Notification::findOrFail($id);
-    $notification->update(['is_read' => true]);
-
-    return redirect()->route('admin.notifications'); // or wherever your notifications are listed
-}
-
-
-    // Create a new notification (create)
-    public function create()
     {
+        // Assuming the admin is determined by 'role_id' or 'role'
+        // Adjust according to your application logic (e.g., checking for 'role_id' or 'role')
+        $admin = User::where('role_id', 1)->first(); // Adjust column name if necessary
 
+        // Fetch notifications for the admin user
+        $notifications = DB::table('notifications')
+                            ->where('user_id', $admin->id)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        // Pass notifications to the view
+        return view('pages.erp.notification.notifications', compact('notifications'));
     }
 
-
-    public function store(Request $request)
+    // Mark Notification as Read
+    public function markAsRead($id)
     {
+        DB::table('notifications')->where('id', $id)->update(['is_read' => true]);
 
+        // Redirect back to notifications page
+        return redirect()->route('admin.notifications');
     }
 
-    public function show($id)
-    {
-        $notification = Notification::find($id);
-        return view('admin.show_notification', compact('notification'));
-    }
-
-
-    public function edit($id)
-    {
-        $notification = Notification::find($id);
-        return view('admin.edit_notification', compact('notification'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $notification = Notification::find($id);
-        $notification->data = $request->input('message');
-        $notification->save();
-
-        return redirect()->route('admin.index');
-    }
-
-
-
+    // Delete Notification
     public function destroy($id)
     {
-        $notification = Notification::find($id);
-        $notification->delete();
+        DB::table('notifications')->where('id', $id)->delete();
 
-        return redirect()->route('admin.index');
+        // Redirect back to notifications page
+        return redirect()->route('admin.notifications');
     }
-
 }
