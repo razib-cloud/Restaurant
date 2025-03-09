@@ -99,19 +99,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-
-//frontend route
-
+// Frontend Routes
 Route::prefix('res')->group(function () {
     Route::view('/', 'pages.frontend.index')->name('res.index');
     Route::get('/shop', [ShopController::class, 'index'])->name('shop');
-    Route::view('cart', 'pages.frontend.cart')->name('res.cart',);
+    Route::view('cart', 'pages.frontend.cart')->name('res.cart');
     Route::view('menu', 'pages.frontend.menu')->name('res.menu');
     Route::view('about', 'pages.frontend.about')->name('res.about');
     Route::view('contact', 'pages.frontend.contact')->name('res.contact');
     Route::view('checkout', 'pages.frontend.checkout')->name('res.checkout');
     Route::view('productdetails', 'pages.frontend.productdetails')->name('res.productdetails');
+
+    // Reservation Routes
+    Route::get('/tables', [ReservationController::class, 'getTables'])->name('res.tables'); // Fetch tables with status
+    Route::post('/reserve', [ReservationController::class, 'store'])->name('res.reserve.store'); // Make reservation
 });
+
 
 
 

@@ -866,69 +866,92 @@
         <div class="container wow fadeIn" data-wow-duration="2s" data-wow-delay="0.3s">
             <div class="heading-title-con text-center">
                 <span class="d-block special-text green-text playfair-font font-weight-light">Book Now</span>
-                <h2 class="mb-0">Reserve a Table </h2>
-                <!-- heading title con -->
+                <h2 class="mb-0">Reserve a Table</h2>
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
+                    <!-- Success Message -->
+                    <div id="success-message" class="alert alert-success" style="display: none;">Reservation successful!
+                    </div>
 
-
-                    <!-- Display Success Message -->
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
-                    <!-- Your form starts here -->
-                    <form class="main-form text-center" method="post" action="{{ route('res.reserve.store') }}">
+                    <form class="main-form text-center" id="reservationForm">
                         @csrf
                         <ul class="list-unstyled p-0 float-left w-100">
+                            <li><input type="text" placeholder="Name" id="name" required></li>
+                            <li><input type="tel" placeholder="Phone" id="phone" required></li>
+                            <li><input type="email" placeholder="Email" id="email" required></li>
+                            <li><input type="date" id="date" required></li>
+                            <li><input type="time" id="time" required></li>
+                            <li><input type="number" placeholder="Members" id="members" required></li>
                             <li>
-                                <input type="text" placeholder="Name" name="name" id="fname" required>
+                                <select id="table_id">
+                                    <option value="">Select a Table</option>
+                                </select>
                             </li>
-                            <li>
-                                <input type="tel" placeholder="Phone" name="phone" id="phone" required>
-                            </li>
-                            <li>
-                                <input type="email" placeholder="Email" name="email" id="email" required>
-                            </li>
-                            <li>
-                                <input type="date" name="date" id="date" required>
-                            </li>
-                            <li>
-                                <input type="time" name="time" id="time" required>
-                            </li>
-                            <li>
-                                <input type="number" placeholder="Members" name="member" id="member" required>
-                            </li>
-                            <li>
-                                <input type="number" placeholder="Table number" name="table_number" id="table_number"
-                                    required>
-                            </li>
-                            <li>
-                                <input type="text" placeholder="Special request" name="special_requests"
-                                    id="special_requests" required>
-                            </li>
-
+                            <li><input type="text" placeholder="Special request" id="special_requests"></li>
                         </ul>
                         <div class="secondary-button d-inline-block">
-                            <button type="submit" id="submit">Book Now</button>
+                            <button type="submit">Book Now</button>
                         </div>
                     </form>
 
-
-
-
-
-
-
-
-                    <!-- col -->
+                    <!-- Display Available Tables -->
+                    <div id="tables" class="text-center mt-3"></div>
                 </div>
-                <!-- row -->
             </div>
-            <!-- container -->
         </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/api/tables')
+                .then(response => response.json())
+                .then(data => {
+                    let tableSelect = document.getElementById("table_number");
+                    tableSelect.innerHTML = "<option value=''>Select Table</option>";
+
+                    data.forEach(table => {
+                        let option = document.createElement("option");
+                        option.value = table.id;
+                        option.textContent = `Table ${table.table_number} (Seats: ${table.capacity})`;
+                        if (table.status === 1) {
+                            option.disabled = true; // Disable reserved tables
+                        }
+                        tableSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error fetching tables:", error));
+        });
+
+        document.getElementById("submit").addEventListener("click", function(event) {
+            event.preventDefault(); // Stop form from submitting normally
+
+            fetch('/api/reserve', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: document.getElementById('fname').value,
+                        phone: document.getElementById('phone').value,
+                        email: document.getElementById('email').value,
+                        date: document.getElementById('date').value,
+                        time: document.getElementById('time').value,
+                        members: document.getElementById('member').value,
+                        table_id: document.getElementById('table_number').value,
+                        special_requests: document.getElementById('special_requests').value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.success);
+                        window.location.reload();
+                    } else {
+                        alert(data.error);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
+    </script>
 @endsection

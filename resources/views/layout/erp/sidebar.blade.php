@@ -26,7 +26,7 @@
                 </ul>
             </li>
 
-         
+
 
 
             <!-- Menu Management -->
@@ -76,7 +76,7 @@
 
                     <!-- Delivery Status -->
                     <li>
-                        <a href="{{ route('reservations.index') }}">
+                        <a href="{{ route('res.tables') }}">
                             <i class=""></i> Reservations
                         </a>
                     </li>
