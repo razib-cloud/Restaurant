@@ -75,11 +75,11 @@
                     </li>
 
                     <!-- Delivery Status -->
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('res.tables') }}">
                             <i class=""></i> Reservations
                         </a>
-                    </li>
+                    </li> --}}
                     <!-- Delivery Status -->
                     <li>
                         <a href="#">

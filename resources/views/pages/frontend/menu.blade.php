@@ -884,8 +884,15 @@
                             <li><input type="time" id="time" required></li>
                             <li><input type="number" placeholder="Members" id="members" required></li>
                             <li>
-                                <select id="table_id">
+                                @php
+                                    use App\Models\ResTable;
+                                    $restables = ResTable::paginate(10);
+                                @endphp
+                                <select class="table_id">
                                     <option value="">Select a Table</option>
+                                    @foreach ($restables as $key => $table)
+                                        <option value="{{ $table->id }}">{{ $table->table_number }}</option>
+                                    @endforeach
                                 </select>
                             </li>
                             <li><input type="text" placeholder="Special request" id="special_requests"></li>
@@ -901,10 +908,18 @@
             </div>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script>
+        // $(function(){
+        //     // alert();
+        //     $('.table_id').on('change', function(){
+        //         let val = $(this).val();
+        //         alert(val)
+        //     })
+        // })
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('/api/tables')
+            fetch('/api/reservation')
                 .then(response => response.json())
                 .then(data => {
                     let tableSelect = document.getElementById("table_number");
@@ -923,35 +938,48 @@
                 .catch(error => console.error("Error fetching tables:", error));
         });
 
-        document.getElementById("submit").addEventListener("click", function(event) {
-            event.preventDefault(); // Stop form from submitting normally
+        document.addEventListener("DOMContentLoaded", function() {
+            const submitButton = document.getElementById("submit");
+            $('.table_id').on('change', function(){
+                let val = $(this).val();
+                // alert(val)
+            })
+            if (submitButton) {
+                submitButton.addEventListener("click", function(event) {
+                    event.preventDefault(); // Stop form from submitting normally
 
-            fetch('/api/reserve', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: document.getElementById('fname').value,
-                        phone: document.getElementById('phone').value,
-                        email: document.getElementById('email').value,
-                        date: document.getElementById('date').value,
-                        time: document.getElementById('time').value,
-                        members: document.getElementById('member').value,
-                        table_id: document.getElementById('table_number').value,
-                        special_requests: document.getElementById('special_requests').value
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(data.success);
-                        window.location.reload();
-                    } else {
-                        alert(data.error);
-                    }
-                })
-                .catch(error => console.error("Error:", error));
+                    fetch('/api/tableReserve', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: document.getElementById('name')?.value || '',
+                                phone: document.getElementById('phone')?.value || '',
+                                email: document.getElementById('email')?.value || '',
+                                date: document.getElementById('date')?.value || '',
+                                time: document.getElementById('time')?.value || '',
+                                members: document.getElementById('member')?.value || '',
+                                // table_id: document.getElementById('table_number')?.value || '',
+                                table_id: val,
+                                special_requests: document.getElementById('special_requests')
+                                    ?.value || ''
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert(data.success);
+                                window.location.reload();
+                            } else {
+                                alert(data.error);
+                            }
+                        })
+                        .catch(error => console.error("Error:", error));
+                });
+            } else {
+                console.error("Error: Submit button not found!");
+            }
         });
     </script>
 @endsection

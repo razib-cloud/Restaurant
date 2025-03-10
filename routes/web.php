@@ -23,7 +23,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\api\ReservationController;
 use App\Http\Controllers\ResTableController;
 
 
@@ -111,7 +111,7 @@ Route::prefix('res')->group(function () {
     Route::view('productdetails', 'pages.frontend.productdetails')->name('res.productdetails');
 
     // Reservation Routes
-    Route::get('/tables', [ReservationController::class, 'getTables'])->name('res.tables'); // Fetch tables with status
+    Route::get('tables', [ReservationController::class, 'getTables'])->name('api.tables');
     Route::post('/reserve', [ReservationController::class, 'store'])->name('res.reserve.store'); // Make reservation
 });
 

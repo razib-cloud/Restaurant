@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,6 +12,8 @@ class ReservationController extends Controller
     // Fetch all tables with their status
     public function getTables(): JsonResponse
     {
+        // echo"Reservations";
+
         $tables = DB::table('res_tables')->get();
         return response()->json($tables);
     }
@@ -19,16 +21,16 @@ class ReservationController extends Controller
     // Handle reservations
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email',
-            'date' => 'required|date',
-            'time' => 'required',
-            'members' => 'required|integer|min:1',
-            'table_id' => 'required|exists:res_tables,id',
-            'special_requests' => 'nullable|string',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'phone' => 'required|string|max:20',
+        //     'email' => 'required|email',
+        //     'date' => 'required|date',
+        //     'time' => 'required',
+        //     'members' => 'required|integer|min:1',
+        //     'table_id' => 'required|exists:res_tables,id',
+        //     'special_requests' => 'nullable|string',
+        // ]);
 
         // Check if table is already reserved
         $table = DB::table('res_tables')->where('id', $request->table_id)->first();

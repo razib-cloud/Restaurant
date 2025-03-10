@@ -16,15 +16,15 @@ class ReservationController extends Controller
     // Store reservation
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email|max:255',
-            'date' => 'required|date',
-            'time' => 'required',
-            'members' => 'required|integer',
-            'table_id' => 'required|exists:res_tables,id'
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'phone' => 'required|string|max:20',
+        //     'email' => 'required|email|max:255',
+        //     'date' => 'required|date',
+        //     'time' => 'required',
+        //     'members' => 'required|integer',
+        //     'table_id' => 'required|exists:res_tables,id'
+        // ]);
 
         // Mark the table as reserved
         ResTable::where('id', $request->table_id)->update(['status' => 1]);

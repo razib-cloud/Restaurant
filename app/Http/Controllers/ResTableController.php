@@ -18,7 +18,7 @@ class ResTableController extends Controller{
 	public function index()
     {
         $restables = ResTable::paginate(10);
-        return view("pages.erp.restable.index", compact('restables'));
+        return view("pages.frontend.menu", compact('restables'));
     }
 	public function create(){
 		return view("pages.erp.restable.create",[]);
