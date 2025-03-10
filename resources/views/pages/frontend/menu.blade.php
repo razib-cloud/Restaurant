@@ -940,7 +940,7 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             const submitButton = document.getElementById("submit");
-            $('.table_id').on('change', function(){
+            $('.table_id').on('change', function() {
                 let val = $(this).val();
                 // alert(val)
             })
@@ -960,8 +960,8 @@
                                 date: document.getElementById('date')?.value || '',
                                 time: document.getElementById('time')?.value || '',
                                 members: document.getElementById('member')?.value || '',
-                                // table_id: document.getElementById('table_number')?.value || '',
-                                table_id: val,
+                                table_id: document.getElementById('table_number')?.value || '',
+                                // table_id: val,
                                 special_requests: document.getElementById('special_requests')
                                     ?.value || ''
                             })

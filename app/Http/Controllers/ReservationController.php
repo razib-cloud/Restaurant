@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ class ReservationController extends Controller
         // ]);
 
         // Mark the table as reserved
+        print_r($request->all());
         ResTable::where('id', $request->table_id)->update(['status' => 1]);
+        die;
 
         // Create reservation
         Reservation::create($request->all());

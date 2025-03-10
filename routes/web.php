@@ -111,7 +111,7 @@ Route::prefix('res')->group(function () {
     Route::view('productdetails', 'pages.frontend.productdetails')->name('res.productdetails');
 
     // Reservation Routes
-    Route::get('tables', [ReservationController::class, 'getTables'])->name('api.tables');
+    Route::get('tableReserve', [ReservationController::class, 'getTables'])->name('api.tables');
     Route::post('/reserve', [ReservationController::class, 'store'])->name('res.reserve.store'); // Make reservation
 });
 
