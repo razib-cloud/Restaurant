@@ -870,9 +870,54 @@
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
-                    <!-- Success Message -->
-                    <div id="success-message" class="alert alert-success" style="display: none;">Reservation successful!
-                    </div>
+
+                    {{-- <form class="main-form text-center" id="reservationForm">
+                        @csrf
+                        <ul class="list-unstyled p-0 float-left w-100">
+                            <li><input type="text" placeholder="Name" id="name" required></li>
+                            <li><input type="tel" placeholder="Phone" id="phone" required></li>
+                            <li><input type="email" placeholder="Email" id="email" required></li>
+                            <li><input type="date" id="date" required></li>
+                            <li><input type="time" id="time" required></li>
+
+                            <li>
+                                @php
+                                    use App\Models\ResTable;
+                                    $restables = ResTable::paginate(10);
+                                @endphp
+
+                                <!-- Dropdown for selecting a table -->
+                                <select class="form-select mb-2" name="table_id" id="table_number" required
+                                    style="width: 350px; height: 55px; border: 0;">
+
+                                    <option value="">Select a Table</option>
+                                    @foreach ($restables as $table)
+                                        <option value="{{ $table->id }}"
+                                            {{ old('table_id') == $table->id ? 'selected' : '' }}>
+                                            Table {{ $table->table_number }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                <!-- Display validation error -->
+                                @error('table_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </li>
+                            <li>
+                                <input type="number" placeholder="Members" id="members" name="members" required>
+                            </li>
+
+                            <li><input type="text" placeholder="Special request" id="special_requests"></li>
+                        </ul>
+                        <div class="secondary-button d-inline-block">
+                            <button id="submit" type="submit">Book Now</button>
+                        </div>
+                    </form> --}}
+
+
 
                     <form class="main-form text-center" id="reservationForm">
                         @csrf
@@ -882,25 +927,41 @@
                             <li><input type="email" placeholder="Email" id="email" required></li>
                             <li><input type="date" id="date" required></li>
                             <li><input type="time" id="time" required></li>
-                            <li><input type="number" placeholder="Members" id="members" required></li>
+
                             <li>
                                 @php
                                     use App\Models\ResTable;
                                     $restables = ResTable::paginate(10);
                                 @endphp
-                                <select class="table_id" name="table_id" id="table_number">
-                                    <option value="">Select a Table</option>
-                                    @foreach ($restables as $key => $table)
-                                        <option value="{{ $table->id }}">{{ $table->table_number }}</option>
+
+                                <!-- Checkbox list for selecting multiple tables -->
+                                <label>Select Tables</label>
+                                <ul id="tables_list" class="list-unstyled p-0">
+                                    @foreach ($restables as $table)
+                                        <li>
+                                            <input type="checkbox" name="table_ids[]" value="{{ $table->id }}" class="table_checkbox">
+                                            Table {{ $table->table_number }} (Seats: {{ $table->capacity }})
+                                        </li>
                                     @endforeach
-                                </select>
+                                </ul>
+
+                                <!-- Display validation error -->
+                                @error('table_ids')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </li>
+
+                            <li><input type="number" placeholder="Members" id="members" name="members" required></li>
+
                             <li><input type="text" placeholder="Special request" id="special_requests"></li>
                         </ul>
                         <div class="secondary-button d-inline-block">
                             <button id="submit" type="submit">Book Now</button>
                         </div>
                     </form>
+
 
                     <!-- Display Available Tables -->
                     <div id="tables" class="text-center mt-3"></div>
@@ -909,32 +970,119 @@
         </div>
     </section>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
 
     <script>
+        //for select multiple table
 
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('/api/tableReserve')
-                .then(response => response.json())
-                .then(data => {
-                    let tableSelect = document.getElementById("table_number");
-                    tableSelect.innerHTML = "<option value=''>Select Table</option>";
+//         $(document).ready(function() {
+//     $("#reservationForm").submit(function(event) {
+//         event.preventDefault(); // Prevent default form submission
 
-                    data.forEach(table => {
-                        let option = document.createElement("option");
-                        option.value = table.id;
-                        option.textContent = `Table ${table.table_number} (Seats: ${table.capacity})`;
-                        if (table.status === 1) {
-                            option.disabled = true; // Disable reserved tables
-                        }
-                        tableSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error("Error fetching tables:", error));
-        });
+//         const name = $('#name').val() || '';
+//         const phone = $('#phone').val() || '';
+//         const email = $('#email').val() || '';
+//         const date = $('#date').val() || '';
+//         const time = $('#time').val() || '';
+//         const members = $('#members').val() || '';
+//         const table_ids = $("input[name='table_ids[]']:checked").map(function() {
+//             return this.value;
+//         }).get(); // Collect selected table IDs into an array
+//         const special_requests = $('#special_requests').val() || '';
 
-        
+//         if (table_ids.length === 0) {
+//             Swal.fire({
+//                 icon: 'warning',
+//                 title: 'No Table Selected',
+//                 text: 'Please select at least one table before reserving.',
+//             });
+//             return;
+//         }
+
+//         $.ajax({
+//             url: "{{ url('api/tableReserve') }}",
+//             type: "POST",
+//             headers: {
+//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             },
+//             contentType: "application/json",
+//             data: JSON.stringify({
+//                 name,
+//                 phone,
+//                 email,
+//                 date,
+//                 time,
+//                 members,
+//                 table_ids,
+//                 special_requests
+//             }),
+//             success: function(data) {
+//                 Swal.fire({
+//                     icon: 'success',
+//                     title: 'Reservation Successful!',
+//                     text: data.success || "Tables reserved successfully!",
+//                 }).then(() => {
+//                     window.location.reload();
+//                 });
+//             },
+//             error: function(xhr) {
+//                 Swal.fire({
+//                     icon: 'error',
+//                     title: 'Reservation Failed',
+//                     text: xhr.responseJSON?.error ||
+//                         "Something went wrong. Please try again.",
+//                 });
+//             }
+//         });
+//     });
+// });
+
+
+
+
+
         $(document).ready(function() {
+            // Fetch Tables initially
+            function fetchTables(date, time) {
+                $.ajax({
+                    url: '/api/checkReservedTables',
+                    method: 'GET',
+                    data: {
+                        date: date,
+                        time: time
+                    },
+                    success: function(data) {
+                        let tableSelect = $("#table_number");
+                        tableSelect.html("<option value=''>Select Table</option>");
 
+                        data.forEach(table => {
+                            let option = `<option value="${table.id}" ${table.is_reserved ? 'disabled' : ''}>
+                                            Table ${table.table_number} (Seats: ${table.capacity})
+                                          </option>`;
+                            tableSelect.append(option);
+                        });
+                    },
+                    error: function(error) {
+                        console.error("Error fetching reserved tables:", error);
+                    }
+                });
+            }
+
+            // Call the function when the date or time changes
+            $('#date, #time').on('change', function() {
+                const selectedDate = $('#date').val();
+                const selectedTime = $('#time').val();
+
+                if (selectedDate && selectedTime) {
+                    fetchTables(selectedDate, selectedTime);
+                }
+            });
+
+            // Submit Reservation
             $("#submit").click(function(event) {
                 event.preventDefault(); // Prevent default form submission
 
@@ -948,13 +1096,16 @@
                 const special_requests = $('#special_requests').val() || '';
 
                 if (!table_id) {
-                    alert("Please select a table.");
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'No Table Selected',
+                        text: 'Please select a table before reserving.',
+                    });
                     return;
                 }
 
                 $.ajax({
-                    url: window.location.origin +
-                    "/Laravel/Restaurant/public/api/tableReserve", // ✅ Corrected API URL
+                    url: "{{ url('api/tableReserve') }}",
                     type: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -971,28 +1122,55 @@
                         special_requests
                     }),
                     success: function(data) {
-                        console.log("Success:", data);
-                        alert(data.success || "Table reserved successfully!");
-                        window.location.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Reservation Successful!',
+                            text: data.success || "Table reserved successfully!",
+                        }).then(() => {
+                            window.location.reload();
+                        });
                     },
                     error: function(xhr) {
-                        console.error("Error In Post:", xhr.responseText);
-                        alert("Error: " + (xhr.responseJSON?.error ||
-                            "Something went wrong. Please try again."));
+                        const errorMessage = xhr.responseJSON?.error ||
+                            "Something went wrong. Please try again.";
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Reservation Failed',
+                            text: errorMessage,
+                        });
                     }
                 });
-
-
             });
         });
 
 
+    </script>
 
 
 
-
+<script>
+    //normally
 
         // $(document).ready(function() {
+        //     $.ajax({
+        //         url: '/api/tableReserve',
+        //         method: 'GET',
+        //         success: function(data) {
+        //             let tableSelect = $("#table_number");
+        //             tableSelect.html("<option value=''>Select Table</option>");
+
+        //             data.forEach(table => {
+        //                 let option = `<option value="${table.id}" ${table.status === 1 ? 'disabled' : ''}>
+        //                         Table ${table.table_number} (Seats: ${table.capacity})
+        //                       </option>`;
+        //                 tableSelect.append(option);
+        //             });
+        //         },
+        //         error: function(error) {
+        //             console.error("Error fetching tables:", error);
+        //         }
+        //     });
+
         //     $("#submit").click(function(event) {
         //         event.preventDefault(); // Prevent default form submission
 
@@ -1005,8 +1183,17 @@
         //         const table_id = $('#table_number').val() || '';
         //         const special_requests = $('#special_requests').val() || '';
 
+        //         if (!table_id) {
+        //             Swal.fire({
+        //                 icon: 'warning',
+        //                 title: 'No Table Selected',
+        //                 text: 'Please select a table before reserving.',
+        //             });
+        //             return;
+        //         }
+
         //         $.ajax({
-        //             url: "{{ url('/api/tableReserve') }}",
+        //             url: "{{ url('api/tableReserve') }}",
         //             type: "POST",
         //             headers: {
         //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1023,19 +1210,26 @@
         //                 special_requests
         //             }),
         //             success: function(data) {
-        //                 console.log(data);
-        //                 // if (data.success) {
-        //                 //     alert(data.success);
-        //                 //     window.location.reload();
-        //                 // } else {
-        //                 //     alert(data.error);
-        //                 // }
+        //                 Swal.fire({
+        //                     icon: 'success',
+        //                     title: 'Reservation Successful!',
+        //                     text: data.success || "Table reserved successfully!",
+        //                 }).then(() => {
+        //                     window.location.reload();
+        //                 });
         //             },
-        //             error: function(xhr, status, error) {
-        //                 console.error("Error In Post:", error);
+        //             error: function(xhr) {
+        //                 Swal.fire({
+        //                     icon: 'error',
+        //                     title: 'Reservation Failed',
+        //                     text: xhr.responseJSON?.error ||
+        //                         "Something went wrong. Please try again.",
+        //                 });
         //             }
         //         });
         //     });
         // });
-    </script>
+
+        <script/>
+
 @endsection

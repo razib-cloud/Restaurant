@@ -113,6 +113,8 @@ Route::prefix('res')->group(function () {
     // Reservation Routes
     Route::get('tableReserve', [ReservationController::class, 'getTables'])->name('api.tables');
     Route::post('/reserve', [ReservationController::class, 'store'])->name('res.reserve.store'); // Make reservation
+    Route::get('/api/checkReservedTables', [ReservationController::class, 'checkReservedTables']);
+
 });
 
 
