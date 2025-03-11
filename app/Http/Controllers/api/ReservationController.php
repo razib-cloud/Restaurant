@@ -21,6 +21,9 @@ class ReservationController extends Controller
     // Handle reservations
     public function store(Request $request): JsonResponse
     {
+
+        // print_r($request->all());
+        // die;
         // $request->validate([
         //     'name' => 'required|string|max:255',
         //     'phone' => 'required|string|max:20',

@@ -888,7 +888,7 @@
                                     use App\Models\ResTable;
                                     $restables = ResTable::paginate(10);
                                 @endphp
-                                <select class="table_id">
+                                <select class="table_id" name="table_id" id="table_number">
                                     <option value="">Select a Table</option>
                                     @foreach ($restables as $key => $table)
                                         <option value="{{ $table->id }}">{{ $table->table_number }}</option>
@@ -898,7 +898,7 @@
                             <li><input type="text" placeholder="Special request" id="special_requests"></li>
                         </ul>
                         <div class="secondary-button d-inline-block">
-                            <button type="submit">Book Now</button>
+                            <button id="submit" type="submit">Book Now</button>
                         </div>
                     </form>
 
@@ -911,15 +911,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script>
-        // $(function(){
-        //     // alert();
-        //     $('.table_id').on('change', function(){
-        //         let val = $(this).val();
-        //         alert(val)
-        //     })
-        // })
+
         document.addEventListener("DOMContentLoaded", function() {
-            fetch('/api/reservation')
+            fetch('/api/tableReserve')
                 .then(response => response.json())
                 .then(data => {
                     let tableSelect = document.getElementById("table_number");
@@ -938,48 +932,110 @@
                 .catch(error => console.error("Error fetching tables:", error));
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const submitButton = document.getElementById("submit");
-            $('.table_id').on('change', function() {
-                let val = $(this).val();
-                // alert(val)
-            })
-            if (submitButton) {
-                submitButton.addEventListener("click", function(event) {
-                    event.preventDefault(); // Stop form from submitting normally
+        
+        $(document).ready(function() {
 
-                    fetch('/api/tableReserve', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                name: document.getElementById('name')?.value || '',
-                                phone: document.getElementById('phone')?.value || '',
-                                email: document.getElementById('email')?.value || '',
-                                date: document.getElementById('date')?.value || '',
-                                time: document.getElementById('time')?.value || '',
-                                members: document.getElementById('member')?.value || '',
-                                table_id: document.getElementById('table_number')?.value || '',
-                                // table_id: val,
-                                special_requests: document.getElementById('special_requests')
-                                    ?.value || ''
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                alert(data.success);
-                                window.location.reload();
-                            } else {
-                                alert(data.error);
-                            }
-                        })
-                        .catch(error => console.error("Error:", error));
+            $("#submit").click(function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const name = $('#name').val() || '';
+                const phone = $('#phone').val() || '';
+                const email = $('#email').val() || '';
+                const date = $('#date').val() || '';
+                const time = $('#time').val() || '';
+                const members = $('#members').val() || '';
+                const table_id = $('#table_number').val() || '';
+                const special_requests = $('#special_requests').val() || '';
+
+                if (!table_id) {
+                    alert("Please select a table.");
+                    return;
+                }
+
+                $.ajax({
+                    url: window.location.origin +
+                    "/Laravel/Restaurant/public/api/tableReserve", // ✅ Corrected API URL
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        name,
+                        phone,
+                        email,
+                        date,
+                        time,
+                        members,
+                        table_id,
+                        special_requests
+                    }),
+                    success: function(data) {
+                        console.log("Success:", data);
+                        alert(data.success || "Table reserved successfully!");
+                        window.location.reload();
+                    },
+                    error: function(xhr) {
+                        console.error("Error In Post:", xhr.responseText);
+                        alert("Error: " + (xhr.responseJSON?.error ||
+                            "Something went wrong. Please try again."));
+                    }
                 });
-            } else {
-                console.error("Error: Submit button not found!");
-            }
+
+
+            });
         });
+
+
+
+
+
+
+
+        // $(document).ready(function() {
+        //     $("#submit").click(function(event) {
+        //         event.preventDefault(); // Prevent default form submission
+
+        //         const name = $('#name').val() || '';
+        //         const phone = $('#phone').val() || '';
+        //         const email = $('#email').val() || '';
+        //         const date = $('#date').val() || '';
+        //         const time = $('#time').val() || '';
+        //         const members = $('#members').val() || '';
+        //         const table_id = $('#table_number').val() || '';
+        //         const special_requests = $('#special_requests').val() || '';
+
+        //         $.ajax({
+        //             url: "{{ url('/api/tableReserve') }}",
+        //             type: "POST",
+        //             headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //             contentType: "application/json",
+        //             data: JSON.stringify({
+        //                 name,
+        //                 phone,
+        //                 email,
+        //                 date,
+        //                 time,
+        //                 members,
+        //                 table_id,
+        //                 special_requests
+        //             }),
+        //             success: function(data) {
+        //                 console.log(data);
+        //                 // if (data.success) {
+        //                 //     alert(data.success);
+        //                 //     window.location.reload();
+        //                 // } else {
+        //                 //     alert(data.error);
+        //                 // }
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.error("Error In Post:", error);
+        //             }
+        //         });
+        //     });
+        // });
     </script>
 @endsection
