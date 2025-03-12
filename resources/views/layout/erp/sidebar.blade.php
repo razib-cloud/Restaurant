@@ -74,12 +74,12 @@
                         </a>
                     </li>
 
-                    <!-- Delivery Status -->
-                    {{-- <li>
-                        <a href="{{ route('res.tables') }}">
+                    <!-- Reservation Status -->
+                    <li>
+                        <a href="{{ route('reservations.index') }}">
                             <i class=""></i> Reservations
                         </a>
-                    </li> --}}
+                    </li>
                     <!-- Delivery Status -->
                     <li>
                         <a href="#">
@@ -132,7 +132,7 @@
                     <span class="nav-text">Reports</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="sales-reports.html">Sales Reports</a></li>
+                    <li><a href="{{ route('reports.index') }}">Sales Reports</a></li>
                     <li><a href="performance-reports.html">Performance Reports</a></li>
                     <li><a href="customer-reports.html">Customer Reports</a></li>
                 </ul>

@@ -8,6 +8,8 @@ use App\Models\Reservation;
 
 class ReservationController extends Controller
 {
+
+
     // Fetch tables and their status
     public function getTables()
     {

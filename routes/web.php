@@ -25,8 +25,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\api\ReservationController;
 use App\Http\Controllers\ResTableController;
-
-
+use App\Http\Controllers\SalesReportController;
 use App\Models\ResTable;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +74,8 @@ Route::resource('staffs', StaffController::class);
 Route::resource('erp_products', ProductController::class);
 Route::resource('reservations', ReservationController::class);
 Route::resource('restables', ResTableController::class);
+Route::resource('reports', SalesReportController::class);
+
 
 // Admin Notification Routes
 
