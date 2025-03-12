@@ -871,7 +871,9 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
 
-                    {{-- <form class="main-form text-center" id="reservationForm">
+
+
+                    <form class="main-form text-center" id="reservationForm">
                         @csrf
                         <ul class="list-unstyled p-0 float-left w-100">
                             <li><input type="text" placeholder="Name" id="name" required></li>
@@ -915,11 +917,12 @@
                         <div class="secondary-button d-inline-block">
                             <button id="submit" type="submit">Book Now</button>
                         </div>
-                    </form> --}}
+                    </form>
 
 
+                    {{-- for multiple table --}}
 
-                    <form class="main-form text-center" id="reservationForm">
+                    {{-- <form class="main-form text-center" id="reservationForm">
                         @csrf
                         <ul class="list-unstyled p-0 float-left w-100">
                             <li><input type="text" placeholder="Name" id="name" required></li>
@@ -960,7 +963,7 @@
                         <div class="secondary-button d-inline-block">
                             <button id="submit" type="submit">Book Now</button>
                         </div>
-                    </form>
+                    </form> --}}
 
 
                     <!-- Display Available Tables -->
@@ -973,79 +976,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-
-
-
-    <script>
-        //for select multiple table
-
-//         $(document).ready(function() {
-//     $("#reservationForm").submit(function(event) {
-//         event.preventDefault(); // Prevent default form submission
-
-//         const name = $('#name').val() || '';
-//         const phone = $('#phone').val() || '';
-//         const email = $('#email').val() || '';
-//         const date = $('#date').val() || '';
-//         const time = $('#time').val() || '';
-//         const members = $('#members').val() || '';
-//         const table_ids = $("input[name='table_ids[]']:checked").map(function() {
-//             return this.value;
-//         }).get(); // Collect selected table IDs into an array
-//         const special_requests = $('#special_requests').val() || '';
-
-//         if (table_ids.length === 0) {
-//             Swal.fire({
-//                 icon: 'warning',
-//                 title: 'No Table Selected',
-//                 text: 'Please select at least one table before reserving.',
-//             });
-//             return;
-//         }
-
-//         $.ajax({
-//             url: "{{ url('api/tableReserve') }}",
-//             type: "POST",
-//             headers: {
-//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             },
-//             contentType: "application/json",
-//             data: JSON.stringify({
-//                 name,
-//                 phone,
-//                 email,
-//                 date,
-//                 time,
-//                 members,
-//                 table_ids,
-//                 special_requests
-//             }),
-//             success: function(data) {
-//                 Swal.fire({
-//                     icon: 'success',
-//                     title: 'Reservation Successful!',
-//                     text: data.success || "Tables reserved successfully!",
-//                 }).then(() => {
-//                     window.location.reload();
-//                 });
-//             },
-//             error: function(xhr) {
-//                 Swal.fire({
-//                     icon: 'error',
-//                     title: 'Reservation Failed',
-//                     text: xhr.responseJSON?.error ||
-//                         "Something went wrong. Please try again.",
-//                 });
-//             }
-//         });
-//     });
-// });
-
-
-
-
-
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             // Fetch Tables initially
             function fetchTables(date, time) {
                 $.ajax({
@@ -1143,13 +1075,93 @@
             });
         });
 
+</script>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        //for select multiple table
+
+        //         $(document).ready(function() {
+        //     $("#reservationForm").submit(function(event) {
+        //         event.preventDefault(); // Prevent default form submission
+
+        //         const name = $('#name').val() || '';
+        //         const phone = $('#phone').val() || '';
+        //         const email = $('#email').val() || '';
+        //         const date = $('#date').val() || '';
+        //         const time = $('#time').val() || '';
+        //         const members = $('#members').val() || '';
+        //         const table_ids = $("input[name='table_ids[]']:checked").map(function() {
+        //             return this.value;
+        //         }).get(); // Collect selected table IDs into an array
+        //         const special_requests = $('#special_requests').val() || '';
+
+        //         if (table_ids.length === 0) {
+        //             Swal.fire({
+        //                 icon: 'warning',
+        //                 title: 'No Table Selected',
+        //                 text: 'Please select at least one table before reserving.',
+        //             });
+        //             return;
+        //         }
+
+        //         $.ajax({
+        //             url: "{{ url('api/tableReserve') }}",
+        //             type: "POST",
+        //             headers: {
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //             contentType: "application/json",
+        //             data: JSON.stringify({
+        //                 name,
+        //                 phone,
+        //                 email,
+        //                 date,
+        //                 time,
+        //                 members,
+        //                 table_ids,
+        //                 special_requests
+        //             }),
+        //             success: function(data) {
+        //                 Swal.fire({
+        //                     icon: 'success',
+        //                     title: 'Reservation Successful!',
+        //                     text: data.success || "Tables reserved successfully!",
+        //                 }).then(() => {
+        //                     window.location.reload();
+        //                 });
+        //             },
+        //             error: function(xhr) {
+        //                 Swal.fire({
+        //                     icon: 'error',
+        //                     title: 'Reservation Failed',
+        //                     text: xhr.responseJSON?.error ||
+        //                         "Something went wrong. Please try again.",
+        //                 });
+        //             }
+        //         });
+        //     });
+        // });
+
+
+
+
+
 
     </script>
 
 
 
-<script>
-    //normally
+    <script>
+        //normally
 
         // $(document).ready(function() {
         //     $.ajax({
@@ -1231,5 +1243,4 @@
         // });
 
         <script/>
-
-@endsection
+        @endsection

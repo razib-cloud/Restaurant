@@ -45,6 +45,23 @@ CREATE TABLE reservations (
 
 );
 
+CREATE TABLE restable_durations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    res_table_id INT(11) NOT NULL,
+    start_time DATETIME NOT NULL,
+    end_time DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO restable_durations (res_table_id, start_time, end_time) VALUES
+(1, '2025-03-12 12:00:00', '2025-03-12 13:30:00'),
+(2, '2025-03-12 14:00:00', '2025-03-12 15:00:00'),
+(3, '2025-03-12 18:30:00', '2025-03-12 20:00:00'),
+(4, '2025-03-13 10:00:00', '2025-03-13 11:45:00');
+
+
+
 -- Insert sample reservations into the reservations table
 INSERT INTO reservations (name, phone, email, date, time, members, special_requests, table_id) VALUES
 ('John Doe', '555-1234', 'john.doe@example.com', '2025-03-10', '18:30:00', 4, 'Window seat preferred', 2),
