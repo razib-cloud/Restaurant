@@ -136,6 +136,8 @@
                             <img src="{{ asset('users') }}/{{ Auth::user()->photo }}" width="56" alt="" />
 
 
+
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- Profile Section -->

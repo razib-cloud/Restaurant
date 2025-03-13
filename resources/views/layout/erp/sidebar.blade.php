@@ -181,7 +181,7 @@
 
         <div class="copyright">
             <p><strong>Lezato Restaurant Admin</strong> © 2025 All Rights Reserved</p>
-            <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
+            <p class="fs-12">Made with <span class="heart"></span> by Razib Farhan</p>
         </div>
     </div>
 </div>
