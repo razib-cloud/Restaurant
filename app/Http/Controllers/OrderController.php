@@ -24,6 +24,12 @@ class OrderController extends Controller
         return view("pages.erp.order.index", ["orders" => $orders]);
     }
 
+    public function pending()
+    {
+        $orders = Order::with('customer')->paginate(10);
+        return view("pages.erp.order.index", ["orders" => $orders]);
+    }
+
     public function create()
     {
         return view("pages.erp.order.create", ["customers" => Customer::all(), "users" => User::all(), "status" => Status::all()]);
