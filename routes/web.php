@@ -77,10 +77,10 @@ Route::resource('restables', ResTableController::class);
 Route::resource('reports', SalesReportController::class);
 
 
+
+
+
 // Admin Notification Routes
-
-
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Route for showing notifications
