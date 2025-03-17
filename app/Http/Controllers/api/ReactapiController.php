@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Reservation;
 use App\Models\ResTable;
 use Illuminate\Http\Request;
 
@@ -37,8 +38,38 @@ class ReactapiController extends Controller
      */
     public function resarvation(Request $request)
     {
-        
-        print_r($request->all());
+
+        // print_r($request->all());
+        // print_r($request->customer_id);
+
+
+
+        try {
+
+            $reservation = new Reservation;
+            $reservation->name=$request->customer_id['name'];
+            $reservation->phone=$request->customer_id['phone'];
+            $reservation->email=$request->customer_id['email'];
+            $reservation->date=now();
+            $reservation->time=now();
+            $reservation->members=1;
+            $reservation->special_requests="";
+            $reservation->table_id=$request->table_id;
+                date_default_timezone_set("Asia/Dhaka");
+            $reservation->created_at=date('Y-m-d H:i:s');
+                date_default_timezone_set("Asia/Dhaka");
+            $reservation->updated_at=date('Y-m-d H:i:s');
+            $reservation->save();
+
+             $restable=  ResTable::find($request->table_id);
+             $restable->status= 1;
+             $restable->save();
+            return response()->json(["success" =>"saved"]);
+
+        } catch (\Throwable $th) {
+            return response()->json(["error" => $th]);
+        }
+
     }
 
     /**
