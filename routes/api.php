@@ -29,4 +29,6 @@ Route::post('tableReserve', [ReservationController::class, 'store']);
 
 Route::get('customers', [ReactapiController::class, 'index']);
 Route::get('tables', [ReactapiController::class, 'tables']);
-Route::post('resarvation', [ReactapiController::class, 'resarvation']);
+Route::get('resarvation', [ReactapiController::class, 'reservedtables']);
+
+Route::post('resarvations', [ReactapiController::class, 'resarvation']);

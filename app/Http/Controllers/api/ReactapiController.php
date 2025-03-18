@@ -29,6 +29,11 @@ class ReactapiController extends Controller
     {
         return response()->json(["tables" => ResTable::all()]);
     }
+    public function reservedtables()
+    {
+        $reservations = Reservation::all();
+        return response()->json(["tables" => $reservations]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -42,8 +47,6 @@ class ReactapiController extends Controller
         // print_r($request->all());
         // print_r($request->customer_id);
 
-
-
         try {
 
             $reservation = new Reservation;
@@ -52,7 +55,7 @@ class ReactapiController extends Controller
             $reservation->email=$request->customer_id['email'];
             $reservation->date=now();
             $reservation->time=now();
-            $reservation->members=1;
+            $reservation->members=$request->reservations_id[''];
             $reservation->special_requests="";
             $reservation->table_id=$request->table_id;
                 date_default_timezone_set("Asia/Dhaka");
