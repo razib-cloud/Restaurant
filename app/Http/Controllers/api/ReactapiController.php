@@ -34,50 +34,6 @@ class ReactapiController extends Controller
 
 
 
-
-
-    // public function resarvation(Request $request)
-    // {
-    //     try {
-    //         $reservation = new Reservation;
-
-    //         // Fetching customer details directly from the request
-    //         $customer = Customer::find($request->customer_id);
-
-    //         if (!$customer) {
-    //             return response()->json(["error" => "Customer not found"]);
-    //         }
-
-    //         $reservation->name = $customer->name;
-    //         $reservation->phone = $customer->phone;
-    //         $reservation->email = $customer->email;
-
-    //         $reservation->date = $request->date;
-    //         $reservation->time = $request->time;
-    //         $reservation->members = $request->members;
-    //         $reservation->table_id = $request->table_id;
-
-    //         date_default_timezone_set("Asia/Dhaka");
-    //         $reservation->created_at = date('Y-m-d H:i:s');
-    //         $reservation->updated_at = date('Y-m-d H:i:s');
-
-    //         $reservation->save();
-
-    //         // Update table status to reserved
-    //         $restable = ResTable::find($request->table_id);
-
-    //         if ($restable) {
-    //             $restable->status = 1;
-    //             $restable->save();
-    //         }
-
-    //         return response()->json(["success" => "saved"]);
-    //     } catch (\Throwable $th) {
-    //         return response()->json(["error" => $th->getMessage()]);
-    //     }
-    // }
-
-
     public function resarvation(Request $request)
 {
     try {

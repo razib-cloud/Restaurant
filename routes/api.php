@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\api\ReactapiController;
+use App\Http\Controllers\api\ReactOrderController;
 use App\Http\Controllers\api\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,13 @@ Route::post('order', [OrderController::class, 'index']);
 Route::get('tables', [ReservationController::class, 'getTables']);
 Route::post('tableReserve', [ReservationController::class, 'store']);
 
+
 Route::get('customers', [ReactapiController::class, 'index']);
 Route::get('tables', [ReactapiController::class, 'tables']);
 Route::get('resarvation', [ReactapiController::class, 'reservedtables']);
 
 Route::post('resarvations', [ReactapiController::class, 'resarvation']);
+
+
+Route::get('orders', [ReactOrderController::class, 'index']);
+
