@@ -56,10 +56,6 @@ class OrderController extends Controller
         // Save the order to the database
         $order->save();
 
-        // Send notification to admin after saving the order
-        $admin = User::where('role', 'admin')->first();  // Find admin user
-        $admin->notify(new NewOrderNotification());  // Send notification
-
         // Return a success message after creating the order
         return back()->with('success', 'Created Successfully.');
     }

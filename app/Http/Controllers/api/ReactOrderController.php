@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class ReactOrderController extends Controller
@@ -10,42 +12,12 @@ class ReactOrderController extends Controller
 
     public function index()
     {
-        
+        return response()->json(["customers" => Customer::all()]);
     }
 
-
-    public function create()
+    public function order()
     {
-        //
-    }
 
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
+        return response()->json(["orders" => Order::with('customer')->get()]);
     }
 }
