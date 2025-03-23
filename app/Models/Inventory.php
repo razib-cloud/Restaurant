@@ -6,15 +6,16 @@
 * Date: 2/21/2025 12:56:02 AM
 * Contact: towhid1@outlook.com
 */
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
-class Inventory extends Model{
+
+class Inventory extends Model
+{
 
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
-
-
 }
-?>

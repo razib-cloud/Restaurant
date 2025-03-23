@@ -39,3 +39,4 @@ Route::post('resarvations', [ReactapiController::class, 'resarvation']);
 
 Route::get('orders', [ReactOrderController::class, 'order']);
 Route::get('products', [ReactProductController::class, 'index']);
+Route::get('stock', [ReactOrderController::class, 'stock'] );

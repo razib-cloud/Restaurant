@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Inventory;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -19,5 +20,11 @@ class ReactOrderController extends Controller
     {
 
         return response()->json(["orders" => Order::with('customer')->get()]);
+    }
+
+
+    public function stock()
+    {
+        return response()->json(["inventory" => Inventory::with('product')->get()]);
     }
 }
