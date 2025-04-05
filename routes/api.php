@@ -5,6 +5,8 @@ use App\Http\Controllers\api\ReactapiController;
 use App\Http\Controllers\api\ReactOrderController;
 use App\Http\Controllers\api\ReactProductController;
 use App\Http\Controllers\api\ReservationController;
+use App\Http\Controllers\api\vue\MenusController;
+
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,9 +42,10 @@ Route::post('resarvations', [ReactapiController::class, 'resarvation']);
 
 Route::get('orders', [ReactOrderController::class, 'order']);
 Route::get('products', [ReactProductController::class, 'index']);
-Route::get('stock', [ReactOrderController::class, 'stock'] );
+Route::get('stock', [ReactOrderController::class, 'stock']);
 
 
 //for vue
 
 Route::apiResource("roles", RoleController::class);
+Route::apiResource("menus", MenusController::class);

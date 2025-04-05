@@ -133,7 +133,15 @@
                     <li class="nav-item
                                 dropdown header-profile">
                         <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                            <img src="{{ asset('users') }}/{{ Auth::user()->photo }}" width="56" alt="" />
+                            {{-- <img src="{{ asset('users') }}/{{ Auth::user()->photo }}" width="56" alt="" /> --}}
+
+                            @if (Auth::check() && Auth::user()->photo)
+                                <img src="{{ asset('users') }}/{{ Auth::user()->photo }}" width="56"
+                                    alt="User Photo" />
+                            @else
+                                <img src="{{ asset('users/default.png') }}" width="56" alt="Default User Photo" />
+                            @endif
+
 
 
 
@@ -151,9 +159,21 @@
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
                                     <div class="ms-2">
-                                        <span class="d-block fw-bold">{{ auth::user()->name }}</span>
+                                        {{-- <span class="d-block fw-bold">{{ auth::user()->name }}</span>
                                         <span class="d-block text-muted">{{ auth::user()->email }}</span>
-                                        <span class="d-block text-muted">{{ auth::user()->role->position }}</span>
+                                        <span class="d-block text-muted">{{ auth::user()->role->position }}</span> --}}
+
+                                        @auth
+                                            <span class="d-block fw-bold">{{ Auth::user()->name }}</span>
+                                            <span class="d-block text-muted">{{ Auth::user()->email }}</span>
+                                            <span class="d-block text-muted">
+                                                {{ optional(Auth::user()->role)->position ?? 'No Role Assigned' }}
+                                            </span>
+                                        @else
+                                            <span class="d-block fw-bold">Guest</span>
+                                            <span class="d-block text-muted">Not logged in</span>
+                                        @endauth
+
                                     </div>
                                 </div>
                             </div>
