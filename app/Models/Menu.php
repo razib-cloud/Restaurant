@@ -13,8 +13,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
+
+
     public function menu()
     {
         return $this->hasMany(Product::class);
     }
+
+
+    protected $fillable = ['name', 'is_active'];
 }

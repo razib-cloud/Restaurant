@@ -26,18 +26,32 @@ class MenusController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'is_active' => 'required|string|in:active,inactive',
+        ]);
+
         try {
-            $menus = new Menu();
-            $menus->name = $request->name;
-            $menus->status = $request->status;
+            $menu = Menu::create([
+                'name' => $request->name,
+                'is_active' => $request->is_active === 'active' ? 1 : 0,
+            ]);
 
-            $menus->save();
-
-            return response()->json(["res" => $menus]);
+            return response()->json(["res" => $menu]);
         } catch (\Throwable $th) {
-            return response()->json(["err" => $th->getMessage()]);
+            return response()->json(["err" => $th->getMessage()], 500);
         }
     }
+
+    // public function store(Request $request)
+    // {
+    //     $menu = Menu::create([
+    //         'name' => $request->name,
+    //         'is_active' => $request->status,
+    //     ]);
+
+    //     return response()->json($menu, 201);
+    // }
 
     public function show($id)
     {
@@ -57,17 +71,25 @@ class MenusController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+        try {
+            $menu = Menu::findOrFail($id);
+            $menu->update($request->only(['name', 'status']));
+
+            return response()->json(["res" => $menu]);
+        } catch (\Throwable $th) {
+            return response()->json(["err" => $th->getMessage()], 500);
+        }
     }
+
 
 
     public function destroy($id)
     {
         try {
-            $menus=  Menu::destroy($id);
-            return response()->json(["menus"=> $menus]);
+            $menus =  Menu::destroy($id);
+            return response()->json(["menus" => $menus]);
         } catch (\Throwable $th) {
-            return response()->json(["menus"=>$th]);
+            return response()->json(["menus" => $th]);
         }
     }
 }

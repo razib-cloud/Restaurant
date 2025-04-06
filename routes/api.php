@@ -49,4 +49,3 @@ Route::get('stock', [ReactOrderController::class, 'stock']);
 
 Route::apiResource("roles", RoleController::class);
 Route::apiResource("menus", MenusController::class);
-
