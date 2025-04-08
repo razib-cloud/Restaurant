@@ -6,7 +6,8 @@ use App\Http\Controllers\api\ReactOrderController;
 use App\Http\Controllers\api\ReactProductController;
 use App\Http\Controllers\api\ReservationController;
 use App\Http\Controllers\api\vue\MenusController;
-
+use App\Http\Controllers\Api\Vue\ProductController;
+use App\Http\Controllers\ProductController as ControllersProductController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,3 +50,4 @@ Route::get('stock', [ReactOrderController::class, 'stock']);
 
 Route::apiResource("roles", RoleController::class);
 Route::apiResource("menus", MenusController::class);
+Route::apiResource("products", ProductController::class);
