@@ -49,9 +49,9 @@ class ProductController extends Controller
 
 
 
-            date_default_timezone_set("Asia/Dhaka");
-            $product->created_at=date('Y-m-d H:i:s');
-            $product->updated_at=date('Y-m-d H:i:s');
+            // date_default_timezone_set("Asia/Dhaka");
+            // $product->created_at=date('Y-m-d H:i:s');
+            // $product->updated_at=date('Y-m-d H:i:s');
 
             if(isset($request->photo)){
                 $product->photo=$request->photo;
