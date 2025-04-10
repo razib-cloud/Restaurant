@@ -41,7 +41,7 @@ class ProductController extends Controller
         try {
             $product = new Product();
             $product->name=$request->name;
-            $product->menu_id=$request->menu_id;
+            $product->menus_id=$request->menus_id;
             $product->price=$request->price;
             $product->photo=$request->photo;
             $product->description=$request->description;
@@ -49,9 +49,9 @@ class ProductController extends Controller
 
 
 
-            // date_default_timezone_set("Asia/Dhaka");
-            // $product->created_at=date('Y-m-d H:i:s');
-            // $product->updated_at=date('Y-m-d H:i:s');
+            date_default_timezone_set("Asia/Dhaka");
+            $product->created_at=date('Y-m-d H:i:s');
+            $product->updated_at=date('Y-m-d H:i:s');
 
             if(isset($request->photo)){
                 $product->photo=$request->photo;
