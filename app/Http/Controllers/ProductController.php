@@ -22,10 +22,10 @@ class ProductController extends Controller
 
     public function create()
     {
-        // Fetch all menus from the database
-        $menus = Menu::all(); // Assuming you have a Menu model for the menu categories
 
-        return view('pages.erp.product.create', compact('menus')); // Pass the menus variable to the view
+        $menus = Menu::all();
+
+        return view('pages.erp.product.create', compact('menus'));
     }
 
 
@@ -71,10 +71,10 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        // Access the menus_id directly as an object property
+
         $menu = Menu::find($product->menus_id);
 
-        // Pass product and menu to the view
+       
         return view("pages.erp.product.show", ["product" => $product, "menu" => $menu]);
     }
 

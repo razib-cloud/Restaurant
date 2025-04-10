@@ -26,7 +26,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $query = Product::query();
+        $query = Product::with('menu');
 
         if ($request->search) {
             $query->where('name', 'like', "%{$request->search}%");
@@ -81,10 +81,35 @@ class ProductController extends Controller
             return response()->json(["error" => $th->getMessage()]);
         }
     }
+
+
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $product = Product::findOrFail($id);
+
+            $product->name = $request->name;
+            $product->menus_id = $request->menus_id;
+            $product->price = $request->price;
+            $product->description = $request->description;
+
+            if ($request->hasFile('photo')) {
+                $imageName = $product->id . '.' . $request->photo->extension();
+                $request->photo->move(public_path('products'), $imageName);
+                $product->photo = $imageName;
+            }
+
+            date_default_timezone_set("Asia/Dhaka");
+            $product->updated_at = date('Y-m-d H:i:s');
+
+            $product->save();
+
+            return response()->json(["product" => $product]);
+        } catch (\Throwable $th) {
+            return response()->json(["error" => $th->getMessage()], 500);
+        }
     }
+
 
 
     public function destroy($id)

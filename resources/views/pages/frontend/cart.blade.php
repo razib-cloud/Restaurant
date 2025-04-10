@@ -76,8 +76,8 @@
                     <div class="cart-total-box">
                         <h4>Cart Totals</h4>
                         <ul class="list-unstyled">
-                            <li><span>Subtotal</span> <span class="subtotal">$604.89</span></li>
-                            <li><span>Total</span> <span class="total-price">$604.89</span></li>
+                            <li><span>Subtotal</span> <span class="subtotal">$00</span></li>
+                            <li><span>Total</span> <span class="total-price">$00</span></li>
                         </ul>
                         <!-- Checkout Button -->
                         <div class="secondary-button d-inline-block w-100">
