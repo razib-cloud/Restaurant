@@ -114,6 +114,11 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        //
+        try {
+            $product =  Product::destroy($id);
+            return response()->json(["products" => $product]);
+        } catch (\Throwable $th) {
+            return response()->json(["products" => $th]);
+        }
     }
 }
