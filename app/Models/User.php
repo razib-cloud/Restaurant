@@ -8,8 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Laravel\Sanctum\HasApiTokens;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject; // this sould be imported
 
-class User extends Authenticatable
+//add the JWTSubject implementation class
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -64,6 +66,22 @@ class User extends Authenticatable
 public function notifications()
     {
         return $this->morphMany(Notification::class, 'notifiable');
+    }
+
+
+
+
+    public function getJWTIdentifier()
+    {
+      return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+      return [
+        'email'=>$this->email,
+        'name'=>$this->name
+      ];
     }
 
 }
