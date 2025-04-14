@@ -58,3 +58,11 @@ Route::post('register',[AuthController::class,'register']);
 Route::post('login', [AuthController::class,'login']);
 Route::post('refresh', [AuthController::class,'refresh']);
 Route::post('logout', [AuthController::class,'logout']);
+
+
+
+
+
+// https://stackoverflow.com/questions/54721576laravel-route-apiresource-difference-between-apiresource-and-resource-in-route
+
+// https://jurin.medium.com/securing-laravel-10-api-using-jwt-a5b6dca58fd7
