@@ -7,7 +7,10 @@ use App\Http\Controllers\api\ReactProductController;
 use App\Http\Controllers\api\ReservationController;
 use App\Http\Controllers\api\vue\MenusController;
 use App\Http\Controllers\Api\Vue\ProductController;
+use App\Http\Controllers\Api\Vue\CustomerController;
 use App\Http\Controllers\Api\Vue\AuthController;
+use App\Http\Controllers\Api\Vue\CustomerController as VueCustomerController;
+use App\Http\Controllers\CustomerController as ControllersCustomerController;
 use App\Http\Controllers\ProductController as ControllersProductController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
@@ -52,6 +55,9 @@ Route::get('stock', [ReactOrderController::class, 'stock']);
 Route::apiResource("roles", RoleController::class);
 Route::apiResource("menus", MenusController::class);
 Route::apiResource("products", ProductController::class);
+Route::apiResource("customers", CustomerController::class);
+
+
 
 
 Route::post('register',[AuthController::class,'register']);
@@ -61,6 +67,12 @@ Route::post('logout', [AuthController::class,'logout']);
 
 
 
+
+
+
+
+
+// php artisan make:controller Api/Vue/CustomerController --api
 
 
 // https://stackoverflow.com/questions/54721576laravel-route-apiresource-difference-between-apiresource-and-resource-in-route
