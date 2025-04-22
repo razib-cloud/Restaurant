@@ -74,7 +74,7 @@ Route::resource('staffs', StaffController::class);
 Route::resource('erp_products', ProductController::class);
 Route::resource('reservations', ReservationController::class);
 Route::resource('restables', ResTableController::class);
-Route::resource('reports', SalesReportController::class);
+Route::resource('salesreport', SalesReportController::class);
 
 
 

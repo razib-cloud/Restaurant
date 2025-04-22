@@ -132,8 +132,8 @@
                     <span class="nav-text">Reports</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{ route('reports.index') }}">Sales Reports</a></li>
-                    <li><a href="performance-reports.html">Performance Reports</a></li>
+                    <li><a href="{{ route('salesreport.index') }}">Sales Reports</a></li>
+                    <li><a href="performance-reports.html">Stock Reports</a></li>
                     <li><a href="customer-reports.html">Customer Reports</a></li>
                 </ul>
             </li>

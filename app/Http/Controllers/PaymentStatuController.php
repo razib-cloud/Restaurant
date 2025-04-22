@@ -14,14 +14,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+
+
+
 class PaymentStatuController extends Controller{
 	public function index(){
 		$paymentstatus = PaymentStatu::paginate(10);
 		return view("pages.erp.paymentstatu.index",["paymentstatus"=>$paymentstatus]);
 	}
+
+
 	public function create(){
 		return view("pages.erp.paymentstatu.create",[]);
 	}
+
+
 	public function store(Request $request){
 		//PaymentStatu::create($request->all());
 		$paymentstatu = new PaymentStatu;
@@ -36,13 +43,21 @@ date_default_timezone_set("Asia/Dhaka");
 
 		return back()->with('success', 'Created Successfully.');
 	}
+
+
+
 	public function show($id){
 		$paymentstatu = PaymentStatu::find($id);
 		return view("pages.erp.paymentstatu.show",["paymentstatu"=>$paymentstatu]);
 	}
+
+
 	public function edit(PaymentStatu $paymentstatu){
 		return view("pages.erp.paymentstatu.edit",["paymentstatu"=>$paymentstatu,]);
 	}
+
+
+
 	public function update(Request $request,PaymentStatu $paymentstatu){
 		//PaymentStatu::update($request->all());
 		$paymentstatu = PaymentStatu::find($paymentstatu->id);
@@ -57,6 +72,8 @@ date_default_timezone_set("Asia/Dhaka");
 
 		return redirect()->route("paymentstatus.index")->with('success','Updated Successfully.');
 	}
+
+    
 	public function destroy(PaymentStatu $paymentstatu){
 		$paymentstatu->delete();
 		return redirect()->route("paymentstatus.index")->with('success', 'Deleted Successfully.');

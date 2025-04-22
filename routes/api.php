@@ -37,6 +37,13 @@ Route::post('order', [OrderController::class, 'index']);
 Route::get('tables', [ReservationController::class, 'getTables']);
 Route::post('tableReserve', [ReservationController::class, 'store']);
 
+
+
+
+
+
+
+
 //for React
 Route::get('customers', [ReactapiController::class, 'index']);
 Route::get('tables', [ReactapiController::class, 'tables']);
@@ -50,14 +57,18 @@ Route::get('orders', [ReactOrderController::class, 'order']);
 Route::get('stock', [ReactOrderController::class, 'stock']);
 
 
+
+
+
+
+
+
 //for vue
 
 Route::apiResource("roles", RoleController::class);
 Route::apiResource("menus", MenusController::class);
 Route::apiResource("products", ProductController::class);
 Route::apiResource("customers", CustomerController::class);
-
-
 
 
 Route::post('register',[AuthController::class,'register']);
