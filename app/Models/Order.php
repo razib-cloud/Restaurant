@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-
-
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');
@@ -25,5 +23,18 @@ class Order extends Model
         return $this->belongsTo(Status::class, 'status_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'staff_id');
+    }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

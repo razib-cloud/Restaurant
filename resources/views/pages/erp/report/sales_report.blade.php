@@ -82,8 +82,6 @@
                 </div>
                 <div class="card-body">
                     <div class="filter-section">
-
-
                         <form method="POST" action="{{ url('/salesreport') }}">
                             @csrf
                             <div class="row">
@@ -99,11 +97,10 @@
                                         value="{{ old('end_date', $endDate ?? '') }}" required>
                                 </div>
 
-
                                 <div class="col-md-3">
                                     <label for="customer_id" class="form-label">Customer</label>
                                     <select id="customer_id" name="customer_id" class="form-control">
-                                        <option value="">All Customer</option>
+                                        <option value="">All Customers</option>
                                         @foreach ($customers as $customer)
                                             <option value="{{ $customer->id }}"
                                                 {{ old('customer_id', $selectedCustomer ?? '') == $customer->id ? 'selected' : '' }}>
@@ -112,7 +109,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-
 
                                 <div class="col-md-3">
                                     <label for="payment_status_id" class="form-label">Payment Status</label>
@@ -127,7 +123,6 @@
                                     </select>
                                 </div>
 
-
                                 <div class="col-md-12 mt-3">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-filter"></i> Filter Results
@@ -138,10 +133,8 @@
                                 </div>
                             </div>
                         </form>
-
-
-
                     </div>
+
                     <div id="loading-spinner" class="text-center my-4">
                         <div class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Loading...</span>
@@ -163,23 +156,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($orderitems as $sales)
-                                    <tr>
-                                        <td>{{ $sales->id }}</td>
-                                        <td>{{ $sales->customer }}</td>
-                                        <td>{{ $sales->staffs }}</td>
-                                        <td>{{ $sales->order_date }}</td>
-                                        <td>{{ $sales->orderitems }}</td>
-                                        <td>{{ $sales->payments }}</td>
-                                        <td>{{ $sales->paymentstatus }}</td>
-                                    </tr>
-                                    @endforeach --}}
+                                    @forelse ($orderitems as $sales)
+                                        <tr>
+                                            <td>{{ $sales->id }}</td>
+                                            <td>{{ $sales->customer }}</td>
+                                            <td>{{ $sales->staffs }}</td>
+                                            <td>{{ $sales->order_date }}</td>
+                                            <td>{{ $sales->orderitems }}</td>
+                                            <td>${{ $sales->payments }}</td>
+                                            <td>{{ $sales->paymentstatus }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">No sales data available.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                                 <tfoot>
                                     <tr class="total-row">
                                         <td colspan="5" class="text-end">Total:</td>
-                                        <td>$370.00</td>
-                                        <td colspan="2"></td>
+                                        <td>
+                                            ${{ number_format(collect($orderitems)->sum(fn($o) => floatval($o->payments)), 2) }}
+                                        </td>
+                                        <td></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -198,29 +197,23 @@
 
 
 
-
-
-
-
-
-
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const spinner = document.getElementById('loading-spinner');
             const tableContainer = document.querySelector('.table-container');
 
             spinner.style.display = 'block';
             tableContainer.style.display = 'none';
 
-            setTimeout(function () {
+            setTimeout(function() {
                 spinner.style.display = 'none';
                 tableContainer.style.display = 'block';
             }, 1000);
         });
 
-        document.addEventListener('scroll', function () {
+        document.addEventListener('scroll', function() {
             const backToTopButton = document.getElementById('back-to-top');
             if (window.scrollY > 300) {
                 backToTopButton.style.display = 'block';
@@ -229,7 +222,7 @@
             }
         });
 
-        document.getElementById('back-to-top').addEventListener('click', function () {
+        document.getElementById('back-to-top').addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'

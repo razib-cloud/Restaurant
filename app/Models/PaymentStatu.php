@@ -13,5 +13,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentStatu extends Model
 {
-    
+
 }

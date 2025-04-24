@@ -25,7 +25,12 @@ class Payment extends Model
         return $this->belongsTo(Customer::class, 'customer_id');
 
     }
+    public function paymentStatus()
+{
+    return $this->belongsTo(PaymentStatu::class, 'payment_status_id');
+}
 
-   
+
+
 
 }

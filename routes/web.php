@@ -77,6 +77,11 @@ Route::resource('restables', ResTableController::class);
 Route::resource('salesreport', SalesReportController::class);
 
 
+// Route::get('/salesreport', [SalesReportController::class, 'index'])->name('salesreport.index');
+// Route::post('/salesreport', [SalesReportController::class, 'show'])->name('salesreport.show');
+
+
+
 
 
 
