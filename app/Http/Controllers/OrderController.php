@@ -63,11 +63,23 @@ class OrderController extends Controller
 
 
 
+    // public function show($id)
+    // {
+    //     $order = Order::find($id);
+    //     return view("pages.erp.order.show", ["order" => $order]);
+    // }
+
+
+
     public function show($id)
     {
-        $order = Order::find($id);
-        return view("pages.erp.order.show", ["order" => $order]);
+        $order = Order::with(['customer', 'orderItems.product', 'status'])->findOrFail($id);
+        return view('pages.erp.order.show', compact('order'));
     }
+
+
+
+
     public function edit(Order $order)
     {
         return view("pages.erp.order.edit", ["order" => $order, "customers" => Customer::all(), "users" => User::all(), "status" => Status::all()]);
