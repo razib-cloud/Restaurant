@@ -84,6 +84,8 @@ class OrderController extends Controller
     {
         return view("pages.erp.order.edit", ["order" => $order, "customers" => Customer::all(), "users" => User::all(), "status" => Status::all()]);
     }
+
+
     public function update(Request $request, Order $order)
     {
         //Order::update($request->all());
@@ -104,6 +106,8 @@ class OrderController extends Controller
 
         return redirect()->route("orders.index")->with('success', 'Updated Successfully.');
     }
+
+    
     public function destroy(Order $order)
     {
         $order->delete();

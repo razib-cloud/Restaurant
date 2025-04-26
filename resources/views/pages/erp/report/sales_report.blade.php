@@ -73,10 +73,10 @@
         @endif
 
         <div class="col-md-12">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm" id="sales-report-card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="card-title mb-0">Sales Report</h3>
-                    <button class="btn btn-light btn-sm" onclick="window.print()">
+                    <button class="btn btn-light btn-sm" onclick="printReport()">
                         <i class="fas fa-print"></i> Print Report
                     </button>
                 </div>
@@ -148,7 +148,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Customer</th>
-                                        <th>Seller</th>
                                         <th>Sales Date</th>
                                         <th>Items</th>
                                         <th>Total Amount</th>
@@ -160,7 +159,6 @@
                                         <tr>
                                             <td>{{ $sales->id }}</td>
                                             <td>{{ $sales->customer }}</td>
-                                            <td>{{ $sales->staffs }}</td>
                                             <td>{{ $sales->order_date }}</td>
                                             <td>{{ $sales->orderitems }}</td>
                                             <td>${{ $sales->payments }}</td>
@@ -168,13 +166,13 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No sales data available.</td>
+                                            <td colspan="6" class="text-center">No sales data available.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                                 <tfoot>
                                     <tr class="total-row">
-                                        <td colspan="5" class="text-end">Total:</td>
+                                        <td colspan="4" class="text-end">Total:</td>
                                         <td>
                                             ${{ number_format(collect($orderitems)->sum(fn($o) => floatval($o->payments)), 2) }}
                                         </td>
@@ -193,9 +191,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 @endsection
-
-
-
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -229,24 +224,43 @@
             });
         });
 
-        function exportReport(format) {
-            Swal.fire({
-                title: 'Exporting Report',
-                text: `Preparing ${format} export...`,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading()
-                },
-                willClose: () => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Export Complete',
-                        text: `Your report has been exported as ${format}`,
-                        timer: 1500
-                    });
-                }
-            });
+        function printReport() {
+            const salesCard = document.getElementById('sales-report-card');
+            const customerSelect = document.getElementById('customer_id');
+            const selectedCustomer = customerSelect.options[customerSelect.selectedIndex].text;
+
+            const reportContent = `
+            <html>
+                <head>
+                    <title>Sales Report</title>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <style>
+                        body { padding: 20px; }
+                        table { width: 100%; border-collapse: collapse; }
+                        th, td { border: 1px solid #dee2e6; padding: 8px; text-align: left; }
+                        thead th { background-color: #343a40; color: #fff; }
+                        .total-row { font-weight: bold; background-color: #e9ecef; }
+                        .report-header { text-align: center; margin-bottom: 20px; }
+                        .report-header h2 { margin-bottom: 5px; }
+                        .report-header p { margin: 0; font-size: 18px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="report-header">
+                        <h2>Sales Report</h2>
+                        <p>Customer: ${selectedCustomer === "All Customers" ? "All Customers" : selectedCustomer}</p>
+                    </div>
+                    ${salesCard.querySelector('.table-container').outerHTML}
+                </body>
+            </html>
+        `;
+
+            const printWindow = window.open('', '', 'height=700,width=900');
+            printWindow.document.write(reportContent);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
         }
     </script>
 @endsection

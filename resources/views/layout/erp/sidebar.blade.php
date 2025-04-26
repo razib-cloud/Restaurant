@@ -55,7 +55,7 @@
                     <li><a href="#">Pending Orders</a></li>
                     <li><a href="#">Completed Orders</a></li>
                     <li><a href="#">Cancelled Orders</a></li>
-                    <li><a href="{{ route('orderitems.index') }}">All Order Items</a></li>
+                    {{-- <li><a href="{{ route('orderitems.index') }}">All Order Items</a></li> --}}
                     <li><a href="#">Kitchen Dashboard</a></li>
                 </ul>
             </li>
