@@ -69,9 +69,9 @@ class InventoryController extends Controller
         //Inventory::update($request->all());
         $inventory = Inventory::find($inventory->id);
         $inventory->product_id = $request->product_id;
-        $inventory->supplier_id = $request->supplier_id;
+        // $inventory->supplier_id = $request->supplier_id;
         $inventory->quantity = $request->quantity;
-        $inventory->unit_price = $request->unit_price;
+        // $inventory->unit_price = $request->unit_price;
         $inventory->expiry_date = $request->expiry_date;
         date_default_timezone_set("Asia/Dhaka");
         $inventory->created_at = date('Y-m-d H:i:s');

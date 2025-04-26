@@ -59,7 +59,14 @@ Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
 Route::resource('categories', CategoryController::class);
 // Route::resource('categories', CategoryController::class)->middleware("Manager");
+
+
 Route::resource('orders', OrderController::class);
+// Route for marking an order as "Completed"
+// Route::patch('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
+
+
+
 Route::resource('orderitems', OrderItemController::class);
 Route::resource('customers', CustomerController::class);
 Route::resource('suppliers', SupplierController::class);

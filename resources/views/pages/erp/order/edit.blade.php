@@ -32,20 +32,26 @@
 		</select>
 	</div>
 </div>
+
+
 <div class="row mb-3">
-	<label for="user_id" class="col-sm-2 col-form-label">User</label>
-	<div class="col-sm-10">
-		<select class="form-control" name="user_id" id="user_id">
-			@foreach($users as $user)
-				@if($user->id==$order->user_id)
-					<option value="{{$user->id}}" selected>{{$user->name}}</option>
-				@else
-					<option value="{{$user->id}}">{{$user->name}}</option>
-				@endif
-			@endforeach
-		</select>
-	</div>
+    <label for="status_id" class="col-sm-2 col-form-label">Status</label>
+    <div class="col-sm-10">
+        <select class="form-control" name="status_id" id="status_id">
+            @foreach($statuses as $status)  <!-- Use 'statuses' instead of 'status' -->
+                @if($status->id == $order->status_id)
+                    <option value="{{ $status->id }}" selected>{{ $status->name }}</option>
+                @else
+                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                @endif
+            @endforeach
+        </select>
+    </div>
 </div>
+
+
+
+
 <div class="row mb-3">
 	<label for="total_amount" class="col-sm-2 col-form-label">Total Amount</label>
 	<div class="col-sm-10">

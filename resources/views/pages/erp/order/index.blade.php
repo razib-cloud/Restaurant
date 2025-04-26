@@ -37,7 +37,6 @@
             display: none;
         }
 
-        /* Pagination Styles */
         .pagination .page-item.active .page-link {
             background-color: #007bff;
             border-color: #007bff;
@@ -78,23 +77,51 @@
                         <i class="fas fa-plus"></i> New Order
                     </a>
                 </div>
+
                 <div class="card-body p-0">
+
+                    <!-- Filter Form Start -->
+                    <div class="p-3">
+                        <form method="GET" action="{{ route('orders.index') }}" class="row g-2">
+                            <div class="col-md-3">
+                                <select name="status_id" class="form-select" onchange="this.form.submit()">
+                                    <option value="">-- Filter by Status --</option>
+                                    <option value="1" {{ request('status_id') == 1 ? 'selected' : '' }}>Pending
+                                    </option>
+                                    <option value="3" {{ request('status_id') == 3 ? 'selected' : '' }}>Completed
+                                    </option>
+                                    <option value="4" {{ request('status_id') == 4 ? 'selected' : '' }}>Cancelled
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select name="perPage" class="form-select" onchange="this.form.submit()">
+                                 <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
+                                    <option value="20" {{ request('perPage') == 20 ? 'selected' : '' }}>20</option>
+                                    <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Filter Form End -->
+
                     <div id="loading-spinner" class="text-center my-4">
                         <div class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     </div>
+
                     <div class="table-responsive">
                         <div class="table-container">
                             <table class="table table-striped table-hover mb-0">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>Id</th>
-                                        <th>Customer Id</th>
-                                        <th>User Id</th>
+                                        <th>Customer</th>
+                                        {{-- <th>User Id</th> --}}
                                         <th>Total Amount</th>
                                         <th>Discount</th>
-                                        <th>Status Id</th>
+                                        <th>Status</th>
                                         <th>Order Date</th>
                                         <th>Delivery Date</th>
                                         <th>Created At</th>
@@ -107,16 +134,28 @@
                                         <tr>
                                             <td>{{ $order->id }}</td>
                                             <td>{{ $order->customer ? $order->customer->name : 'No customer' }}</td>
-                                            <td>{{ $order->user_id }}</td>
+                                            {{-- <td>{{ $order->user_id }}</td> --}}
                                             <td>{{ $order->total_amount }}</td>
                                             <td>{{ $order->discount }}</td>
-                                            <td>{{ $order->status->name }}</td>
+                                            <td>
+                                                @if ($order->status)
+                                                    <span
+                                                        class="badge
+                                                    @if ($order->status->name == 'Pending') bg-warning
+                                                    @elseif ($order->status->name == 'Completed') bg-success
+                                                    @elseif ($order->status->name == 'Cancelled') bg-danger
+                                                    @else bg-secondary @endif
+                                                ">{{ $order->status->name }}</span>
+                                                @else
+                                                    <span class="badge bg-secondary">No Status</span>
+                                                @endif
+                                            </td>
                                             <td>{{ $order->order_date }}</td>
                                             <td>{{ $order->delivery_date }}</td>
                                             <td>{{ $order->created_at }}</td>
                                             <td>{{ $order->updated_at }}</td>
                                             <td>
-                                                <div class="d-flex gap-2">
+                                                <div class="d-flex gap-2 flex-wrap">
                                                     <a class="btn btn-sm btn-outline-secondary"
                                                         href="{{ route('orders.show', $order->id) }}">
                                                         <i class="fas fa-eye"></i> View
@@ -150,22 +189,10 @@
                         </div>
                     </div>
 
-                    <!-- Pagination with Page Size Selector -->
                     <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div></div>
                         <div>
-                            <form method="GET" action="{{ route('orders.index') }}">
-                                <label for="perPage">Show</label>
-                                <select name="perPage" id="perPage" onchange="this.form.submit()">
-                                    <option value="5" {{ request('perPage') == 5 ? 'selected' : '' }}>5</option>
-                                    <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
-                                    <option value="20" {{ request('perPage') == 20 ? 'selected' : '' }}>20</option>
-                                    <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
-                                </select>
-                                entries
-                            </form>
-                        </div>
-                        <div>
-                            {{ $orders->appends(['perPage' => request('perPage')])->links('vendor.pagination.bootstrap-5') }}
+                            {{ $orders->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
                         </div>
                     </div>
                 </div>

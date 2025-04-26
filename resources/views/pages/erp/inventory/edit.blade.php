@@ -32,7 +32,7 @@
 		</select>
 	</div>
 </div>
-<div class="row mb-3">
+{{-- <div class="row mb-3">
 	<label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
 	<div class="col-sm-10">
 		<select class="form-control" name="supplier_id" id="supplier_id">
@@ -45,19 +45,19 @@
 			@endforeach
 		</select>
 	</div>
-</div>
+</div> --}}
 <div class="row mb-3">
 	<label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
 	<div class="col-sm-10">
 		<input type = "text" class="form-control" name="quantity" value="{{$inventory->quantity}}" id="quantity" placeholder="Quantity">
 	</div>
 </div>
-<div class="row mb-3">
+{{-- <div class="row mb-3">
 	<label for="unit_price" class="col-sm-2 col-form-label">Unit Price</label>
 	<div class="col-sm-10">
 		<input type = "text" class="form-control" name="unit_price" value="{{$inventory->unit_price}}" id="unit_price" placeholder="Unit Price">
 	</div>
-</div>
+</div> --}}
 <div class="row mb-3">
 	<label for="expiry_date" class="col-sm-2 col-form-label">Expiry Date</label>
 	<div class="col-sm-10">
