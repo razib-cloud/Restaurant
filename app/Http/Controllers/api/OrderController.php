@@ -14,12 +14,12 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        // Check if customer exists, else create new one
+        // Check if customer exists by phone, otherwise create new
         $customer = Customer::where('phone', $request->phone)->value('id');
         $lastcustomer_id = 0;
 
         if (!$customer) {
-            $newCustomer = new Customer;
+            $newCustomer = new Customer();
             $newCustomer->name = $request->name;
             $newCustomer->phone = $request->phone;
             $newCustomer->email = $request->email;
@@ -30,20 +30,19 @@ class OrderController extends Controller
             $lastcustomer_id = $newCustomer->id;
         }
 
-        // Create Order
+        // Create the Order
         $order = new Order();
-        $order->customer_id = $customer ?? $lastcustomer_id;
-        $order->user_id = 1;
+        $order->customer_id = $customer ?: $lastcustomer_id; // <-- Fixed line here
+        $order->user_id = 1; // Default user id (admin)
         $order->total_amount = $request->total_payment;
         $order->discount = 0;
-        $order->status_id = 1;
+        $order->status_id = 1; // 1 = Pending (or your default status)
         $order->order_date = now();
         $order->delivery_date = now();
         $order->save();
 
         // Insert Order Items and update Inventory
         foreach ($request->products as $product) {
-            // Save order item
             $orderItem = new OrderItem();
             $orderItem->order_id = $order->id;
             $orderItem->product_id = $product['item_id'];
@@ -51,7 +50,7 @@ class OrderController extends Controller
             $orderItem->price = $product['price'];
             $orderItem->save();
 
-            // Update inventory for each product
+            // Update inventory
             $inventory = Inventory::where('product_id', $product['item_id'])->first();
             if ($inventory) {
                 $inventory->quantity -= $product['qty'];
@@ -59,12 +58,12 @@ class OrderController extends Controller
             }
         }
 
-        // Create payment
+        // Create Payment
         $payment = new Payment();
         $payment->order_id = $order->id;
         $payment->customer_id = $order->customer_id;
         $payment->payment_method = $request->payment_method;
-        $payment->payment_status_id = 1;
+        $payment->payment_status_id = 1; // 1 = Pending (you can change later)
         $payment->amount = $request->total_payment;
         $payment->transaction_id = "TXN" . time();
         $payment->payment_date = now();

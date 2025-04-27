@@ -63,7 +63,7 @@ Route::resource('categories', CategoryController::class);
 
 Route::resource('orders', OrderController::class);
 // Route for marking an order as "Completed"
-// Route::patch('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
+Route::patch('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
 
 
 
